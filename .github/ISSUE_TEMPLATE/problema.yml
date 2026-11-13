@@ -1,0 +1,41 @@
+name: Problema
+description: Algo no funciona, se ve mal o un dato está equivocado.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por avisar. No incluyas nombres, correos, teléfonos ni capturas en las que se vean datos personales. Esta página es pública.
+  - type: textarea
+    id: que-paso
+    attributes:
+      label: Qué pasó
+    validations:
+      required: true
+  - type: input
+    id: donde
+    attributes:
+      label: Dónde
+      description: El enlace de la página o el nombre de la sección.
+    validations:
+      required: true
+  - type: textarea
+    id: esperado
+    attributes:
+      label: Qué esperabas que pasara
+    validations:
+      required: false
+  - type: input
+    id: equipo
+    attributes:
+      label: Teléfono o computador, y navegador
+      placeholder: "Ejemplo: teléfono Android con Chrome"
+    validations:
+      required: false
+  - type: textarea
+    id: fuente
+    attributes:
+      label: Si es un dato equivocado, ¿cuál es el correcto y de dónde sale?
+      description: Sin fuente no se puede corregir. Revisa qué cuenta como fuente en docs/DATOS.md.
+    validations:
+      required: false
