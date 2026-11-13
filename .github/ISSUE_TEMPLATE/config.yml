@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: ¿No programas? Empieza aquí
+    url: https://github.com/nemura0/ecowaste/blob/main/docs/EMPEZAR_AQUI.md
+    about: Cómo proponer un punto, un texto o una idea sin usar GitHub.

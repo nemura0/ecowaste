@@ -1,0 +1,43 @@
+name: Tarea
+description: Algo que hay que hacer en el sitio, los datos o la documentación.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        No incluyas nombres, correos ni teléfonos. Esta página es pública.
+  - type: textarea
+    id: que
+    attributes:
+      label: Qué hay que hacer
+      description: En pocas frases y en palabras simples.
+    validations:
+      required: true
+  - type: textarea
+    id: por-que
+    attributes:
+      label: Por qué
+      description: Para qué sirve o qué problema resuelve.
+    validations:
+      required: false
+  - type: textarea
+    id: lista
+    attributes:
+      label: Cómo sabemos que está lista
+      description: Una lista corta de condiciones que se puedan comprobar.
+      placeholder: |
+        - Se ve bien en un teléfono.
+        - Pasa `npm run verificar`.
+    validations:
+      required: true
+  - type: dropdown
+    id: fase
+    attributes:
+      label: Fase
+      options:
+        - "0 · Base y documentación"
+        - "1 · Demo"
+        - "2 · Datos y contenido reales"
+        - "3 · Medición"
+        - "4 · Puesta en uso y evidencias"
+    validations:
+      required: false

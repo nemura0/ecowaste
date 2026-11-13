@@ -1,0 +1,4 @@
+# Quién recibe automáticamente la solicitud de revisión en cada pull request.
+# No obliga a nada: la revisión obligatoria de dueños no está activada en el repo.
+# [PENDIENTE] Agregar a la persona suplente cuando el grupo decida si su usuario puede aparecer aquí.
+* @nemura0
