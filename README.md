@@ -10,7 +10,7 @@ Es el producto digital de un proyecto estudiantil del ramo Ecología Integral (U
 
 ## Dónde verlo
 
-- Sitio: `[PENDIENTE]`. La URL final se define antes de imprimir cualquier QR.
+- Sitio (provisorio): https://ecowaste-seven.vercel.app/. La URL final se define antes de imprimir cualquier QR.
 - Vista previa de cada cambio: en cada pull request aparece un comentario con el enlace.
 
 ## Cómo se verifican los datos
