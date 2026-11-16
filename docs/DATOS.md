@@ -32,7 +32,7 @@ Cada punto es un archivo en `src/data/puntos/`, con el formato YAML (texto con `
 | `fuente.tipo` | Sí | De dónde salió el dato | `observacion`, `consulta`, `documento`, `web` |
 | `fuente.detalle` | Sí | Qué dice la fuente y cómo se obtuvo | Texto corto |
 | `fuente.enlace` | No | Dirección web de la fuente, si existe | URL que empieza con `https://` |
-| `verificacion.fecha` | Sí | Cuándo se comprobó por última vez | `AAAA-MM-DD`, sin fechas futuras |
+| `verificacion.fecha` | Sí | Cuándo se comprobó por última vez | `AAAA-MM-DD` (por ejemplo `2026-11-16`; `16/11/2026` no sirve), sin fechas futuras |
 | `verificacion.delegacion` | Sí | Qué delegación lo comprobó | Ver [delegaciones](#delegaciones) |
 | `ejemplo` | Sí | Si es un dato de ejemplo para la demo | `true` o `false` |
 
@@ -100,7 +100,7 @@ ejemplo: true
 ## Datos de ejemplo y modo real
 
 - En la demo, los puntos con `ejemplo: true` se muestran con una marca visible de **EJEMPLO**, y todo el sitio lleva un aviso de demostración.
-- El modo del sitio (`demo` o `real`) está en `src/data/sitio.json`. En modo `real`, `npm run verificar` falla si queda algún punto con `ejemplo: true`.
+- El modo del sitio (`demo` o `real`) está en `src/data/sitio.json`. En modo `real`, `npm run verificar` falla si queda algún punto con `ejemplo: true`. Si el modo dice otra cosa (por ejemplo `Demo`), la compilación se detiene.
 - La verificación compila sin caché (`astro build --force`). Si compilas a mano con `npm run build` después de cambiar el modo, puede que no veas el error: usa `npm run verificar`.
 
 ## El campus en el mapa

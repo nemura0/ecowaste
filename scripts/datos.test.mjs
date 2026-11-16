@@ -2,7 +2,16 @@
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { esFechaFutura, ejemploPermitido, idCoincideConArchivo, RESIDUOS, DELEGACIONES } from '../src/lib/datos.mjs';
+import {
+  esFechaFutura,
+  ejemploPermitido,
+  idCoincideConArchivo,
+  validarModo,
+  fechaComoTexto,
+  FORMATO_FECHA,
+  RESIDUOS,
+  DELEGACIONES,
+} from '../src/lib/datos.mjs';
 
 const hoy = new Date('2026-11-16T12:00:00Z');
 
@@ -36,6 +45,29 @@ test('el id coincide con el nombre del archivo', () => {
 
 test('el id distinto al nombre del archivo se rechaza', () => {
   assert.equal(idCoincideConArchivo('otro-id', 'contenedor-campus.yaml'), false);
+});
+
+test('el modo del sitio acepta "demo" y "real"', () => {
+  assert.equal(validarModo('demo'), 'demo');
+  assert.equal(validarModo('real'), 'real');
+});
+
+test('un modo mal escrito detiene la compilación', () => {
+  for (const modo of ['Demo', 'demo ', 'produccion', undefined]) {
+    assert.throws(() => validarModo(modo), /tiene que ser "demo" o "real"/);
+  }
+});
+
+test('una fecha que YAML leyó como fecha queda como texto AAAA-MM-DD', () => {
+  assert.equal(fechaComoTexto(new Date('2026-11-16')), '2026-11-16');
+  assert.equal(fechaComoTexto('2026-11-16'), '2026-11-16');
+});
+
+test('solo se acepta la fecha como AAAA-MM-DD', () => {
+  assert.match('2026-11-16', FORMATO_FECHA);
+  for (const fecha of ['05/11/2026', '16/11/2026', '16-11-2026', '2026/11/16', '2026-11-16 ']) {
+    assert.doesNotMatch(fecha, FORMATO_FECHA);
+  }
 });
 
 test('las listas controladas tienen un texto para mostrar por cada valor', () => {

@@ -13,11 +13,17 @@ import {
   TIPOS_DE_FUENTE,
   DELEGACIONES,
   esFechaFutura,
+  FORMATO_FECHA,
+  fechaComoTexto,
   ejemploPermitido,
   idCoincideConArchivo,
+  validarModo,
 } from './lib/datos.mjs';
 
 const valores = (lista: Record<string, string>) => Object.keys(lista) as [string, ...string[]];
+
+// Si el modo no es "demo" ni "real", la compilación se detiene aquí.
+const modo = validarModo(sitio.modo);
 
 const puntos = defineCollection({
   loader: glob({
@@ -51,13 +57,19 @@ const puntos = defineCollection({
         enlace: z.string().regex(/^https:\/\//, 'El enlace tiene que empezar con https://').optional(),
       }),
       verificacion: z.object({
-        // YAML lee AAAA-MM-DD como fecha.
-        fecha: z.coerce.date().refine((fecha) => !esFechaFutura(fecha), 'La fecha de verificación no puede ser futura'),
+        // YAML puede leer la fecha como fecha o como texto. Las dos sirven si van como AAAA-MM-DD.
+        fecha: z
+          .preprocess(
+            fechaComoTexto,
+            z.string().regex(FORMATO_FECHA, 'Escribe la fecha como AAAA-MM-DD, por ejemplo 2026-11-16'),
+          )
+          .pipe(z.coerce.date())
+          .refine((fecha) => !esFechaFutura(fecha), 'La fecha de verificación no puede ser futura'),
         delegacion: z.enum(valores(DELEGACIONES)),
       }),
       ejemplo: z.boolean(),
     })
-    .refine((punto) => ejemploPermitido(sitio.modo, punto.ejemplo), {
+    .refine((punto) => ejemploPermitido(modo, punto.ejemplo), {
       message: 'El sitio está en modo real y este punto es de ejemplo. Quítalo o cambia el modo en src/data/sitio.json.',
       path: ['ejemplo'],
     }),
