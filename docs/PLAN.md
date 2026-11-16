@@ -52,6 +52,7 @@ Nada de esta lista se decide por cuenta propia. Se marca `[PENDIENTE]` donde cor
 | Tema | Qué falta | Con quién |
 |---|---|---|
 | Fechas | Confirmar las fechas de cada semana y la fecha límite | Profesor |
+| Identidad visual | Confirmar la dirección visual A, que eligió el encargado del repo, o elegir otra | Grupo |
 | Contenedor | Ubicación, autorización, qué residuos acepta y quién los retira | Delegaciones a cargo del contenedor |
 | Autorización de la web | Saber si la universidad exige alguna antes de difundir | Profesor |
 | Puntos reales | Puntos y sus fuentes | Datos de los puntos y otras delegaciones |
@@ -83,4 +84,4 @@ Nada de esta lista se decide por cuenta propia. Se marca `[PENDIENTE]` donde cor
 |---|---|
 | 12-nov-2026 | Se revisa el estado del repo y se aprueba el plan de la Fase 0 |
 | 16-nov-2026 | Se mergean los PR de documentación y base técnica. Se conecta Vercel (plan gratuito, aceptado por el grupo mientras tanto) |
-| 16-nov-2026 | Se decide no probar la coautoría de agentes en Vercel y desactivarla. Empieza la Fase 1 sin esperar el caso 2. No hay logo ni colores del grupo |
+| 16-nov-2026 | Se decide no probar la coautoría de agentes en Vercel y desactivarla. Empieza la Fase 1 sin esperar el caso 2. No hay logo ni colores del grupo, así que el encargado del repo elige la dirección visual A mientras el grupo la confirma |
