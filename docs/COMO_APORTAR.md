@@ -77,8 +77,10 @@ Las reglas completas están en [CLAUDE.md](../CLAUDE.md). Valen para personas y 
 - Para retomar, escribe: "Lee `CLAUDE.md` y `docs/PLAN.md` y sigue con la fase que corresponde."
 - Claude Code crea ramas y abre pull requests, pero el merge lo hace una persona.
 - Las skills del proyecto están en `.claude/skills/` y se cargan solas.
-- **Desactiva la coautoría automática de Claude en los commits.** Hay reportes de que Vercel, en su plan gratuito, bloquea despliegues por commits con coautoría de agentes. `[PENDIENTE]`: se confirma con la prueba de la Fase 0, y aquí quedará cómo desactivarla.
-- Skills de terceros: `[PENDIENTE]`. Se proponen en la Fase 0 y, si se aprueban, aquí quedan los comandos de instalación.
+- **Sin coautoría de Claude en los commits.** Hay reportes de que Vercel, en su plan gratuito, bloquea despliegues por commits con coautoría de agentes, y que el bloqueo puede quedar aunque se borre el commit. Por eso `.claude/settings.json` la desactiva para todo el repo. No cambies ese archivo, y si tus commits igual la traen, revisa tu configuración personal de Claude Code.
+- **Skills de terceros:**
+  - `frontend-design` (de [anthropics/skills](https://github.com/anthropics/skills), licencia Apache 2.0) viene incluida en `.claude/skills/`.
+  - `web-design-guidelines` (de [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills)) no viene en el repo porque ese repo no declara licencia. Si la quieres, instálala tú siguiendo las instrucciones de su README. Revisa una interfaz contra buenas prácticas de diseño y accesibilidad.
 
 ## 5. Si el encargado del repo no está
 
