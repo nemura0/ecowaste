@@ -2,7 +2,7 @@
 
 Esta guía es para quien carga o revisa puntos del mapa. Explica qué datos lleva un punto, qué cuenta como fuente y cómo una fila de la planilla llega al repo.
 
-> **Estado:** este es el esquema acordado para la Fase 1. El código que lo valida todavía no existe. Si al implementarlo cambia algo, se actualiza este archivo en el mismo pull request.
+> **Estado:** el esquema está en `src/content.config.ts` y las listas controladas en `src/lib/datos.mjs`. Si cambia algo, se actualizan este archivo y el código en el mismo pull request.
 
 ## La regla de oro
 
@@ -32,7 +32,7 @@ Cada punto es un archivo en `src/data/puntos/`, con el formato YAML (texto con `
 | `fuente.tipo` | Sí | De dónde salió el dato | `observacion`, `consulta`, `documento`, `web` |
 | `fuente.detalle` | Sí | Qué dice la fuente y cómo se obtuvo | Texto corto |
 | `fuente.enlace` | No | Dirección web de la fuente, si existe | URL que empieza con `https://` |
-| `verificacion.fecha` | Sí | Cuándo se comprobó por última vez | `AAAA-MM-DD`, sin fechas futuras |
+| `verificacion.fecha` | Sí | Cuándo se comprobó por última vez | `AAAA-MM-DD` (por ejemplo `2026-11-16`; `16/11/2026` no sirve), sin fechas futuras |
 | `verificacion.delegacion` | Sí | Qué delegación lo comprobó | Ver [delegaciones](#delegaciones) |
 | `ejemplo` | Sí | Si es un dato de ejemplo para la demo | `true` o `false` |
 
@@ -100,7 +100,12 @@ ejemplo: true
 ## Datos de ejemplo y modo real
 
 - En la demo, los puntos con `ejemplo: true` se muestran con una marca visible de **EJEMPLO**, y todo el sitio lleva un aviso de demostración.
-- El sitio tiene un modo (`demo` o `real`) definido en un archivo del repo. En modo `real`, la verificación falla si queda algún punto con `ejemplo: true`.
+- El modo del sitio (`demo` o `real`) está en `src/data/sitio.json`. En modo `real`, `npm run verificar` falla si queda algún punto con `ejemplo: true`. Si el modo dice otra cosa (por ejemplo `Demo`), la compilación se detiene.
+- La verificación compila sin caché (`astro build --force`). Si compilas a mano con `npm run build` después de cambiar el modo, puede que no veas el error: usa `npm run verificar`.
+
+## El campus en el mapa
+
+El centro del Campus Guayacán está en `src/data/campus.json`, con coordenadas leídas en [OpenStreetMap](https://www.openstreetmap.org/way/92022614) el 16-nov-2026. Sirve para centrar el mapa. No es la ubicación de ningún punto.
 
 ## La planilla de Drive
 

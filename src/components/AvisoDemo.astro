@@ -1,8 +1,10 @@
 ---
 // Aviso de demostración. Aparece en todas las páginas mientras src/data/sitio.json diga "modo": "demo".
+// Si el modo no es "demo" ni "real", la compilación se detiene en vez de esconder el aviso.
 import sitio from '../data/sitio.json';
+import { validarModo } from '../lib/datos.mjs';
 
-const esDemo = sitio.modo === 'demo';
+const esDemo = validarModo(sitio.modo) === 'demo';
 ---
 
 {
