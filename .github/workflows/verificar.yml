@@ -1,0 +1,25 @@
+# Verificación automática: corre en cada pull request y en cada cambio que entra a main.
+# Revisa el repo (archivos .env, correos, teléfonos, RUT), corre las pruebas y compila el sitio.
+name: verificar
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verificar:
+    name: verificar
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run verificar

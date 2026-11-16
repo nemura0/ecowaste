@@ -1,0 +1,20 @@
+{
+  "name": "ecowaste",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Mapa de puntos de reciclaje de residuos electrónicos. Proyecto estudiantil del ramo Ecología Integral (UCN).",
+  "type": "module",
+  "engines": {
+    "node": ">=22.23.4"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test": "node --test scripts/*.test.mjs",
+    "verificar": "node scripts/verificar.mjs && npm test && astro build"
+  },
+  "dependencies": {
+    "astro": "^7.4.11"
+  }
+}
