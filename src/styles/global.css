@@ -1,0 +1,28 @@
+/*
+  Estilos mínimos de la Fase 0: usan los colores del sistema (claro u oscuro).
+  Las variables de diseño llegan en la Fase 1, en src/styles/variables.css.
+*/
+
+:root {
+  color-scheme: light dark;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+body {
+  margin: 0;
+  padding: 1rem;
+  background: Canvas;
+  color: CanvasText;
+}
+
+main,
+footer {
+  max-width: 40rem;
+  margin-inline: auto;
+}
+
+footer {
+  margin-top: 3rem;
+  font-size: 0.875rem;
+}
