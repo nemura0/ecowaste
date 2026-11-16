@@ -1,11 +1,92 @@
 ---
 import Base from '../layouts/Base.astro';
+import Mapa from '../components/Mapa.astro';
+import ListaPuntos from '../components/ListaPuntos.astro';
+import { getCollection } from 'astro:content';
+import campus from '../data/campus.json';
+
+const puntos = await getCollection('puntos');
 ---
 
-<Base titulo="En construcción" titular="Dónde dejar tus residuos electrónicos">
-  <p>
-    Estamos armando un mapa de puntos de reciclaje de residuos electrónicos, partiendo por el campus de la UCN en
-    Coquimbo.
-  </p>
-  <p>Este sitio está en construcción y todavía no tiene datos.</p>
+<Base titulo="Mapa de reciclaje" titular="Dónde dejar tus residuos electrónicos">
+  <div class="introduccion">
+    <p>
+      Encuentra puntos de reciclaje de residuos electrónicos en Coquimbo, partiendo por el Campus Guayacán de la
+      Universidad Católica del Norte.
+    </p>
+    <p>
+      Puedes explorar las ubicaciones directamente en el mapa o consultar la lista de puntos verificados con sus
+      residuos aceptados.
+    </p>
+  </div>
+
+  <section class="estado-contenedor" aria-labelledby="titulo-contenedor">
+    <div class="contenedor-caja">
+      <div class="contenedor-texto">
+        <h2 id="titulo-contenedor">Contenedor del proyecto</h2>
+        <p>
+          El contenedor propio del campus se encuentra actualmente en estado <strong>propuesto</strong>. Su ubicación
+          definitiva y fecha de habilitación se anunciarán apenas se confirme la autorización institucional.
+        </p>
+      </div>
+      <span class="etiqueta estado-propuesto">Propuesto</span>
+    </div>
+  </section>
+
+  <Mapa campus={campus} puntos={puntos} />
+
+  <ListaPuntos puntos={puntos} />
 </Base>
+
+<style>
+  .introduccion {
+    margin-top: var(--espacio-5);
+    margin-bottom: var(--espacio-4);
+  }
+
+  .introduccion p {
+    margin: 0 0 var(--espacio-2);
+  }
+
+  .estado-contenedor {
+    margin-bottom: var(--espacio-5);
+  }
+
+  .contenedor-caja {
+    background: var(--color-superficie);
+    border: var(--borde);
+    border-radius: var(--radio);
+    padding: var(--espacio-4);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--espacio-3);
+    flex-wrap: wrap;
+  }
+
+  .contenedor-texto h2 {
+    margin: 0 0 var(--espacio-1);
+    font-size: var(--texto-base);
+  }
+
+  .contenedor-texto p {
+    margin: 0;
+    font-size: var(--texto-chico);
+    color: var(--color-tinta-suave);
+    line-height: 1.45;
+  }
+
+  .etiqueta {
+    display: inline-block;
+    padding: var(--espacio-1) var(--espacio-3);
+    border-radius: var(--radio-pildora);
+    font-size: var(--texto-chico);
+    font-weight: var(--peso-fuerte);
+  }
+
+  .estado-propuesto {
+    background: var(--color-propuesto-fondo);
+    color: var(--color-propuesto-texto);
+    border: 1px solid currentColor;
+  }
+</style>

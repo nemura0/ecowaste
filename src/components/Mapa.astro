@@ -1,0 +1,272 @@
+---
+import 'leaflet/dist/leaflet.css';
+import { ESTADOS, RESIDUOS } from '../lib/datos.mjs';
+
+interface Props {
+  campus: {
+    lat: number;
+    lng: number;
+    nombre: string;
+  };
+  puntos: Array<{
+    id: string;
+    data: {
+      id: string;
+      nombre: string;
+      estado: keyof typeof ESTADOS;
+      ubicacion: {
+        lat: number;
+        lng: number;
+        descripcion: string;
+      };
+      residuos: Array<keyof typeof RESIDUOS>;
+      ejemplo: boolean;
+    };
+  }>;
+}
+
+const { campus, puntos } = Astro.props;
+
+// Preparamos los datos mínimos para el mapa de Leaflet en el cliente.
+const puntosParaMapa = puntos.map((p) => ({
+  id: p.data.id,
+  nombre: p.data.nombre,
+  estado: p.data.estado,
+  estadoTexto: ESTADOS[p.data.estado] || p.data.estado,
+  lat: p.data.ubicacion.lat,
+  lng: p.data.ubicacion.lng,
+  descripcion: p.data.ubicacion.descripcion,
+  residuosTexto: p.data.residuos.map((r) => RESIDUOS[r] || r).join(', '),
+  ejemplo: p.data.ejemplo,
+}));
+---
+
+<div class="mapa-bloque">
+  <div
+    id="mapa"
+    class="mapa-lienzo"
+    data-campus={JSON.stringify(campus)}
+    data-puntos={JSON.stringify(puntosParaMapa)}
+    role="region"
+    aria-label="Mapa interactivo con puntos de reciclaje"
+  >
+    <p class="mapa-fallback">Cargando mapa interactivo...</p>
+  </div>
+  <p class="mapa-nota">
+    <small>
+      Las teselas del mapa son provistas por <a
+        href="https://www.openstreetmap.org/copyright"
+        target="_blank"
+        rel="noopener">OpenStreetMap</a
+      >. Si el mapa no carga, puedes consultar la lista completa de puntos más abajo.
+    </small>
+  </p>
+</div>
+
+<script>
+  import L from 'leaflet';
+
+  const contenedor = document.getElementById('mapa');
+  if (contenedor) {
+    const campusData = JSON.parse(contenedor.dataset.campus || '{}');
+    const puntosData = JSON.parse(contenedor.dataset.puntos || '[]');
+
+    // Inicializamos el mapa centrado en el campus
+    const map = L.map(contenedor, {
+      scrollWheelZoom: false, // Evita atrapar el scroll de la página en celulares
+    }).setView([campusData.lat || -29.96495, campusData.lng || -71.351], 16);
+
+    // Teselas de OpenStreetMap con su atribución obligatoria
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    // Creamos marcadores personalizados con HTML/CSS (vectorial, sin imágenes rotas en empaquetado)
+    puntosData.forEach((punto: {
+      id: string;
+      nombre: string;
+      estado: string;
+      estadoTexto: string;
+      lat: number;
+      lng: number;
+      descripcion: string;
+      residuosTexto: string;
+      ejemplo: boolean;
+    }) => {
+      const icono = L.divIcon({
+        className: 'pin-mapa-icono',
+        html: `<div class="pin-mapa pin-${punto.estado}" aria-hidden="true"><span class="pin-centro"></span></div>`,
+        iconSize: [30, 30],
+        iconAnchor: [15, 30],
+        popupAnchor: [0, -30],
+      });
+
+      const etiquetaEjemplo = punto.ejemplo
+        ? '<span class="popup-etiqueta etiqueta-ejemplo">EJEMPLO</span>'
+        : '';
+
+      const contenidoPopup = `
+        <div class="popup-punto">
+          <div class="popup-cabecera">
+            <h3 class="popup-titulo">${punto.nombre}</h3>
+            <div class="popup-etiquetas">
+              <span class="popup-etiqueta estado-${punto.estado}">${punto.estadoTexto}</span>
+              ${etiquetaEjemplo}
+            </div>
+          </div>
+          <p class="popup-descripcion">${punto.descripcion}</p>
+          <p class="popup-residuos"><strong>Recibe:</strong> ${punto.residuosTexto}</p>
+          <a class="popup-enlace" href="#punto-${punto.id}">Ver detalle en la lista</a>
+        </div>
+      `;
+
+      L.marker([punto.lat, punto.lng], { icon: icono })
+        .addTo(map)
+        .bindPopup(contenidoPopup);
+    });
+  }
+</script>
+
+<style is:global>
+  /* Estilos del marcador personalizado */
+  .pin-mapa-icono {
+    background: transparent;
+    border: none;
+  }
+
+  .pin-mapa {
+    width: 28px;
+    height: 28px;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--color-tinta);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  }
+
+  .pin-mapa.pin-propuesto {
+    background: var(--color-amarillo);
+  }
+
+  .pin-mapa.pin-activo {
+    background: var(--color-verde);
+  }
+
+  .pin-mapa.pin-inactivo {
+    background: var(--color-inactivo-fondo);
+  }
+
+  .pin-centro {
+    width: 10px;
+    height: 10px;
+    background: var(--color-tinta);
+    border-radius: 50%;
+  }
+
+  .pin-mapa.pin-activo .pin-centro {
+    background: var(--color-fondo);
+  }
+
+  /* Estilos del popup de Leaflet integrados a variables.css */
+  .leaflet-popup-content-wrapper {
+    background: var(--color-fondo);
+    color: var(--color-tinta);
+    border: var(--borde);
+    border-radius: var(--radio);
+    padding: var(--espacio-2);
+    box-shadow: none;
+  }
+
+  .leaflet-popup-content {
+    margin: var(--espacio-2);
+    font-family: var(--fuente);
+    line-height: var(--interlineado);
+  }
+
+  .popup-titulo {
+    margin: 0 0 var(--espacio-1);
+    font-size: var(--texto-base);
+    font-weight: var(--peso-fuerte);
+  }
+
+  .popup-etiquetas {
+    display: flex;
+    gap: var(--espacio-1);
+    margin-bottom: var(--espacio-2);
+  }
+
+  .popup-etiqueta {
+    font-size: var(--texto-chico);
+    font-weight: var(--peso-fuerte);
+    padding: var(--espacio-1) var(--espacio-2);
+    border-radius: var(--radio-pildora);
+    display: inline-block;
+  }
+
+  .popup-etiqueta.estado-propuesto {
+    background: var(--color-propuesto-fondo);
+    color: var(--color-propuesto-texto);
+  }
+
+  .popup-etiqueta.estado-activo {
+    background: var(--color-activo-fondo);
+    color: var(--color-activo-texto);
+  }
+
+  .popup-etiqueta.estado-inactivo {
+    background: var(--color-inactivo-fondo);
+    color: var(--color-inactivo-texto);
+  }
+
+  .popup-etiqueta.etiqueta-ejemplo {
+    background: var(--color-amarillo);
+    color: var(--color-tinta);
+    border: 1px solid var(--color-tinta);
+  }
+
+  .popup-descripcion,
+  .popup-residuos {
+    margin: var(--espacio-1) 0;
+    font-size: var(--texto-chico);
+  }
+
+  .popup-enlace {
+    display: inline-block;
+    margin-top: var(--espacio-2);
+    font-size: var(--texto-chico);
+    font-weight: var(--peso-fuerte);
+    color: var(--color-verde);
+  }
+</style>
+
+<style>
+  .mapa-bloque {
+    margin-block: var(--espacio-4);
+  }
+
+  .mapa-lienzo {
+    width: 100%;
+    height: 22rem;
+    max-height: 60vh;
+    border: var(--borde);
+    border-radius: var(--radio);
+    background: var(--color-superficie);
+    z-index: 1; /* Mantiene los controles de Leaflet por debajo de la cabecera fija si existiera */
+  }
+
+  .mapa-fallback {
+    margin: var(--espacio-4);
+    font-size: var(--texto-chico);
+    color: var(--color-tinta-suave);
+  }
+
+  .mapa-nota {
+    margin-top: var(--espacio-2);
+    color: var(--color-tinta-suave);
+    line-height: 1.4;
+  }
+</style>
