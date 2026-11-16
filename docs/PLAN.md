@@ -10,10 +10,10 @@ Si trabajas sin Claude Code, revisa la sección "Estado actual" y las [issues ab
 
 ## Estado actual
 
-**Fase 0 · Base y documentación, en curso** (actualizado el 12-nov-2026).
+**Fase 0 · Base y documentación, en curso** (actualizado el 16-nov-2026).
 
-- [ ] PR de documentación: `CLAUDE.md`, `README.md`, `docs/`, plantillas de `.github/` y skills del proyecto.
-- [ ] PR de base técnica: Astro mínimo, scripts `dev`, `build` y `verificar`, `.nvmrc` y verificación automática en cada pull request.
+- [x] PR de documentación: `CLAUDE.md`, `README.md`, `docs/`, plantillas de `.github/` y skills del proyecto.
+- [ ] PR de base técnica (abierto): Astro mínimo, scripts `dev`, `build` y `verificar`, `.nvmrc` y verificación automática en cada pull request.
 - [ ] Repo conectado a Vercel.
 - [ ] Vista previa probada en tres casos: un PR del encargado, uno de otro colaborador y un commit con coautoría de un agente.
 - [ ] Skills de terceros propuestas y decididas.
@@ -81,3 +81,4 @@ Nada de esta lista se decide por cuenta propia. Se marca `[PENDIENTE]` donde cor
 | Fecha | Qué pasó |
 |---|---|
 | 12-nov-2026 | Se revisa el estado del repo y se aprueba el plan de la Fase 0 |
+| 16-nov-2026 | Se mergea el PR de documentación y se abre el de base técnica. El grupo acepta usar Vercel gratis mientras tanto |
