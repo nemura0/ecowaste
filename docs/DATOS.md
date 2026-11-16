@@ -2,7 +2,7 @@
 
 Esta guía es para quien carga o revisa puntos del mapa. Explica qué datos lleva un punto, qué cuenta como fuente y cómo una fila de la planilla llega al repo.
 
-> **Estado:** este es el esquema acordado para la Fase 1. El código que lo valida todavía no existe. Si al implementarlo cambia algo, se actualiza este archivo en el mismo pull request.
+> **Estado:** el esquema está en `src/content.config.ts` y las listas controladas en `src/lib/datos.mjs`. Si cambia algo, se actualizan este archivo y el código en el mismo pull request.
 
 ## La regla de oro
 
@@ -100,7 +100,12 @@ ejemplo: true
 ## Datos de ejemplo y modo real
 
 - En la demo, los puntos con `ejemplo: true` se muestran con una marca visible de **EJEMPLO**, y todo el sitio lleva un aviso de demostración.
-- El sitio tiene un modo (`demo` o `real`) definido en un archivo del repo. En modo `real`, la verificación falla si queda algún punto con `ejemplo: true`.
+- El modo del sitio (`demo` o `real`) está en `src/data/sitio.json`. En modo `real`, `npm run verificar` falla si queda algún punto con `ejemplo: true`.
+- La verificación compila sin caché (`astro build --force`). Si compilas a mano con `npm run build` después de cambiar el modo, puede que no veas el error: usa `npm run verificar`.
+
+## El campus en el mapa
+
+El centro del Campus Guayacán está en `src/data/campus.json`, con coordenadas leídas en [OpenStreetMap](https://www.openstreetmap.org/way/92022614) el 16-nov-2026. Sirve para centrar el mapa. No es la ubicación de ningún punto.
 
 ## La planilla de Drive
 

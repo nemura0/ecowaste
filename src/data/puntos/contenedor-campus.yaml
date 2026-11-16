@@ -1,0 +1,24 @@
+# Punto de EJEMPLO para la demo. El contenedor todavía no existe.
+# Las coordenadas son el centro del campus en OpenStreetMap, no la ubicación real del contenedor.
+# Los residuos son de ejemplo: qué recibirá el contenedor está [PENDIENTE].
+id: contenedor-campus
+nombre: Contenedor del campus
+tipo: contenedor
+estado: propuesto
+ubicacion:
+  lat: -29.96495
+  lng: -71.35100
+  descripcion: Ubicación de ejemplo en el centro del Campus Guayacán. El lugar real del contenedor está pendiente.
+  comuna: Coquimbo
+residuos:
+  - pilas
+  - celulares-y-tablets
+  - perifericos-y-cables
+fuente:
+  tipo: web
+  detalle: Coordenadas del centro del Campus Guayacán de la UCN (Larrondo 1281, Coquimbo), leídas en OpenStreetMap. El contenedor es de ejemplo.
+  enlace: https://www.openstreetmap.org/way/92022614
+verificacion:
+  fecha: 2026-11-16
+  delegacion: operaciones-y-recursos
+ejemplo: true

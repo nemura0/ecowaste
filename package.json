@@ -12,7 +12,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "test": "node --test scripts/*.test.mjs",
-    "verificar": "node scripts/verificar.mjs && npm test && astro build"
+    "verificar": "node scripts/verificar.mjs && npm test && astro build --force"
   },
   "dependencies": {
     "astro": "^7.4.11"
