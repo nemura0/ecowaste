@@ -10,14 +10,16 @@ Si trabajas sin Claude Code, revisa la sección "Estado actual" y las [issues ab
 
 ## Estado actual
 
-**Fase 0 · Base y documentación, en curso** (actualizado el 16-nov-2026).
+**Fase 0 · Base y documentación, casi cerrada. Fase 1 · Demo, en curso** (actualizado el 16-nov-2026).
 
 - [x] PR de documentación: `CLAUDE.md`, `README.md`, `docs/`, plantillas de `.github/` y skills del proyecto.
 - [x] PR de base técnica: Astro mínimo, scripts `dev`, `build` y `verificar`, `.nvmrc` y verificación automática en cada pull request.
 - [x] Repo conectado a Vercel (https://ecowaste-seven.vercel.app/, URL provisoria).
-- [ ] Vista previa probada en tres casos: un PR del encargado, uno de otro colaborador y un commit con coautoría de un agente.
-- [ ] Skills de terceros propuestas y decididas.
-- [ ] Issues de la Fase 1 creadas.
+- [x] Vista previa con un PR del encargado.
+- [ ] Vista previa con un PR de otro colaborador (pendiente de que alguien haga la práctica de EMPEZAR_AQUI).
+- [x] Coautoría de agentes: no se prueba en el proyecto real por riesgo de bloqueo permanente; se desactiva en `.claude/settings.json`.
+- [x] Skills de terceros decididas: `frontend-design` incluida; `web-design-guidelines` se instala aparte.
+- [x] Issues de la Fase 1 creadas (etiqueta `fase-1`).
 
 ## Fases
 
@@ -82,3 +84,4 @@ Nada de esta lista se decide por cuenta propia. Se marca `[PENDIENTE]` donde cor
 |---|---|
 | 12-nov-2026 | Se revisa el estado del repo y se aprueba el plan de la Fase 0 |
 | 16-nov-2026 | Se mergean los PR de documentación y base técnica. Se conecta Vercel (plan gratuito, aceptado por el grupo mientras tanto) |
+| 16-nov-2026 | Se decide no probar la coautoría de agentes en Vercel y desactivarla. Empieza la Fase 1 sin esperar el caso 2. No hay logo ni colores del grupo |
