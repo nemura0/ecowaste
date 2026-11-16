@@ -1,13 +1,20 @@
 ---
 import '../styles/global.css';
+import AvisoDemo from '../components/AvisoDemo.astro';
+import Cabecera from '../components/Cabecera.astro';
+import PiePagina from '../components/PiePagina.astro';
 
 interface Props {
+  /** Título de la pestaña del navegador. */
   titulo: string;
+  /** Título grande de la página, en la franja verde. Si no se indica, se usa `titulo`. */
+  titular?: string;
   descripcion?: string;
 }
 
 const {
   titulo,
+  titular = titulo,
   descripcion = 'Mapa de puntos de reciclaje de residuos electrónicos.',
 } = Astro.props;
 ---
@@ -23,14 +30,12 @@ const {
     <title>{titulo} · EcoWaste</title>
   </head>
   <body>
-    <main>
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+    <AvisoDemo />
+    <Cabecera titular={titular} />
+    <main id="contenido" class="contenedor">
       <slot />
     </main>
-    <footer>
-      <p>
-        Proyecto estudiantil del ramo Ecología Integral, Universidad Católica del Norte, sede Coquimbo.
-        No es un servicio oficial de la universidad.
-      </p>
-    </footer>
+    <PiePagina />
   </body>
 </html>

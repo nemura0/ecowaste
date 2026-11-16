@@ -1,28 +1,85 @@
 /*
-  Estilos mínimos de la Fase 0: usan los colores del sistema (claro u oscuro).
-  Las variables de diseño llegan en la Fase 1, en src/styles/variables.css.
+  Estilos generales del sitio. Todos los valores salen de variables.css.
 */
 
+@import './variables.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 :root {
-  color-scheme: light dark;
-  font-family: system-ui, sans-serif;
-  line-height: 1.5;
+  color-scheme: light;
+  font-family: var(--fuente);
+  font-size: 100%;
+  line-height: var(--interlineado);
 }
 
 body {
   margin: 0;
-  padding: 1rem;
-  background: Canvas;
-  color: CanvasText;
+  background: var(--color-fondo);
+  color: var(--color-tinta);
+  font-size: var(--texto-base);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-main,
-footer {
-  max-width: 40rem;
+main {
+  flex: 1;
+}
+
+h1,
+h2,
+h3 {
+  line-height: var(--interlineado-titulo);
+  font-weight: var(--peso-titulo);
+}
+
+a {
+  color: var(--color-verde);
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  color: var(--color-verde-oscuro);
+}
+
+:focus-visible {
+  outline: var(--foco);
+  outline-offset: var(--foco-separacion);
+}
+
+/* Bloque centrado con ancho de lectura; el texto va alineado a la izquierda */
+.contenedor {
+  max-width: var(--ancho-contenido);
   margin-inline: auto;
+  padding-inline: var(--espacio-4);
 }
 
-footer {
-  margin-top: 3rem;
-  font-size: 0.875rem;
+.saltar {
+  position: absolute;
+  left: var(--espacio-2);
+  top: -100%;
+  padding: var(--espacio-2) var(--espacio-3);
+  background: var(--color-fondo);
+  color: var(--color-tinta);
+  border: var(--borde);
+  border-radius: var(--radio);
+  z-index: 10;
+}
+
+.saltar:focus {
+  top: var(--espacio-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
 }

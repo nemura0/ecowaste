@@ -55,4 +55,23 @@ La referencia es un diseño tipo Canva: **plano, amable y claro**.
 
 ## Variables de diseño
 
-`[PENDIENTE]` Se definen en la Fase 1, cuando el grupo elija una dirección visual (o confirme si hay logo y colores). Van a vivir en un solo archivo, `src/styles/variables.css`, y el resto del sitio solo usa esas variables: no se escriben colores ni tamaños sueltos.
+El grupo no tiene logo ni colores propios, así que el 16-nov-2026 el encargado del repo eligió la **dirección A, "Etiqueta de contenedor"**. Se inspira en los adhesivos de los contenedores de reciclaje: verde profundo, amarillo de señalética, tinta oscura y bordes marcados. `[PENDIENTE]` Falta que el grupo la confirme. Si elige otra dirección, o define después un logo o colores, se cambian aquí.
+
+Todo vive en un solo archivo, `src/styles/variables.css`. El resto del sitio solo usa esas variables: no se escriben colores ni tamaños sueltos.
+
+| Color | Valor | Para qué |
+|---|---|---|
+| Verde | `#0F5C4A` | Cabecera, enlaces y botones |
+| Amarillo | `#F5C518` | Aviso de demostración y marca **EJEMPLO** |
+| Tinta | `#18262B` | Texto y bordes |
+| Superficie | `#EAF2EE` | Fondos suaves, como el pie de página |
+
+| Estado de un punto | Fondo | Texto |
+|---|---|---|
+| Propuesto | `#FFF1D6` | `#6B4200` |
+| Activo | `#DDF0E4` | `#155A34` |
+| Inactivo | `#ECEEEE` | `#3D4747` |
+
+- **Tipografía:** la fuente del sistema del teléfono. No se descarga ninguna fuente.
+- **Bordes:** de 2 px en color tinta, con esquinas poco redondeadas (6 px). Nada de sombras.
+- **Foco:** contorno de 3 px en tinta; sobre el verde, en amarillo.

@@ -1,0 +1,31 @@
+---
+// Aviso de demostración. Aparece en todas las páginas mientras src/data/sitio.json diga "modo": "demo".
+import sitio from '../data/sitio.json';
+
+const esDemo = sitio.modo === 'demo';
+---
+
+{
+  esDemo && (
+    <aside class="aviso-demo" aria-label="Aviso de demostración">
+      <p class="contenedor">
+        <strong>Sitio de demostración.</strong> Los puntos que aparecen son de ejemplo y no sirven para ir a dejar
+        residuos.
+      </p>
+    </aside>
+  )
+}
+
+<style>
+  .aviso-demo {
+    background: var(--color-amarillo);
+    color: var(--color-tinta);
+    border-bottom: var(--borde);
+    font-size: var(--texto-chico);
+  }
+
+  .aviso-demo p {
+    margin: 0;
+    padding-block: var(--espacio-2);
+  }
+</style>

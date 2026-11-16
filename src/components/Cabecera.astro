@@ -1,0 +1,45 @@
+---
+// Franja verde con el nombre del sitio y el título de la página.
+interface Props {
+  titular: string;
+}
+
+const { titular } = Astro.props;
+---
+
+<header class="cabecera">
+  <div class="contenedor">
+    <a class="marca" href="/">EcoWaste</a>
+    <h1>{titular}</h1>
+  </div>
+</header>
+
+<style>
+  .cabecera {
+    background: var(--color-verde);
+    color: var(--color-fondo);
+    border-bottom: var(--borde);
+    padding-block: var(--espacio-4) var(--espacio-6);
+  }
+
+  .marca {
+    color: var(--color-verde-claro);
+    font-size: var(--texto-chico);
+    font-weight: var(--peso-fuerte);
+    text-decoration: none;
+  }
+
+  .marca:hover {
+    color: var(--color-fondo);
+    text-decoration: underline;
+  }
+
+  .marca:focus-visible {
+    outline-color: var(--color-foco-sobre-verde);
+  }
+
+  h1 {
+    margin: var(--espacio-2) 0 0;
+    font-size: var(--texto-titulo);
+  }
+</style>
