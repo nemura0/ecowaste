@@ -52,7 +52,6 @@ Nada de esta lista se decide por cuenta propia. Se marca `[PENDIENTE]` donde cor
 | Tema | Qué falta | Con quién |
 |---|---|---|
 | Fechas | Confirmar las fechas de cada semana y la fecha límite | Profesor |
-| Identidad visual | Saber si hay logo o colores | Grupo |
 | Contenedor | Ubicación, autorización, qué residuos acepta y quién los retira | Delegaciones a cargo del contenedor |
 | Autorización de la web | Saber si la universidad exige alguna antes de difundir | Profesor |
 | Puntos reales | Puntos y sus fuentes | Datos de los puntos y otras delegaciones |
@@ -69,7 +68,7 @@ Nada de esta lista se decide por cuenta propia. Se marca `[PENDIENTE]` donde cor
 ## Riesgos conocidos
 
 - **Vercel y los cambios de otras personas.** La guía de Vercel dice que, en el plan gratuito, solo el dueño de la cuenta puede disparar despliegues. Se prueba en la Fase 0. Si falla, se replantea el hosting (ver [decisión 0003](decisiones/0003-hosting-vercel.md)).
-- **Coautoría de agentes en los commits.** Hay reportes de despliegues bloqueados por eso en el plan gratuito de Vercel. Se prueba en la Fase 0.
+- **Coautoría de agentes en los commits.** Hay reportes de despliegues bloqueados por eso en el plan gratuito de Vercel. No se prueba en el proyecto real: `.claude/settings.json` la desactiva para quien use Claude Code (ver [COMO_APORTAR.md](COMO_APORTAR.md)).
 - **Teselas de OpenStreetMap.** Es un servicio público sin garantía de disponibilidad. Por eso el mapa lleva siempre una lista equivalente.
 - **QR impresos.** No se pueden corregir. Se generan solo cuando la URL final esté fija.
 - **Analítica.** Si se usa la de Vercel en el plan gratuito, guarda un mes de historial, así que las cifras hay que exportarlas antes.

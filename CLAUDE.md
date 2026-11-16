@@ -99,7 +99,7 @@ Si tus reglas globales (por ejemplo, de `~/.claude`) piden otra cosa, como TDD c
 | `guia-de-estilo` | Antes de escribir texto visible o tocar la interfaz |
 | `explicar-cambio` | Al cerrar un pull request, o cuando alguien pide entender un cambio |
 | `revisar-antes-de-publicar` | Antes de abrir un pull request y antes de cualquier difusión |
-| `frontend-design` | Al diseñar o rediseñar la interfaz, junto con `guia-de-estilo` (de terceros, licencia Apache 2.0). Si choca con la guía de estilo, manda la guía |
+| `frontend-design` | Al diseñar o rediseñar la interfaz, junto con `guia-de-estilo` (de terceros, licencia Apache 2.0). Si choca con este archivo o con la guía de estilo, mandan ellos |
 
 ## Cómo trabajar
 
