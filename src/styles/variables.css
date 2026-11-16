@@ -1,0 +1,62 @@
+/*
+  Variables de diseño de EcoWaste. Dirección visual A: "Etiqueta de contenedor".
+  Inspirada en los adhesivos de los contenedores de reciclaje: verde profundo,
+  amarillo de señalética, tinta oscura y bordes marcados.
+
+  Regla: el resto del sitio usa solo estas variables. No se escriben colores
+  ni tamaños sueltos en otros archivos. Ver docs/GUIA_DE_ESTILO.md.
+*/
+
+:root {
+  /* Colores base */
+  --color-verde: #0f5c4a;
+  --color-verde-oscuro: #0a4436;
+  --color-verde-claro: #cfe3da;
+  --color-amarillo: #f5c518;
+  --color-tinta: #18262b;
+  --color-tinta-suave: #3d5250;
+  --color-fondo: #ffffff;
+  --color-superficie: #eaf2ee;
+  --color-linea: #d2e2da;
+
+  /* Estados de un punto. Siempre van con su palabra al lado, nunca solo el color. */
+  --color-propuesto-fondo: #fff1d6;
+  --color-propuesto-texto: #6b4200;
+  --color-activo-fondo: #ddf0e4;
+  --color-activo-texto: #155a34;
+  --color-inactivo-fondo: #eceeee;
+  --color-inactivo-texto: #3d4747;
+
+  /* Foco visible al navegar con teclado */
+  --color-foco: var(--color-tinta);
+  --color-foco-sobre-verde: var(--color-amarillo);
+  --foco: 3px solid var(--color-foco);
+  --foco-separacion: 2px;
+
+  /* Tipografía: la fuente del teléfono, para no descargar nada extra */
+  --fuente: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --texto-chico: 0.875rem;
+  --texto-base: 1.0625rem;
+  --texto-destacado: 1.25rem;
+  --texto-titulo: clamp(1.75rem, 1.35rem + 1.8vw, 2.5rem);
+  --peso-normal: 400;
+  --peso-fuerte: 700;
+  --peso-titulo: 800;
+  --interlineado: 1.55;
+  --interlineado-titulo: 1.15;
+
+  /* Espacios */
+  --espacio-1: 0.25rem;
+  --espacio-2: 0.5rem;
+  --espacio-3: 0.75rem;
+  --espacio-4: 1rem;
+  --espacio-5: 1.5rem;
+  --espacio-6: 2rem;
+  --espacio-7: 3rem;
+
+  /* Formas */
+  --ancho-contenido: 40rem;
+  --borde: 2px solid var(--color-tinta);
+  --radio: 6px;
+  --radio-pildora: 999px;
+}
