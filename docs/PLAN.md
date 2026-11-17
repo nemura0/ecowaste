@@ -86,3 +86,4 @@ Nada de esta lista se decide por cuenta propia. Se marca `[PENDIENTE]` donde cor
 | 16-nov-2026 | Se mergean los PR de documentación y base técnica. Se conecta Vercel (plan gratuito, aceptado por el grupo mientras tanto) |
 | 16-nov-2026 | Se decide no probar la coautoría de agentes en Vercel y desactivarla. Empieza la Fase 1 sin esperar el caso 2. No hay logo ni colores del grupo, así que el encargado del repo elige la dirección visual A mientras el grupo la confirma |
 | 16-nov-2026 | Se implementa el mapa con Leaflet centrado en el campus y la lista equivalente accesible sin JavaScript (PR #23) |
+| 16-nov-2026 | Se agrega la ficha de cada punto en `/puntos/<id>/`, con estado, residuos, fuente, fecha y delegación que verificó. La lista y el popup del mapa enlazan a ella (issue #11) |
