@@ -58,11 +58,19 @@ if (contenedor) {
       popupAnchor: [0, -28],
     });
 
-    // Leemos la plantilla HTML ya compilada y escapada por Astro para este punto
-    const plantilla = document.getElementById(
-      `popup-plantilla-${punto.id}`,
-    ) as HTMLTemplateElement | null;
-    const contenido = plantilla ? plantilla.content.cloneNode(true) : punto.nombre;
+    // Función que devuelve el HTML compilado y escapado por Astro desde la etiqueta <template>.
+    // Pasamos una función a bindPopup para que Leaflet actualice el contenido cada vez que
+    // se abra o redibuje el popup, evitando que un DocumentFragment quede vacío tras el autoPan.
+    const obtenerContenidoPopup = () => {
+      const plantilla = document.getElementById(
+        `popup-plantilla-${punto.id}`,
+      ) as HTMLTemplateElement | null;
+
+      if (plantilla && plantilla.innerHTML) {
+        return plantilla.innerHTML;
+      }
+      return `<strong>${punto.nombre}</strong>`;
+    };
 
     // Pasamos el title con nombre y estado para lectores de pantalla y accesibilidad
     L.marker([punto.lat, punto.lng], {
@@ -70,8 +78,10 @@ if (contenedor) {
       title: `${punto.nombre} (${punto.estadoTexto})`,
     })
       .addTo(map)
-      .bindPopup(contenido as HTMLElement, {
-        maxWidth: 240, // Evita desbordar la pantalla en anchos de 375 px
+      .bindPopup(obtenerContenidoPopup, {
+        maxWidth: 240, // Evita desbordar la pantalla en anchos reducidos (375 px y 320 px)
+        minWidth: 180,
+        autoPanPadding: [12, 12], // Margen de seguridad para no quedar pegado al borde del mapa
       });
   });
 }
