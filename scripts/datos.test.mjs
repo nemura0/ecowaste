@@ -12,6 +12,10 @@ import {
   FORMATO_FECHA,
   RESIDUOS,
   DELEGACIONES,
+  urlDeOrigen,
+  normalizarRuta,
+  destinosInexistentes,
+  FORMATO_DESTINO,
 } from '../src/lib/datos.mjs';
 
 const hoy = new Date('2026-11-16T12:00:00Z');
@@ -84,4 +88,37 @@ test('formatea la fecha en formato legible DD-mmm-AAAA', () => {
   assert.equal(formatearFechaLegible('2026-11-16'), '16-nov-2026');
   assert.equal(formatearFechaLegible(new Date('2026-11-16')), '16-nov-2026');
   assert.equal(formatearFechaLegible('2026-05-04'), '4-may-2026');
+});
+
+// Orígenes de QR
+
+test('un QR lleva a su destino con el origen anotado', () => {
+  assert.equal(urlDeOrigen({ id: 'contenedor', destino: '/' }), '/?origen=contenedor');
+  assert.equal(urlDeOrigen({ id: 'biblioteca', destino: '/que-reciclar/' }), '/que-reciclar/?origen=biblioteca');
+});
+
+test('las rutas de la compilación se comparan igual con o sin barras', () => {
+  assert.equal(normalizarRuta(''), '/');
+  assert.equal(normalizarRuta('/'), '/');
+  assert.equal(normalizarRuta('que-reciclar/'), '/que-reciclar/');
+  assert.equal(normalizarRuta('/puntos/contenedor-campus'), '/puntos/contenedor-campus/');
+});
+
+test('un destino que existe en el sitio no se reporta', () => {
+  const origenes = [{ id: 'a', destino: '/' }, { id: 'b', destino: '/que-reciclar/' }];
+  assert.deepEqual(destinosInexistentes(origenes, ['', 'que-reciclar/', 'acerca/']), []);
+});
+
+test('un destino que no existe en el sitio se reporta', () => {
+  const origenes = [{ id: 'a', destino: '/' }, { id: 'b', destino: '/no-existe/' }];
+  assert.deepEqual(destinosInexistentes(origenes, ['']), [{ id: 'b', destino: '/no-existe/' }]);
+});
+
+test('el destino es una ruta interna que termina en barra', () => {
+  for (const valido of ['/', '/que-reciclar/', '/puntos/contenedor-campus/']) {
+    assert.match(valido, FORMATO_DESTINO);
+  }
+  for (const invalido of ['', 'que-reciclar/', '/que-reciclar', 'https://otro.sitio/', '/?origen=x', '/#mapa']) {
+    assert.doesNotMatch(invalido, FORMATO_DESTINO);
+  }
 });
