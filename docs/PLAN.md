@@ -85,4 +85,3 @@ Nada de esta lista se decide por cuenta propia. Se marca `[PENDIENTE]` donde cor
 | 12-nov-2026 | Se revisa el estado del repo y se aprueba el plan de la Fase 0 |
 | 16-nov-2026 | Se mergean los PR de documentación y base técnica. Se conecta Vercel (plan gratuito, aceptado por el grupo mientras tanto) |
 | 16-nov-2026 | Se decide no probar la coautoría de agentes en Vercel y desactivarla. Empieza la Fase 1 sin esperar el caso 2. No hay logo ni colores del grupo, así que el encargado del repo elige la dirección visual A mientras el grupo la confirma |
-| 16-nov-2026 | Otro colaborador abre el PR del mapa (#23) y Vercel genera su vista previa. Se cierra la Fase 0 |
