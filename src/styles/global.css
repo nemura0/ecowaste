@@ -59,6 +59,26 @@ a:hover {
   padding-inline: var(--espacio-4);
 }
 
+/* Textos largos que vienen de src/content/ */
+.prosa h2 {
+  margin-top: var(--espacio-6);
+  margin-bottom: var(--espacio-2);
+  font-size: var(--texto-destacado);
+}
+
+/* En los textos, "> [PENDIENTE] ..." marca lo que falta. Se ve como recuadro punteado. */
+.prosa blockquote {
+  margin: 0;
+  padding: var(--espacio-3) var(--espacio-4);
+  border: var(--borde-pendiente);
+  border-radius: var(--radio);
+  background: var(--color-superficie);
+}
+
+.prosa blockquote p {
+  margin: 0;
+}
+
 .saltar {
   position: absolute;
   left: var(--espacio-2);

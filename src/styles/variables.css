@@ -57,6 +57,10 @@
   /* Formas */
   --ancho-contenido: 40rem;
   --borde: 2px solid var(--color-tinta);
+  /* Recuadro de lo que falta: punteado, para que no se lea como dato confirmado */
+  --borde-pendiente: 2px dashed var(--color-tinta);
+  /* Subrayado de la sección del menú en la que estás */
+  --grosor-subrayado: 3px;
   --radio: 6px;
   --radio-pildora: 999px;
 }

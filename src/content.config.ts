@@ -75,4 +75,18 @@ const puntos = defineCollection({
     }),
 });
 
-export const collections = { puntos };
+// Páginas de texto del sitio. Cada archivo de src/content/paginas/ es una página:
+// que-reciclar.md se publica en /que-reciclar/.
+const paginas = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/paginas' }),
+  schema: z.object({
+    /** Título de la pestaña del navegador. */
+    titulo: z.string().min(1),
+    /** Título grande de la página. Si no se indica, se usa `titulo`. */
+    titular: z.string().min(1).optional(),
+    /** Resumen de una frase para buscadores y para compartir el enlace. */
+    descripcion: z.string().min(1),
+  }),
+});
+
+export const collections = { puntos, paginas };
