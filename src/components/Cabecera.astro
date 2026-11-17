@@ -1,15 +1,38 @@
 ---
-// Franja verde con el nombre del sitio y el título de la página.
+// Franja verde con el nombre del sitio, el menú y el título de la página.
 interface Props {
   titular: string;
 }
 
 const { titular } = Astro.props;
+
+// Para sumar una página al menú, agrégala aquí. La ruta termina en "/".
+const secciones = [
+  { texto: 'Inicio', ruta: '/' },
+  { texto: 'Qué reciclar', ruta: '/que-reciclar/' },
+];
+
+const actual = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
 ---
 
 <header class="cabecera">
   <div class="contenedor">
-    <a class="marca" href="/">EcoWaste</a>
+    <div class="fila">
+      <a class="marca" href="/">EcoWaste</a>
+      <nav aria-label="Secciones del sitio">
+        <ul>
+          {
+            secciones.map(({ texto, ruta }) => (
+              <li>
+                <a href={ruta} aria-current={ruta === actual ? 'page' : undefined}>
+                  {texto}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
     <h1>{titular}</h1>
   </div>
 </header>
@@ -20,6 +43,14 @@ const { titular } = Astro.props;
     color: var(--color-fondo);
     border-bottom: var(--borde);
     padding-block: var(--espacio-4) var(--espacio-6);
+  }
+
+  .fila {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--espacio-2) var(--espacio-4);
   }
 
   .marca {
@@ -34,7 +65,37 @@ const { titular } = Astro.props;
     text-decoration: underline;
   }
 
-  .marca:focus-visible {
+  nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espacio-1) var(--espacio-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  nav a {
+    display: inline-block;
+    padding-block: var(--espacio-2);
+    color: var(--color-fondo);
+    font-size: var(--texto-chico);
+    font-weight: var(--peso-fuerte);
+    text-decoration: none;
+    border-bottom: var(--grosor-subrayado) solid transparent;
+  }
+
+  nav a:hover {
+    color: var(--color-fondo);
+    border-bottom-color: var(--color-verde-claro);
+  }
+
+  /* La página en la que estás: subrayado amarillo, además del aviso para lectores de pantalla */
+  nav a[aria-current='page'] {
+    border-bottom-color: var(--color-amarillo);
+  }
+
+  .marca:focus-visible,
+  nav a:focus-visible {
     outline-color: var(--color-foco-sobre-verde);
   }
 

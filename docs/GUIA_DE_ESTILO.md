@@ -28,6 +28,7 @@ Esta guía es para quien escribe textos del sitio o toca su diseño.
 ## Marcas que se ven en el sitio
 
 - `[PENDIENTE]` marca lo que falta decidir o averiguar. Nunca se presenta como hecho.
+  En los textos de `src/content/paginas/`, lo pendiente va en una línea que empieza con `> [PENDIENTE]`, y en el sitio se ve como un recuadro punteado.
 - **EJEMPLO** marca los datos de ejemplo de la demo.
 - El **aviso de demostración** aparece en todas las páginas mientras el sitio esté en modo demo.
 - El **pie de página** dice que es un proyecto estudiantil del ramo Ecología Integral y que no es un servicio oficial de la universidad.
@@ -73,5 +74,5 @@ Todo vive en un solo archivo, `src/styles/variables.css`. El resto del sitio sol
 | Inactivo | `#ECEEEE` | `#3D4747` |
 
 - **Tipografía:** la fuente del sistema del teléfono. No se descarga ninguna fuente.
-- **Bordes:** de 2 px en color tinta, con esquinas poco redondeadas (6 px). Nada de sombras.
+- **Bordes:** de 2 px en color tinta, con esquinas poco redondeadas (6 px). Nada de sombras. Lo pendiente lleva borde punteado.
 - **Foco:** contorno de 3 px en tinta; sobre el verde, en amarillo.
