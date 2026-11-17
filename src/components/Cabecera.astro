@@ -10,6 +10,7 @@ const { titular } = Astro.props;
 const secciones = [
   { texto: 'Inicio', ruta: '/' },
   { texto: 'Qué reciclar', ruta: '/que-reciclar/' },
+  { texto: 'Acerca', ruta: '/acerca/' },
 ];
 
 const actual = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
