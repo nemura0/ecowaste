@@ -1,0 +1,279 @@
+---
+import 'leaflet/dist/leaflet.css';
+import type { CollectionEntry } from 'astro:content';
+import { ESTADOS, RESIDUOS } from '../lib/datos.mjs';
+
+interface Props {
+  campus: {
+    lat: number;
+    lng: number;
+    nombre: string;
+  };
+  puntos: CollectionEntry<'puntos'>[];
+}
+
+const { campus, puntos } = Astro.props;
+
+// Datos mínimos para que el cliente posicione los marcadores
+const puntosParaMapa = puntos.map((p) => ({
+  id: p.data.id,
+  nombre: p.data.nombre,
+  estado: p.data.estado,
+  estadoTexto: ESTADOS[p.data.estado] || p.data.estado,
+  lat: p.data.ubicacion.lat,
+  lng: p.data.ubicacion.lng,
+}));
+---
+
+<div class="mapa-bloque">
+  <div
+    id="mapa"
+    class="mapa-lienzo"
+    data-campus={JSON.stringify(campus)}
+    data-puntos={JSON.stringify(puntosParaMapa)}
+    role="region"
+    aria-label="Mapa interactivo con puntos de reciclaje"
+  >
+    <noscript>
+      <div class="mapa-noscript">
+        <p>El mapa interactivo necesita JavaScript. Los mismos puntos están en la lista de abajo.</p>
+      </div>
+    </noscript>
+  </div>
+  <p class="mapa-nota">
+    <small>
+      El mapa usa información de <a
+        href="https://www.openstreetmap.org/copyright"
+        target="_blank"
+        rel="noopener">OpenStreetMap</a
+      >. Si no carga, puedes consultar la lista de abajo.
+    </small>
+  </p>
+</div>
+
+<!-- Plantillas de los popups: HTML generado y escapado por Astro para evitar inyección de texto sin escapar -->
+<div class="mapa-plantillas" aria-hidden="true" hidden>
+  {
+    puntos.map((punto) => (
+      <template id={`popup-plantilla-${punto.data.id}`}>
+        <div class="popup-punto">
+          <div class="popup-cabecera">
+            <h3 class="popup-titulo">{punto.data.nombre}</h3>
+            <div class="popup-etiquetas">
+              <span class={`etiqueta estado-${punto.data.estado}`}>
+                {ESTADOS[punto.data.estado] || punto.data.estado}
+              </span>
+              {punto.data.ejemplo && <span class="etiqueta etiqueta-ejemplo">EJEMPLO</span>}
+            </div>
+          </div>
+          <p class="popup-descripcion">{punto.data.ubicacion.descripcion}</p>
+          <p class="popup-residuos">
+            <strong>Recibe:</strong>{' '}
+            {punto.data.residuos.map((r) => RESIDUOS[r] || r).join(', ')}
+          </p>
+          <a class="popup-enlace" href={`#punto-${punto.data.id}`}>
+            Ver detalle en la lista
+          </a>
+        </div>
+      </template>
+    ))
+  }
+</div>
+
+<script src="../scripts/mapa.ts"></script>
+
+<style is:global>
+  /* Marcadores en HTML y CSS: planos y sin sombras */
+  .pin-mapa-icono {
+    background: transparent;
+    border: none;
+  }
+
+  .pin-mapa {
+    width: 28px;
+    height: 28px;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: var(--borde);
+  }
+
+  .pin-mapa.pin-propuesto {
+    background: var(--color-amarillo);
+  }
+
+  .pin-mapa.pin-activo {
+    background: var(--color-verde);
+  }
+
+  .pin-mapa.pin-inactivo {
+    background: var(--color-inactivo-fondo);
+  }
+
+  .pin-centro {
+    width: 8px;
+    height: 8px;
+    background: var(--color-tinta);
+    border-radius: 50%;
+  }
+
+  .pin-mapa.pin-activo .pin-centro {
+    background: var(--color-fondo);
+  }
+
+  /* Popups de Leaflet alineados con variables.css y sin sombras */
+  .leaflet-popup-content-wrapper {
+    background: var(--color-fondo);
+    color: var(--color-tinta);
+    border: var(--borde);
+    border-radius: var(--radio);
+    padding: var(--espacio-1);
+    box-shadow: none !important;
+  }
+
+  .leaflet-popup-tip {
+    background: var(--color-fondo) !important;
+    box-shadow: none !important;
+  }
+
+  .leaflet-popup-content {
+    margin: var(--espacio-2);
+    font-family: var(--fuente);
+    line-height: var(--interlineado);
+    word-break: break-word;
+  }
+
+  .popup-cabecera {
+    padding-right: var(--espacio-4);
+  }
+
+  .popup-titulo {
+    margin: 0 0 var(--espacio-1);
+    font-size: var(--texto-base);
+    font-weight: var(--peso-fuerte);
+    line-height: var(--interlineado-titulo);
+  }
+
+  .popup-etiquetas {
+    display: flex;
+    gap: var(--espacio-1);
+    margin-bottom: var(--espacio-2);
+    flex-wrap: wrap;
+  }
+
+  .popup-descripcion,
+  .popup-residuos {
+    margin: var(--espacio-1) 0;
+    font-size: var(--texto-chico);
+    line-height: var(--interlineado);
+  }
+
+  .leaflet-container a.popup-enlace {
+    display: inline-block;
+    margin-top: var(--espacio-2);
+    font-size: var(--texto-chico);
+    font-weight: var(--peso-fuerte);
+    color: var(--color-verde) !important;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  .leaflet-container a.popup-enlace:hover {
+    color: var(--color-verde-oscuro) !important;
+  }
+
+  /* Botones de zoom con bordes definidos y sin sombras */
+  .leaflet-control-zoom {
+    border: var(--borde) !important;
+    border-radius: var(--radio) !important;
+    box-shadow: none !important;
+    overflow: hidden;
+  }
+
+  .leaflet-control-zoom a {
+    background: var(--color-fondo) !important;
+    color: var(--color-tinta) !important;
+    border-bottom: 2px solid var(--color-linea) !important;
+  }
+
+  .leaflet-control-zoom a:last-child {
+    border-bottom: none !important;
+  }
+
+  .leaflet-control-zoom a:hover {
+    background: var(--color-superficie) !important;
+  }
+
+  /* Etiquetas reutilizables */
+  .etiqueta {
+    display: inline-block;
+    padding: var(--espacio-1) var(--espacio-2);
+    border-radius: var(--radio-pildora);
+    font-size: var(--texto-chico);
+    font-weight: var(--peso-fuerte);
+    border: 2px solid currentColor;
+  }
+
+  .estado-propuesto {
+    background: var(--color-propuesto-fondo);
+    color: var(--color-propuesto-texto);
+  }
+
+  .estado-activo {
+    background: var(--color-activo-fondo);
+    color: var(--color-activo-texto);
+  }
+
+  .estado-inactivo {
+    background: var(--color-inactivo-fondo);
+    color: var(--color-inactivo-texto);
+  }
+
+  .etiqueta-ejemplo {
+    background: var(--color-amarillo);
+    color: var(--color-tinta);
+    border: var(--borde);
+  }
+</style>
+
+<style>
+  .mapa-bloque {
+    margin-block: var(--espacio-4);
+  }
+
+  .mapa-lienzo {
+    width: 100%;
+    height: 22rem;
+    max-height: 60vh;
+    border: var(--borde);
+    border-radius: var(--radio);
+    background: var(--color-superficie);
+    z-index: 1;
+  }
+
+  .mapa-noscript {
+    padding: var(--espacio-5);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .mapa-noscript p {
+    margin: 0;
+    font-size: var(--texto-base);
+    color: var(--color-tinta-suave);
+    line-height: var(--interlineado);
+  }
+
+  .mapa-nota {
+    margin-top: var(--espacio-2);
+    color: var(--color-tinta-suave);
+    line-height: var(--interlineado);
+    font-size: var(--texto-chico);
+  }
+</style>
