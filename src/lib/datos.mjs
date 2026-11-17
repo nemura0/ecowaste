@@ -116,3 +116,8 @@ export function destinosInexistentes(origenes, rutasDelSitio) {
   const existentes = new Set(rutasDelSitio.map(normalizarRuta));
   return origenes.filter(({ destino }) => !existentes.has(normalizarRuta(destino)));
 }
+
+/** Escribe una cifra como se lee en Chile: punto para los miles y coma para los decimales (1.234,5). */
+export function formatearCifra(valor) {
+  return new Intl.NumberFormat('es-CL', { maximumFractionDigits: 1 }).format(valor);
+}

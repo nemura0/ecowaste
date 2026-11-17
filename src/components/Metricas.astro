@@ -1,0 +1,111 @@
+---
+// Sección de métricas del proyecto (issue #16). Lee src/data/metricas.json.
+// Si no hay ninguna métrica, no muestra nada: ni el título. Así queda oculta hasta que haya cifras con fuente.
+// Funciona sin JavaScript.
+import { getCollection } from 'astro:content';
+import { TIPOS_DE_FUENTE, DELEGACIONES, formatearCifra, formatearFechaLegible } from '../lib/datos.mjs';
+import archivoMetricas from '../data/metricas.json';
+
+// Con el archivo vacío, getCollection avisa en la terminal que la colección "no existe o está vacía", como si fuera
+// un error. Por eso solo se pide la colección (que es la que valida cada métrica) cuando el archivo tiene algo.
+const metricas = archivoMetricas.length > 0 ? await getCollection('metricas') : [];
+
+/** "Operaciones y recursos (16-nov-2026)." */
+const verificadoPor = ({ delegacion, fecha }: { delegacion: string; fecha: Date }) =>
+  `${DELEGACIONES[delegacion as keyof typeof DELEGACIONES] || delegacion} (${formatearFechaLegible(fecha)}).`;
+---
+
+{
+  metricas.length > 0 && (
+    <section class="metricas" aria-labelledby="titulo-metricas">
+      <h2 id="titulo-metricas">El proyecto en cifras</h2>
+      <ul class="metricas-lista" role="list">
+        {metricas.map(({ data }) => (
+          <li class="metrica">
+            <p class="metrica-cifra">
+              {formatearCifra(data.valor)} <span class="metrica-unidad">{data.unidad}</span>
+            </p>
+            <p class="metrica-nombre">{data.nombre}</p>
+            <p class="metrica-periodo">{data.periodo}</p>
+            <p class="metrica-fuente">
+              <small>
+                <strong>Fuente:</strong> {TIPOS_DE_FUENTE[data.fuente.tipo] || data.fuente.tipo}. {data.fuente.detalle}
+                {data.fuente.enlace && (
+                  <>
+                    {' '}
+                    <a href={data.fuente.enlace} target="_blank" rel="noopener">
+                      Ver fuente
+                    </a>
+                  </>
+                )}
+                <br />
+                <strong>Verificado por:</strong> {verificadoPor(data.verificacion)}
+              </small>
+            </p>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
+<style>
+  .metricas {
+    margin-block: var(--espacio-6);
+  }
+
+  .metricas h2 {
+    margin: 0 0 var(--espacio-3);
+    font-size: var(--texto-destacado);
+    line-height: var(--interlineado-titulo);
+  }
+
+  .metricas-lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--espacio-3);
+  }
+
+  /* La cifra manda: grande y a la izquierda, con la fuente debajo en letra chica. */
+  .metrica {
+    border: var(--borde);
+    border-left: var(--espacio-2) solid var(--color-verde);
+    border-radius: var(--radio);
+    padding: var(--espacio-4);
+  }
+
+  .metrica p {
+    margin: 0;
+  }
+
+  .metrica-cifra {
+    font-size: var(--texto-titulo);
+    font-weight: var(--peso-titulo);
+    line-height: var(--interlineado-titulo);
+    color: var(--color-verde);
+  }
+
+  .metrica-unidad {
+    font-size: var(--texto-destacado);
+    font-weight: var(--peso-fuerte);
+  }
+
+  .metrica-nombre {
+    margin-top: var(--espacio-1);
+    font-weight: var(--peso-fuerte);
+  }
+
+  .metrica-periodo {
+    color: var(--color-tinta-suave);
+  }
+
+  .metrica-fuente {
+    margin-top: var(--espacio-3);
+    padding-top: var(--espacio-3);
+    border-top: var(--borde-suave);
+    color: var(--color-tinta-suave);
+    line-height: var(--interlineado);
+  }
+</style>
