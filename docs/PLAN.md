@@ -10,13 +10,13 @@ Si trabajas sin Claude Code, revisa la sección "Estado actual" y las [issues ab
 
 ## Estado actual
 
-**Fase 0 · Base y documentación, casi cerrada. Fase 1 · Demo, en curso** (actualizado el 16-nov-2026).
+**Fase 0 · Base y documentación, cerrada. Fase 1 · Demo, en curso** (actualizado el 16-nov-2026).
 
 - [x] PR de documentación: `CLAUDE.md`, `README.md`, `docs/`, plantillas de `.github/` y skills del proyecto.
 - [x] PR de base técnica: Astro mínimo, scripts `dev`, `build` y `verificar`, `.nvmrc` y verificación automática en cada pull request.
 - [x] Repo conectado a Vercel (https://ecowaste-seven.vercel.app/, URL provisoria).
 - [x] Vista previa con un PR del encargado.
-- [ ] Vista previa con un PR de otro colaborador (pendiente de que alguien haga la práctica de EMPEZAR_AQUI).
+- [x] Vista previa con un PR de otro colaborador: Vercel la generó en el PR del mapa (#23).
 - [x] Coautoría de agentes: no se prueba en el proyecto real por riesgo de bloqueo permanente; se desactiva en `.claude/settings.json`.
 - [x] Skills de terceros decididas: `frontend-design` incluida; `web-design-guidelines` se instala aparte.
 - [x] Issues de la Fase 1 creadas (etiqueta `fase-1`).
@@ -68,7 +68,7 @@ Nada de esta lista se decide por cuenta propia. Se marca `[PENDIENTE]` donde cor
 
 ## Riesgos conocidos
 
-- **Vercel y los cambios de otras personas.** La guía de Vercel dice que, en el plan gratuito, solo el dueño de la cuenta puede disparar despliegues. Se prueba en la Fase 0. Si falla, se replantea el hosting (ver [decisión 0003](decisiones/0003-hosting-vercel.md)).
+- **Vercel y los cambios de otras personas.** La guía de Vercel dice que, en el plan gratuito, solo el dueño de la cuenta puede disparar despliegues. Se probó el 16-nov-2026 con el PR del mapa (#23), de otro colaborador, y la vista previa se generó sin problemas. Si vuelve a fallar, se replantea el hosting (ver [decisión 0003](decisiones/0003-hosting-vercel.md)).
 - **Coautoría de agentes en los commits.** Hay reportes de despliegues bloqueados por eso en el plan gratuito de Vercel. No se prueba en el proyecto real: `.claude/settings.json` la desactiva para quien use Claude Code (ver [COMO_APORTAR.md](COMO_APORTAR.md)).
 - **Teselas de OpenStreetMap.** Es un servicio público sin garantía de disponibilidad. Por eso el mapa lleva siempre una lista equivalente.
 - **QR impresos.** No se pueden corregir. Se generan solo cuando la URL final esté fija.
@@ -85,3 +85,4 @@ Nada de esta lista se decide por cuenta propia. Se marca `[PENDIENTE]` donde cor
 | 12-nov-2026 | Se revisa el estado del repo y se aprueba el plan de la Fase 0 |
 | 16-nov-2026 | Se mergean los PR de documentación y base técnica. Se conecta Vercel (plan gratuito, aceptado por el grupo mientras tanto) |
 | 16-nov-2026 | Se decide no probar la coautoría de agentes en Vercel y desactivarla. Empieza la Fase 1 sin esperar el caso 2. No hay logo ni colores del grupo, así que el encargado del repo elige la dirección visual A mientras el grupo la confirma |
+| 16-nov-2026 | Otro colaborador abre el PR del mapa (#23) y Vercel genera su vista previa. Se cierra la Fase 0 |
