@@ -6,7 +6,7 @@ Es el producto digital de un proyecto estudiantil del ramo Ecología Integral (U
 
 ## Estado
 
-**Fase 0 · base y documentación.** Todavía no hay sitio publicado. El avance y los pendientes están en [`docs/PLAN.md`](docs/PLAN.md).
+**Fase 1 · demo.** El sitio ya está publicado en una URL provisoria y se está armando la demo, con datos de ejemplo. El avance y los pendientes están en [`docs/PLAN.md`](docs/PLAN.md).
 
 ## Dónde verlo
 
