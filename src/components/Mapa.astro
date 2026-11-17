@@ -71,8 +71,8 @@ const puntosParaMapa = puntos.map((p) => ({
             <strong>Recibe:</strong>{' '}
             {punto.data.residuos.map((r) => RESIDUOS[r] || r).join(', ')}
           </p>
-          <a class="popup-enlace" href={`#punto-${punto.data.id}`}>
-            Ver detalle en la lista
+          <a class="popup-enlace" href={`/puntos/${punto.data.id}/`}>
+            Ver ficha del punto
           </a>
         </div>
       </template>
@@ -204,37 +204,6 @@ const puntosParaMapa = puntos.map((p) => ({
 
   .leaflet-control-zoom a:hover {
     background: var(--color-superficie) !important;
-  }
-
-  /* Etiquetas reutilizables */
-  .etiqueta {
-    display: inline-block;
-    padding: var(--espacio-1) var(--espacio-2);
-    border-radius: var(--radio-pildora);
-    font-size: var(--texto-chico);
-    font-weight: var(--peso-fuerte);
-    border: 2px solid currentColor;
-  }
-
-  .estado-propuesto {
-    background: var(--color-propuesto-fondo);
-    color: var(--color-propuesto-texto);
-  }
-
-  .estado-activo {
-    background: var(--color-activo-fondo);
-    color: var(--color-activo-texto);
-  }
-
-  .estado-inactivo {
-    background: var(--color-inactivo-fondo);
-    color: var(--color-inactivo-texto);
-  }
-
-  .etiqueta-ejemplo {
-    background: var(--color-amarillo);
-    color: var(--color-tinta);
-    border: var(--borde);
   }
 </style>
 

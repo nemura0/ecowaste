@@ -39,7 +39,9 @@ const { puntos } = Astro.props;
               <header class="punto-encabezado">
                 <div class="punto-titulo-bloque">
                   <span class="punto-tipo">{TIPOS[punto.data.tipo] || punto.data.tipo}</span>
-                  <h3 class="punto-nombre">{punto.data.nombre}</h3>
+                  <h3 class="punto-nombre">
+                    <a href={`/puntos/${punto.data.id}/`}>{punto.data.nombre}</a>
+                  </h3>
                 </div>
                 <div class="punto-etiquetas">
                   <span class={`etiqueta estado-${punto.data.estado}`}>

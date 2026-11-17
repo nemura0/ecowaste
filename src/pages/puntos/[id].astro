@@ -1,0 +1,183 @@
+---
+// Ficha de cada punto: /puntos/<id>/. Se genera una página por cada archivo de src/data/puntos/.
+// Muestra estado, residuos, fuente, fecha y delegación que verificó (issue #11). Funciona sin JavaScript.
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import {
+  TIPOS,
+  ESTADOS,
+  RESIDUOS,
+  TIPOS_DE_FUENTE,
+  DELEGACIONES,
+  fechaComoTexto,
+  formatearFechaLegible,
+} from '../../lib/datos.mjs';
+
+export async function getStaticPaths() {
+  const puntos = await getCollection('puntos');
+  return puntos.map((punto) => ({ params: { id: punto.id }, props: { punto } }));
+}
+
+interface Props {
+  punto: CollectionEntry<'puntos'>;
+}
+
+const { punto } = Astro.props;
+const { id, nombre, tipo, estado, ubicacion, residuos, horario, administrador, fuente, verificacion, ejemplo } =
+  punto.data;
+
+const tipoTexto = TIPOS[tipo] || tipo;
+const lat = ubicacion.lat.toFixed(5);
+const lng = ubicacion.lng.toFixed(5);
+const enlaceOsm = `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lng}#map=18/${lat}/${lng}`;
+---
+
+<Base
+  titulo={nombre}
+  titular={nombre}
+  descripcion={`${tipoTexto} en ${ubicacion.comuna}: dónde está, qué recibe y de dónde sale el dato.`}
+>
+  <p class="volver"><a href={`/#punto-${id}`}>Volver al mapa</a></p>
+
+  <p class="etiquetas">
+    <span class="tipo">{tipoTexto}</span>
+    <span class={`etiqueta estado-${estado}`}>{ESTADOS[estado] || estado}</span>
+    {ejemplo && <span class="etiqueta etiqueta-ejemplo">EJEMPLO</span>}
+  </p>
+
+  <section aria-labelledby="titulo-donde">
+    <h2 id="titulo-donde">Dónde está</h2>
+    <p>{ubicacion.descripcion}</p>
+    <dl class="datos">
+      <div>
+        <dt>Comuna</dt>
+        <dd>{ubicacion.comuna}</dd>
+      </div>
+      <div>
+        <dt>Coordenadas</dt>
+        <dd>
+          {lat}, {lng} ·{' '}
+          <a href={enlaceOsm} target="_blank" rel="noopener">Ver en OpenStreetMap</a>
+        </dd>
+      </div>
+      {
+        horario && (
+          <div>
+            <dt>Horario</dt>
+            <dd>{horario}</dd>
+          </div>
+        )
+      }
+      {
+        administrador && (
+          <div>
+            <dt>Lo administra</dt>
+            <dd>{administrador}</dd>
+          </div>
+        )
+      }
+    </dl>
+  </section>
+
+  <section aria-labelledby="titulo-residuos">
+    <h2 id="titulo-residuos">Qué recibe</h2>
+    <ul>
+      {residuos.map((residuo) => <li>{RESIDUOS[residuo] || residuo}</li>)}
+    </ul>
+  </section>
+
+  <section class="origen" aria-labelledby="titulo-origen">
+    <h2 id="titulo-origen">De dónde sale este dato</h2>
+    <dl class="datos">
+      <div>
+        <dt>Fuente</dt>
+        <dd>
+          {TIPOS_DE_FUENTE[fuente.tipo] || fuente.tipo}. {fuente.detalle}
+          {
+            fuente.enlace && (
+              <>
+                {' '}
+                <a href={fuente.enlace} target="_blank" rel="noopener">
+                  Ver fuente
+                </a>
+              </>
+            )
+          }
+        </dd>
+      </div>
+      <div>
+        <dt>Verificado por</dt>
+        <dd>{DELEGACIONES[verificacion.delegacion] || verificacion.delegacion}</dd>
+      </div>
+      <div>
+        <dt>Fecha de verificación</dt>
+        <dd>
+          <time datetime={fechaComoTexto(verificacion.fecha)}>{formatearFechaLegible(verificacion.fecha)}</time>
+        </dd>
+      </div>
+    </dl>
+  </section>
+</Base>
+
+<style>
+  .volver {
+    margin-block: var(--espacio-5) var(--espacio-3);
+    font-size: var(--texto-chico);
+    font-weight: var(--peso-fuerte);
+  }
+
+  .etiquetas {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--espacio-2);
+    margin: 0 0 var(--espacio-5);
+  }
+
+  .tipo {
+    font-size: var(--texto-chico);
+    font-weight: var(--peso-fuerte);
+    color: var(--color-tinta-suave);
+  }
+
+  h2 {
+    margin: var(--espacio-6) 0 var(--espacio-2);
+    font-size: var(--texto-destacado);
+  }
+
+  section:first-of-type h2 {
+    margin-top: 0;
+  }
+
+  .datos {
+    margin: var(--espacio-3) 0 0;
+  }
+
+  .datos div {
+    padding-block: var(--espacio-2);
+    border-top: var(--borde-suave);
+  }
+
+  .datos dt {
+    font-size: var(--texto-chico);
+    font-weight: var(--peso-fuerte);
+    color: var(--color-tinta-suave);
+  }
+
+  .datos dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .origen {
+    margin-top: var(--espacio-6);
+    padding: var(--espacio-4);
+    background: var(--color-superficie);
+    border: var(--borde);
+    border-radius: var(--radio);
+  }
+
+  .origen h2 {
+    margin-top: 0;
+  }
+</style>

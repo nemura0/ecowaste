@@ -59,4 +59,6 @@
   --borde: 2px solid var(--color-tinta);
   --radio: 6px;
   --radio-pildora: 999px;
+  /* Línea suave para separar datos dentro de un bloque */
+  --borde-suave: 2px solid var(--color-linea);
 }
