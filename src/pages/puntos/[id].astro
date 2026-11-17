@@ -23,8 +23,7 @@ interface Props {
 }
 
 const { punto } = Astro.props;
-const { id, nombre, tipo, estado, ubicacion, residuos, horario, administrador, fuente, verificacion, ejemplo } =
-  punto.data;
+const { nombre, tipo, estado, ubicacion, residuos, horario, administrador, fuente, verificacion, ejemplo } = punto.data;
 
 const tipoTexto = TIPOS[tipo] || tipo;
 const lat = ubicacion.lat.toFixed(5);
@@ -37,7 +36,7 @@ const enlaceOsm = `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lng}#map=18
   titular={nombre}
   descripcion={`${tipoTexto} en ${ubicacion.comuna}: dónde está, qué recibe y de dónde sale el dato.`}
 >
-  <p class="volver"><a href={`/#punto-${id}`}>Volver al mapa</a></p>
+  <p class="volver"><a href="/">Volver al mapa</a></p>
 
   <p class="etiquetas">
     <span class="tipo">{tipoTexto}</span>
@@ -121,9 +120,15 @@ const enlaceOsm = `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lng}#map=18
 
 <style>
   .volver {
-    margin-block: var(--espacio-5) var(--espacio-3);
+    margin-block: var(--espacio-4) var(--espacio-2);
     font-size: var(--texto-chico);
     font-weight: var(--peso-fuerte);
+  }
+
+  /* Relleno vertical para que el enlace se pueda tocar con el dedo */
+  .volver a {
+    display: inline-block;
+    padding-block: var(--espacio-2);
   }
 
   .etiquetas {
