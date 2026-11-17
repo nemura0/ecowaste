@@ -2,7 +2,7 @@
 // Si un punto no cumple el esquema, `npm run build` falla y dice qué campo está mal.
 
 import { defineCollection } from 'astro:content';
-import { glob } from 'astro/loaders';
+import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import sitio from './data/sitio.json';
 import {
@@ -18,6 +18,7 @@ import {
   ejemploPermitido,
   idCoincideConArchivo,
   validarModo,
+  FORMATO_DESTINO,
 } from './lib/datos.mjs';
 
 const valores = (lista: Record<string, string>) => Object.keys(lista) as [string, ...string[]];
@@ -89,4 +90,22 @@ const paginas = defineCollection({
   }),
 });
 
-export const collections = { puntos, paginas };
+// Orígenes de QR: un QR por ubicación física. Cada uno se publica en /q/<id>/ y lleva a su destino.
+// El id va impreso en el QR, así que no se cambia después de imprimirlo.
+const origenes = defineCollection({
+  loader: file('./src/data/origenes-qr.json'),
+  schema: z
+    .object({
+      id: z.string().regex(/^[a-z0-9-]+$/, 'Usa solo minúsculas, números y guiones'),
+      /** Dónde está pegado el QR. Es solo para el grupo: no se muestra en el sitio. */
+      lugar: z.string().min(1),
+      destino: z.string().regex(FORMATO_DESTINO, 'El destino es una página del sitio, como "/" o "/que-reciclar/"'),
+      ejemplo: z.boolean(),
+    })
+    .refine((origen) => ejemploPermitido(modo, origen.ejemplo), {
+      message: 'El sitio está en modo real y este origen de QR es de ejemplo. Quítalo o cambia el modo en src/data/sitio.json.',
+      path: ['ejemplo'],
+    }),
+});
+
+export const collections = { puntos, paginas, origenes };

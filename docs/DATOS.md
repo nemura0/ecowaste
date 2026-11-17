@@ -107,6 +107,23 @@ ejemplo: true
 
 El centro del Campus Guayacán está en `src/data/campus.json`, con coordenadas leídas en [OpenStreetMap](https://www.openstreetmap.org/way/92022614) el 16-nov-2026. Sirve para centrar el mapa. No es la ubicación de ningún punto.
 
+## Orígenes de QR
+
+Cada QR va pegado en una ubicación física y tiene su propia ruta, para saber desde dónde llega la gente sin pedir datos personales (ver [decisión 0005](decisiones/0005-medicion.md)).
+
+Los orígenes están en `src/data/origenes-qr.json`. Cada uno se publica en `/q/<id>/` y lleva de inmediato a su destino, con el origen anotado en la dirección: `/q/contenedor/` lleva a `/?origen=contenedor`.
+
+| Campo | Qué va |
+|---|---|
+| `id` | Identificador que va impreso en el QR. Minúsculas, números y guiones. **No se cambia después de imprimir el QR** |
+| `lugar` | Dónde está pegado el QR. Es para el grupo: no se muestra en el sitio |
+| `destino` | Página del sitio a la que lleva, terminada en `/`, por ejemplo `/` o `/que-reciclar/` |
+| `ejemplo` | `true` si es un origen de ejemplo para la demo |
+
+- Si un destino no es una página del sitio, la compilación falla. Un QR impreso no se puede corregir.
+- En modo real, la verificación falla si queda algún origen con `ejemplo: true`.
+- `[PENDIENTE]` Dónde irán los QR. Los QR se generan en la Fase 3, cuando la URL final esté fija.
+
 ## La planilla de Drive
 
 Las otras delegaciones proponen puntos en una planilla de Drive con estas columnas (la plantilla CSV llega en la Fase 2):

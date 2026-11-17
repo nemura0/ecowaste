@@ -91,3 +91,28 @@ export function idCoincideConArchivo(id, nombreArchivo) {
   const base = nombreArchivo.split('/').pop().replace(/\.ya?ml$/, '');
   return id === base;
 }
+
+// Orígenes de QR: un QR por ubicación física, cada uno con su ruta /q/<id>/. Ver docs/DATOS.md.
+
+/** Un destino es una ruta interna del sitio que termina en "/", por ejemplo "/" o "/que-reciclar/". */
+export const FORMATO_DESTINO = /^\/(?:[a-z0-9-]+\/)*$/;
+
+/** Dirección a la que lleva un QR: el destino, con el origen anotado para poder contar desde dónde llega la gente. */
+export function urlDeOrigen({ id, destino }) {
+  return `${destino}?origen=${encodeURIComponent(id)}`;
+}
+
+/** Deja una ruta de la compilación como "/", "/que-reciclar/", etc., para compararla con un destino. */
+export function normalizarRuta(ruta) {
+  const limpia = ruta.replace(/^\/+|\/+$/g, '');
+  return limpia === '' ? '/' : `/${limpia}/`;
+}
+
+/**
+ * Devuelve los orígenes cuyo destino no es una página del sitio.
+ * Un QR impreso no se puede corregir, así que la compilación falla si alguno lleva a una página que no existe.
+ */
+export function destinosInexistentes(origenes, rutasDelSitio) {
+  const existentes = new Set(rutasDelSitio.map(normalizarRuta));
+  return origenes.filter(({ destino }) => !existentes.has(normalizarRuta(destino)));
+}

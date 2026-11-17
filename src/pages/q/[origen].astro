@@ -1,0 +1,26 @@
+---
+// Ruta de entrada de cada QR: /q/<id>/. Se genera una por cada origen de src/data/origenes-qr.json.
+// Lleva de inmediato a su destino y deja el origen en la dirección (?origen=<id>),
+// para que la herramienta de medición que elija el grupo pueda contar desde dónde llega la gente.
+// Funciona sin JavaScript: usa una redirección en el HTML y un enlace por si el teléfono no la sigue.
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { urlDeOrigen } from '../../lib/datos.mjs';
+
+export async function getStaticPaths() {
+  const origenes = await getCollection('origenes');
+  return origenes.map((origen) => ({ params: { origen: origen.id }, props: { origen: origen.data } }));
+}
+
+const { origen } = Astro.props;
+const url = urlDeOrigen(origen);
+---
+
+<Base titulo="Abriendo el sitio" descripcion="Enlace de entrada desde un código QR.">
+  <Fragment slot="head">
+    <meta http-equiv="refresh" content={`0; url=${url}`} />
+    <link rel="canonical" href={origen.destino} />
+  </Fragment>
+  <p>Te estamos llevando al sitio.</p>
+  <p><a href={url}>Si no se abre solo, toca aquí.</a></p>
+</Base>
