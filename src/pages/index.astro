@@ -15,25 +15,24 @@ const puntos = await getCollection('puntos');
       Universidad Católica del Norte.
     </p>
     <p>
-      Puedes explorar las ubicaciones directamente en el mapa o consultar la lista de puntos verificados con sus
-      residuos aceptados.
+      Puedes explorar las ubicaciones directamente en el mapa o consultar la lista de puntos con sus residuos aceptados.
     </p>
   </div>
+
+  <Mapa campus={campus} puntos={puntos} />
 
   <section class="estado-contenedor" aria-labelledby="titulo-contenedor">
     <div class="contenedor-caja">
       <div class="contenedor-texto">
         <h2 id="titulo-contenedor">Contenedor del proyecto</h2>
         <p>
-          El contenedor propio del campus se encuentra actualmente en estado <strong>propuesto</strong>. Su ubicación
-          definitiva y fecha de habilitación se anunciarán apenas se confirme la autorización institucional.
+          El contenedor del proyecto todavía no existe. <code>[PENDIENTE]</code> Dónde va a estar, qué residuos va a
+          recibir y su autorización.
         </p>
       </div>
       <span class="etiqueta estado-propuesto">Propuesto</span>
     </div>
   </section>
-
-  <Mapa campus={campus} puntos={puntos} />
 
   <ListaPuntos puntos={puntos} />
 </Base>
@@ -46,10 +45,11 @@ const puntos = await getCollection('puntos');
 
   .introduccion p {
     margin: 0 0 var(--espacio-2);
+    line-height: var(--interlineado);
   }
 
   .estado-contenedor {
-    margin-bottom: var(--espacio-5);
+    margin-block: var(--espacio-5);
   }
 
   .contenedor-caja {
@@ -67,13 +67,14 @@ const puntos = await getCollection('puntos');
   .contenedor-texto h2 {
     margin: 0 0 var(--espacio-1);
     font-size: var(--texto-base);
+    line-height: var(--interlineado-titulo);
   }
 
   .contenedor-texto p {
     margin: 0;
     font-size: var(--texto-chico);
     color: var(--color-tinta-suave);
-    line-height: 1.45;
+    line-height: var(--interlineado);
   }
 
   .etiqueta {
@@ -82,11 +83,11 @@ const puntos = await getCollection('puntos');
     border-radius: var(--radio-pildora);
     font-size: var(--texto-chico);
     font-weight: var(--peso-fuerte);
+    border: 2px solid currentColor;
   }
 
   .estado-propuesto {
     background: var(--color-propuesto-fondo);
     color: var(--color-propuesto-texto);
-    border: 1px solid currentColor;
   }
 </style>

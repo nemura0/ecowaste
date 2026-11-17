@@ -8,6 +8,7 @@ import {
   idCoincideConArchivo,
   validarModo,
   fechaComoTexto,
+  formatearFechaLegible,
   FORMATO_FECHA,
   RESIDUOS,
   DELEGACIONES,
@@ -77,4 +78,10 @@ test('las listas controladas tienen un texto para mostrar por cada valor', () =>
       assert.ok(texto.length > 0);
     }
   }
+});
+
+test('formatea la fecha en formato legible DD-mmm-AAAA', () => {
+  assert.equal(formatearFechaLegible('2026-11-16'), '16-nov-2026');
+  assert.equal(formatearFechaLegible(new Date('2026-11-16')), '16-nov-2026');
+  assert.equal(formatearFechaLegible('2026-05-04'), '4-may-2026');
 });

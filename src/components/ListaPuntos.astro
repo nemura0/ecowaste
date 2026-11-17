@@ -1,42 +1,16 @@
 ---
+import type { CollectionEntry } from 'astro:content';
 import {
   TIPOS,
   ESTADOS,
   RESIDUOS,
   TIPOS_DE_FUENTE,
   DELEGACIONES,
-  fechaComoTexto,
+  formatearFechaLegible,
 } from '../lib/datos.mjs';
 
 interface Props {
-  puntos: Array<{
-    id: string;
-    data: {
-      id: string;
-      nombre: string;
-      tipo: keyof typeof TIPOS;
-      estado: keyof typeof ESTADOS;
-      ubicacion: {
-        lat: number;
-        lng: number;
-        descripcion: string;
-        comuna: string;
-      };
-      residuos: Array<keyof typeof RESIDUOS>;
-      horario?: string;
-      administrador?: string;
-      fuente: {
-        tipo: keyof typeof TIPOS_DE_FUENTE;
-        detalle: string;
-        enlace?: string;
-      };
-      verificacion: {
-        fecha: Date;
-        delegacion: keyof typeof DELEGACIONES;
-      };
-      ejemplo: boolean;
-    };
-  }>;
+  puntos: CollectionEntry<'puntos'>[];
 }
 
 const { puntos } = Astro.props;
@@ -45,9 +19,7 @@ const { puntos } = Astro.props;
 <section class="seccion-puntos" aria-labelledby="titulo-puntos">
   <div class="puntos-cabecera">
     <h2 id="titulo-puntos">Puntos de reciclaje</h2>
-    <p class="puntos-subtitulo">
-      Lista equivalente al mapa. Funciona sin conexión interactiva ni descargas externas.
-    </p>
+    <p class="puntos-subtitulo">Los mismos puntos del mapa, en una lista.</p>
   </div>
 
   {
@@ -56,7 +28,7 @@ const { puntos } = Astro.props;
     ) : (
       <ul class="puntos-lista" role="list">
         {puntos.map((punto) => {
-          const fechaFormateada = fechaComoTexto(punto.data.verificacion.fecha);
+          const fechaFormateada = formatearFechaLegible(punto.data.verificacion.fecha);
           const delegacionNombre =
             DELEGACIONES[punto.data.verificacion.delegacion] || punto.data.verificacion.delegacion;
           const fuenteTipoNombre =
@@ -109,7 +81,7 @@ const { puntos } = Astro.props;
                       <>
                         {' · '}
                         <a href={punto.data.fuente.enlace} target="_blank" rel="noopener">
-                          Ver enlace oficial
+                          Ver fuente
                         </a>
                       </>
                     )}
@@ -136,12 +108,14 @@ const { puntos } = Astro.props;
   .puntos-cabecera h2 {
     margin: 0 0 var(--espacio-1);
     font-size: var(--texto-destacado);
+    line-height: var(--interlineado-titulo);
   }
 
   .puntos-subtitulo {
     margin: 0;
     color: var(--color-tinta-suave);
     font-size: var(--texto-chico);
+    line-height: var(--interlineado);
   }
 
   .puntos-lista {
@@ -166,7 +140,7 @@ const { puntos } = Astro.props;
     justify-content: space-between;
     align-items: flex-start;
     gap: var(--espacio-2);
-    border-bottom: 1px solid var(--color-linea);
+    border-bottom: 2px solid var(--color-linea);
     padding-bottom: var(--espacio-3);
     margin-bottom: var(--espacio-3);
     flex-wrap: wrap;
@@ -184,6 +158,7 @@ const { puntos } = Astro.props;
   .punto-nombre {
     margin: var(--espacio-1) 0 0;
     font-size: var(--texto-destacado);
+    line-height: var(--interlineado-titulo);
   }
 
   .punto-etiquetas {
@@ -192,40 +167,9 @@ const { puntos } = Astro.props;
     align-items: center;
   }
 
-  .etiqueta {
-    display: inline-block;
-    padding: var(--espacio-1) var(--espacio-3);
-    border-radius: var(--radio-pildora);
-    font-size: var(--texto-chico);
-    font-weight: var(--peso-fuerte);
-  }
-
-  .estado-propuesto {
-    background: var(--color-propuesto-fondo);
-    color: var(--color-propuesto-texto);
-    border: 1px solid currentColor;
-  }
-
-  .estado-activo {
-    background: var(--color-activo-fondo);
-    color: var(--color-activo-texto);
-    border: 1px solid currentColor;
-  }
-
-  .estado-inactivo {
-    background: var(--color-inactivo-fondo);
-    color: var(--color-inactivo-texto);
-    border: 1px solid currentColor;
-  }
-
-  .etiqueta-ejemplo {
-    background: var(--color-amarillo);
-    color: var(--color-tinta);
-    border: 1px solid var(--color-tinta);
-  }
-
   .punto-cuerpo {
     font-size: var(--texto-base);
+    line-height: var(--interlineado);
   }
 
   .punto-ubicacion,
@@ -249,13 +193,13 @@ const { puntos } = Astro.props;
   .punto-auditoria {
     margin-top: var(--espacio-4);
     padding-top: var(--espacio-3);
-    border-top: 1px solid var(--color-linea);
+    border-top: 2px solid var(--color-linea);
     color: var(--color-tinta-suave);
   }
 
   .auditoria-texto {
     margin: 0;
-    line-height: 1.45;
+    line-height: var(--interlineado);
   }
 
   .puntos-vacio {

@@ -54,6 +54,18 @@ export function fechaComoTexto(valor) {
   return valor;
 }
 
+export const MESES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+
+/** Formatea una fecha o texto AAAA-MM-DD como DD-mmm-AAAA (ej. 16-nov-2026), según la guía de estilo. */
+export function formatearFechaLegible(valor) {
+  const texto = fechaComoTexto(valor);
+  if (typeof texto !== 'string' || !FORMATO_FECHA.test(texto)) return String(valor);
+  const [año, mes, dia] = texto.split('-');
+  const mesIndice = Number(mes) - 1;
+  const mesNombre = MESES[mesIndice] || mes;
+  return `${Number(dia)}-${mesNombre}-${año}`;
+}
+
 /** En modo real no puede quedar ningún dato de ejemplo. */
 export function ejemploPermitido(modo, esEjemplo) {
   return !(modo === 'real' && esEjemplo);
