@@ -10,7 +10,25 @@ Si trabajas sin Claude Code, revisa la sección "Estado actual" y las [issues ab
 
 ## Estado actual
 
-**Fase 0 · Base y documentación, cerrada. Fase 1 · Demo, en curso** (actualizado el 16-nov-2026).
+**Fase 0 · Base y documentación, cerrada. Fase 1 · Demo, en curso** (actualizado el 18-nov-2026).
+
+### Fase 1 · Demo
+
+- [x] Aviso de demostración y pie de página en todo el sitio (#5).
+- [x] Esquema de datos de los puntos, con validación y modo real (#6).
+- [x] Coordenadas del campus desde OpenStreetMap, con su fuente (#7).
+- [x] Contenedor de ejemplo como "propuesto" (#8).
+- [x] Portada, mapa con Leaflet y lista equivalente sin JavaScript (#9, #10 y #12).
+- [x] Ficha de cada punto (#11).
+- [x] Páginas "Qué reciclar" (solo estructura) y "Acerca del proyecto" (#13 y #14).
+- [x] Rutas de entrada por QR, solo estructura (#15).
+- [x] Sección de métricas oculta mientras no haya cifras con fuente (#16).
+- [ ] Revisar los textos de la demo con la guía de estilo (#19).
+- [ ] Probar la demo en un teléfono con datos móviles (#18).
+- [ ] Preguntas para el grupo sobre la demo (#17).
+- [ ] Confirmar la dirección visual con el grupo (#4).
+
+### Fase 0 · Base y documentación
 
 - [x] PR de documentación: `CLAUDE.md`, `README.md`, `docs/`, plantillas de `.github/` y skills del proyecto.
 - [x] PR de base técnica: Astro mínimo, scripts `dev`, `build` y `verificar`, `.nvmrc` y verificación automática en cada pull request.
@@ -59,6 +77,7 @@ Nada de esta lista se decide por cuenta propia. Se marca `[PENDIENTE]` donde cor
 | Contenido | Quién escribe "qué reciclar" y quién entrega los kilos recolectados | Otras delegaciones |
 | Medición | Herramienta e indicadores | Diseño y evaluación |
 | URL final | Nombre del sitio. Tiene que quedar fijo antes de imprimir cualquier QR | Operaciones |
+| QR | Dónde va cada QR (un origen por lugar físico, ver [DATOS.md](DATOS.md)) | Grupo |
 | Roles | Titular y suplente de cada rol | Operaciones |
 | Encuestas | Instrumento para usuarios | Otras delegaciones |
 | Usuarios de GitHub | Si pueden aparecer en `ROLES.md` y `CODEOWNERS` | Operaciones |
@@ -87,3 +106,7 @@ Nada de esta lista se decide por cuenta propia. Se marca `[PENDIENTE]` donde cor
 | 16-nov-2026 | Se decide no probar la coautoría de agentes en Vercel y desactivarla. Empieza la Fase 1 sin esperar el caso 2. No hay logo ni colores del grupo, así que el encargado del repo elige la dirección visual A mientras el grupo la confirma |
 | 16-nov-2026 | Se implementa el mapa con Leaflet centrado en el campus y la lista equivalente accesible sin JavaScript (PR #23) |
 | 16-nov-2026 | Se agrega la ficha de cada punto en `/puntos/<id>/`, con estado, residuos, fuente, fecha y delegación que verificó. La lista y el popup del mapa enlazan a ella (issue #11) |
+| 17-nov-2026 | Se cierra la Fase 0: queda registrado que Vercel generó la vista previa del PR #23, de otro colaborador (PR #24) |
+| 17-nov-2026 | Se agregan las páginas "Qué reciclar" (solo estructura, con `[PENDIENTE]`) y "Acerca del proyecto", y un menú en la cabecera. Los textos de las páginas viven en `src/content/paginas/` (PR #25 y #26) |
+| 17-nov-2026 | Se agregan las rutas de entrada por QR en `/q/<id>/`, con un origen de ejemplo. Dónde irán los QR está pendiente; se generan en la Fase 3 (PR #28) |
+| 18-nov-2026 | Se agrega la sección "El proyecto en cifras" en la portada. Las cifras van en `src/data/metricas.json`, con fuente, fecha y delegación, y no pueden ser de ejemplo. Mientras el archivo esté vacío, la sección no aparece. Qué cifras se publican está pendiente (PR #30) |
