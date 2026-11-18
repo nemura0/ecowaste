@@ -16,6 +16,7 @@ import {
   normalizarRuta,
   destinosInexistentes,
   FORMATO_DESTINO,
+  formatearCifra,
 } from '../src/lib/datos.mjs';
 
 const hoy = new Date('2026-11-16T12:00:00Z');
@@ -121,4 +122,18 @@ test('el destino es una ruta interna que termina en barra', () => {
   for (const invalido of ['', 'que-reciclar/', '/que-reciclar', 'https://otro.sitio/', '/?origen=x', '/#mapa']) {
     assert.doesNotMatch(invalido, FORMATO_DESTINO);
   }
+});
+
+// Métricas
+
+test('las cifras usan punto para los miles y coma para los decimales', () => {
+  assert.equal(formatearCifra(1234.5), '1.234,5');
+  assert.equal(formatearCifra(1000), '1.000');
+  assert.equal(formatearCifra(0.5), '0,5');
+});
+
+test('las cifras enteras no muestran decimales y las demás muestran a lo más uno', () => {
+  assert.equal(formatearCifra(12), '12');
+  assert.equal(formatearCifra(0), '0');
+  assert.equal(formatearCifra(3.14159), '3,1');
 });

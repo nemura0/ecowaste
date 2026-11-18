@@ -19,12 +19,32 @@ import {
   idCoincideConArchivo,
   validarModo,
   FORMATO_DESTINO,
+  ID_METRICA_DE_MUESTRA,
 } from './lib/datos.mjs';
 
 const valores = (lista: Record<string, string>) => Object.keys(lista) as [string, ...string[]];
 
 // Si el modo no es "demo" ni "real", la compilación se detiene aquí.
 const modo = validarModo(sitio.modo);
+
+// De dónde sale un dato, y quién y cuándo lo comprobó. Lo usan los puntos y las métricas.
+const esquemaFuente = z.object({
+  tipo: z.enum(valores(TIPOS_DE_FUENTE)),
+  detalle: z.string().min(1),
+  enlace: z.string().regex(/^https:\/\//, 'El enlace tiene que empezar con https://').optional(),
+});
+
+const esquemaVerificacion = z.object({
+  // YAML puede leer la fecha como fecha o como texto. Las dos sirven si van como AAAA-MM-DD.
+  fecha: z
+    .preprocess(
+      fechaComoTexto,
+      z.string().regex(FORMATO_FECHA, 'Escribe la fecha como AAAA-MM-DD, por ejemplo 2026-11-16'),
+    )
+    .pipe(z.coerce.date())
+    .refine((fecha) => !esFechaFutura(fecha), 'La fecha de verificación no puede ser futura'),
+  delegacion: z.enum(valores(DELEGACIONES)),
+});
 
 const puntos = defineCollection({
   loader: glob({
@@ -52,22 +72,8 @@ const puntos = defineCollection({
       residuos: z.array(z.enum(valores(RESIDUOS))).min(1),
       horario: z.string().min(1).optional(),
       administrador: z.string().min(1).optional(),
-      fuente: z.object({
-        tipo: z.enum(valores(TIPOS_DE_FUENTE)),
-        detalle: z.string().min(1),
-        enlace: z.string().regex(/^https:\/\//, 'El enlace tiene que empezar con https://').optional(),
-      }),
-      verificacion: z.object({
-        // YAML puede leer la fecha como fecha o como texto. Las dos sirven si van como AAAA-MM-DD.
-        fecha: z
-          .preprocess(
-            fechaComoTexto,
-            z.string().regex(FORMATO_FECHA, 'Escribe la fecha como AAAA-MM-DD, por ejemplo 2026-11-16'),
-          )
-          .pipe(z.coerce.date())
-          .refine((fecha) => !esFechaFutura(fecha), 'La fecha de verificación no puede ser futura'),
-        delegacion: z.enum(valores(DELEGACIONES)),
-      }),
+      fuente: esquemaFuente,
+      verificacion: esquemaVerificacion,
       ejemplo: z.boolean(),
     })
     .refine((punto) => ejemploPermitido(modo, punto.ejemplo), {
@@ -108,4 +114,43 @@ const origenes = defineCollection({
     }),
 });
 
-export const collections = { puntos, paginas, origenes };
+// Métricas del proyecto, como los kilos recolectados. Ver docs/DATOS.md.
+// Una cifra nunca se inventa: no hay métricas de ejemplo, y cada una lleva fuente, fecha y delegación.
+// Mientras src/data/metricas.json esté vacío, la sección no aparece en el sitio.
+const metricas = defineCollection({
+  loader: file('./src/data/metricas.json'),
+  // z.strictObject: cualquier campo de más también detiene la compilación.
+  schema: z.strictObject(
+    {
+      id: z
+        .string()
+        .regex(/^[a-z0-9-]+$/, 'Usa solo minúsculas, números y guiones')
+        // El ejemplo de docs/DATOS.md no describe una cifra real: si se copia tal cual, no llega al sitio.
+        .refine(
+          (id) => id !== ID_METRICA_DE_MUESTRA,
+          'Ese id es el del ejemplo de docs/DATOS.md. Cámbialo y usa una cifra real con su fuente',
+        ),
+      /** Qué se mide, por ejemplo "Residuos recolectados". */
+      nombre: z.string().min(1),
+      valor: z.number().nonnegative('La cifra no puede ser negativa'),
+      /** Unidad de la cifra, por ejemplo "kg". */
+      unidad: z.string().min(1),
+      /** A qué período corresponde la cifra, tal como lo dice la fuente. */
+      periodo: z.string().min(1),
+      fuente: esquemaFuente,
+      verificacion: esquemaVerificacion,
+      // A diferencia de los puntos, una métrica nunca es de ejemplo: si se escribe "ejemplo", la compilación se detiene.
+      ejemplo: z
+        .undefined({ error: 'Las métricas no pueden ser de ejemplo: una cifra sin fuente no se escribe' })
+        .optional(),
+    },
+    {
+      error: (problema) =>
+        problema.code === 'unrecognized_keys'
+          ? `${problema.keys.length === 1 ? 'Campo' : 'Campos'} de más: ${problema.keys.join(', ')}. Revisa los campos de una métrica en docs/DATOS.md`
+          : undefined,
+    },
+  ),
+});
+
+export const collections = { puntos, paginas, origenes, metricas };

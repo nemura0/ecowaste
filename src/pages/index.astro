@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Mapa from '../components/Mapa.astro';
 import ListaPuntos from '../components/ListaPuntos.astro';
+import Metricas from '../components/Metricas.astro';
 import { getCollection } from 'astro:content';
 import campus from '../data/campus.json';
 
@@ -33,6 +34,9 @@ const puntos = await getCollection('puntos');
       <span class="etiqueta estado-propuesto">Propuesto</span>
     </div>
   </section>
+
+  <!-- Oculta mientras src/data/metricas.json esté vacío. -->
+  <Metricas />
 
   <ListaPuntos puntos={puntos} />
 </Base>

@@ -57,7 +57,7 @@ fuente:
   tipo: observacion
   detalle: Visita al lugar; coordenadas tomadas con el GPS del teléfono
 verificacion:
-  fecha: 2026-11-20
+  fecha: 2026-11-16
   delegacion: operaciones-y-recursos
 ejemplo: true
 ```
@@ -123,6 +123,46 @@ Los orígenes están en `src/data/origenes-qr.json`. Cada uno se publica en `/q/
 - Si un destino no es una página del sitio, la compilación falla. Un QR impreso no se puede corregir.
 - En modo real, la verificación falla si queda algún origen con `ejemplo: true`.
 - `[PENDIENTE]` Dónde irán los QR. Los QR se generan en la Fase 3, cuando la URL final esté fija.
+
+## Métricas
+
+Las cifras del proyecto, como los kilos recolectados, van en `src/data/metricas.json`. Se muestran en la portada, en la sección "El proyecto en cifras".
+
+**Mientras el archivo esté vacío (`[]`), la sección no aparece en el sitio.** Al compilar, la terminal avisa `No items found in ./src/data/metricas.json`: es normal.
+
+| Campo | Obligatorio | Qué va |
+|---|---|---|
+| `id` | Sí | Identificador único. Minúsculas, números y guiones |
+| `nombre` | Sí | Qué se mide, en pocas palabras |
+| `valor` | Sí | La cifra, como número: `12.5`, no `"12,5 kg"` |
+| `unidad` | Sí | Unidad de la cifra, por ejemplo `kg` |
+| `periodo` | Sí | A qué fechas corresponde, tal como lo dice la fuente |
+| `fuente` | Sí | Igual que en los puntos: `tipo`, `detalle` y, si existe, `enlace` |
+| `verificacion` | Sí | Igual que en los puntos: `fecha` y `delegacion` |
+
+- **No hay métricas de ejemplo.** Una cifra sin fuente no se escribe (ver la [guía de estilo](GUIA_DE_ESTILO.md)). Si un archivo trae `ejemplo`, la compilación se detiene.
+- La cifra se muestra como se lee en Chile: `1234.5` aparece como `1.234,5`.
+- Se muestra a lo más un decimal. Si la fuente dice `1234.56`, en el sitio aparece redondeada: `1.234,6`.
+- Si un archivo trae un campo que no está en esta tabla, la compilación se detiene.
+- `[PENDIENTE]` Qué cifras se publican y quién las entrega. Lo definen las otras delegaciones con Diseño y evaluación.
+
+### Ejemplo de archivo con una métrica
+
+Los valores son ilustrativos y no describen una cifra real. Si lo copias, cambia el `id`: con `nombre-de-la-metrica`, la compilación se detiene, para que el ejemplo no llegue al sitio por error.
+
+```json
+[
+  {
+    "id": "nombre-de-la-metrica",
+    "nombre": "Qué se mide",
+    "valor": 0,
+    "unidad": "kg",
+    "periodo": "Fechas a las que corresponde la cifra",
+    "fuente": { "tipo": "documento", "detalle": "Título del documento y quién lo emite" },
+    "verificacion": { "fecha": "2026-11-16", "delegacion": "operaciones-y-recursos" }
+  }
+]
+```
 
 ## La planilla de Drive
 
