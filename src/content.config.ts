@@ -19,6 +19,7 @@ import {
   idCoincideConArchivo,
   validarModo,
   FORMATO_DESTINO,
+  ID_METRICA_DE_MUESTRA,
 } from './lib/datos.mjs';
 
 const valores = (lista: Record<string, string>) => Object.keys(lista) as [string, ...string[]];
@@ -118,9 +119,17 @@ const origenes = defineCollection({
 // Mientras src/data/metricas.json esté vacío, la sección no aparece en el sitio.
 const metricas = defineCollection({
   loader: file('./src/data/metricas.json'),
-  schema: z
-    .object({
-      id: z.string().regex(/^[a-z0-9-]+$/, 'Usa solo minúsculas, números y guiones'),
+  // z.strictObject: cualquier campo de más también detiene la compilación.
+  schema: z.strictObject(
+    {
+      id: z
+        .string()
+        .regex(/^[a-z0-9-]+$/, 'Usa solo minúsculas, números y guiones')
+        // El ejemplo de docs/DATOS.md no describe una cifra real: si se copia tal cual, no llega al sitio.
+        .refine(
+          (id) => id !== ID_METRICA_DE_MUESTRA,
+          'Ese id es el del ejemplo de docs/DATOS.md. Cámbialo y usa una cifra real con su fuente',
+        ),
       /** Qué se mide, por ejemplo "Residuos recolectados". */
       nombre: z.string().min(1),
       valor: z.number().nonnegative('La cifra no puede ser negativa'),
@@ -134,9 +143,14 @@ const metricas = defineCollection({
       ejemplo: z
         .undefined({ error: 'Las métricas no pueden ser de ejemplo: una cifra sin fuente no se escribe' })
         .optional(),
-    })
-    // Con .strict(), cualquier otro campo de más también detiene la compilación.
-    .strict(),
+    },
+    {
+      error: (problema) =>
+        problema.code === 'unrecognized_keys'
+          ? `${problema.keys.length === 1 ? 'Campo' : 'Campos'} de más: ${problema.keys.join(', ')}. Revisa los campos de una métrica en docs/DATOS.md`
+          : undefined,
+    },
+  ),
 });
 
 export const collections = { puntos, paginas, origenes, metricas };

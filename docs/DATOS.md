@@ -142,11 +142,13 @@ Las cifras del proyecto, como los kilos recolectados, van en `src/data/metricas.
 
 - **No hay métricas de ejemplo.** Una cifra sin fuente no se escribe (ver la [guía de estilo](GUIA_DE_ESTILO.md)). Si un archivo trae `ejemplo`, la compilación se detiene.
 - La cifra se muestra como se lee en Chile: `1234.5` aparece como `1.234,5`.
+- Se muestra a lo más un decimal. Si la fuente dice `1234.56`, en el sitio aparece redondeada: `1.234,6`.
+- Si un archivo trae un campo que no está en esta tabla, la compilación se detiene.
 - `[PENDIENTE]` Qué cifras se publican y quién las entrega. Lo definen las otras delegaciones con Diseño y evaluación.
 
 ### Ejemplo de archivo con una métrica
 
-Los valores son ilustrativos y no describen una cifra real.
+Los valores son ilustrativos y no describen una cifra real. Si lo copias, cambia el `id`: con `nombre-de-la-metrica`, la compilación se detiene, para que el ejemplo no llegue al sitio por error.
 
 ```json
 [

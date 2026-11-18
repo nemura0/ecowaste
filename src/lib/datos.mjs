@@ -117,7 +117,13 @@ export function destinosInexistentes(origenes, rutasDelSitio) {
   return origenes.filter(({ destino }) => !existentes.has(normalizarRuta(destino)));
 }
 
-/** Escribe una cifra como se lee en Chile: punto para los miles y coma para los decimales (1.234,5). */
+/**
+ * Escribe una cifra como se lee en Chile: punto para los miles y coma para los decimales (1.234,5).
+ * Muestra a lo más un decimal: 1234.56 aparece redondeada como 1.234,6.
+ */
 export function formatearCifra(valor) {
   return new Intl.NumberFormat('es-CL', { maximumFractionDigits: 1 }).format(valor);
 }
+
+/** El id del ejemplo de métrica de docs/DATOS.md. Si llega al archivo de métricas, la compilación se detiene. */
+export const ID_METRICA_DE_MUESTRA = 'nombre-de-la-metrica';
