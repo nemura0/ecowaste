@@ -33,10 +33,13 @@ export const TIPOS_DE_FUENTE = {
   web: 'Página web',
 };
 
-// [PENDIENTE] Falta la lista oficial de las cinco delegaciones.
+// Las cinco delegaciones del grupo, con los nombres oficiales del curso (issue #42).
 export const DELEGACIONES = {
-  'operaciones-y-recursos': 'Operaciones y recursos',
+  'coordinacion-general': 'Coordinación general',
   'diseno-y-evaluacion': 'Diseño y evaluación',
+  'economia-y-feria': 'Economía y feria',
+  'vinculacion-y-autorizaciones': 'Vinculación y autorizaciones',
+  'operaciones-y-recursos': 'Operaciones y recursos',
 };
 
 /** Una fecha es futura si cae después del día de `hoy` (se compara solo el día, en UTC). */
