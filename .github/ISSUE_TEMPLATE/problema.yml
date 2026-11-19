@@ -1,6 +1,6 @@
 name: Problema
 description: Algo no funciona, se ve mal o un dato está equivocado.
-labels: ["bug"]
+labels: ["problema"]
 body:
   - type: markdown
     attributes:

@@ -19,7 +19,7 @@ Esta guía es para la delegación Operaciones y recursos, que edita el repo. Si 
 
 ## 2. El ciclo de trabajo
 
-1. **Toma una tarea.** En [Issues](https://github.com/nemura0/ecowaste/issues), elige una sin asignar, comenta "la tomo" y asígnatela. Si tienes poca experiencia, parte por las que tienen la etiqueta `buena-primera-tarea`.
+1. **Toma una tarea.** Abre el tablero (más abajo) o las [issues](https://github.com/nemura0/ecowaste/issues), elige una sin asignar, comenta "la tomo" y asígnatela. Si tienes poca experiencia, parte por las que tienen la etiqueta `buena-primera-tarea`.
 2. **Actualiza tu copia y crea una rama:**
 
    ```sh
@@ -59,6 +59,33 @@ Esta guía es para la delegación Operaciones y recursos, que edita el repo. Si 
 8. **Merge.** Cuando la verificación esté en verde, usa **Squash and merge**, con un título que siga el formato `tipo: descripción`. Después borra la rama.
 
 También puedes editar un archivo directamente en la web de GitHub (con el ícono del lápiz). GitHub crea la rama y el pull request por ti. La sección "Práctica" de [EMPEZAR_AQUI.md](EMPEZAR_AQUI.md) muestra cómo.
+
+### El tablero
+
+El tablero está en la pestaña **Projects** del repo. Es privado: si no lo ves, pide acceso al encargado del repo.
+
+| Columna | Qué significa |
+|---|---|
+| Pendiente | Hay que hacerlo, sin fecha comprometida |
+| Esta semana | Lo acordado el jueves. Máximo 3 tarjetas |
+| En progreso | Alguien lo está haciendo. Máximo 2 por persona |
+| En espera | Espera a otra delegación, al profesor o al grupo |
+| En revisión | Hay un PR abierto y lo revisa otra persona de Operaciones |
+| Hecho | Mergeado o cerrado |
+
+Cuando tomas una tarea, mueve su tarjeta a "En progreso". Si te quedas esperando a alguien, muévela a "En espera" y anota en la issue qué delegación o cargo esperas, sin nombres de personas. Las tarjetas pasan solas a "En revisión" cuando enlazas un PR a la issue y a "Hecho" cuando se mergea.
+
+Para que el PR quede enlazado, escribe en su descripción `Cierra #número`, con el número de la issue.
+
+### Las etiquetas
+
+| Etiqueta | Para qué |
+|---|---|
+| `problema` | Algo no funciona o un dato está mal |
+| `decisión-del-grupo` | Lo decide el grupo o el profesor, no Operaciones |
+| `web`, `datos`, `contenido`, `docs`, `pruebas`, `accesibilidad` | Qué parte del proyecto toca |
+| `buena-primera-tarea` | Sirve para empezar con poca experiencia |
+| `fase-1` a `fase-4` | En qué fase del [plan](PLAN.md) va |
 
 ## 3. Reglas que no se negocian
 

@@ -6,11 +6,11 @@ Abre Claude Code en la carpeta del repo y escribe:
 
 > Lee `CLAUDE.md` y `docs/PLAN.md` y sigue con la fase que corresponde.
 
-Si trabajas sin Claude Code, revisa la sección "Estado actual" y las [issues abiertas](https://github.com/nemura0/ecowaste/issues).
+Si trabajas sin Claude Code, revisa la sección "Estado actual" y el tablero del proyecto, en la pestaña **Projects** del repo. El tablero es privado: si no lo ves, pide acceso al encargado del repo. También están las [issues abiertas](https://github.com/nemura0/ecowaste/issues).
 
 ## Estado actual
 
-**Fase 0 · Base y documentación, cerrada. Fase 1 · Demo, en curso** (actualizado el 18-nov-2026).
+**Fase 0 · Base y documentación, cerrada. Fase 1 · Demo, en curso** (actualizado el 19-nov-2026).
 
 ### Fase 1 · Demo
 
@@ -67,23 +67,25 @@ La Fase 3 va antes que la 4 porque, si el sitio se difunde sin medición, no que
 
 Nada de esta lista se decide por cuenta propia. Se marca `[PENDIENTE]` donde corresponda y se pregunta.
 
-| Tema | Qué falta | Con quién |
-|---|---|---|
-| Fechas | Confirmar las fechas de cada semana y la fecha límite | Profesor |
-| Identidad visual | Confirmar la dirección visual A, que eligió el encargado del repo, o elegir otra | Grupo |
-| Contenedor | Ubicación, autorización, qué residuos acepta y quién los retira | Delegaciones a cargo del contenedor |
-| Autorización de la web | Saber si la universidad exige alguna antes de difundir | Profesor |
-| Puntos reales | Puntos y sus fuentes | Datos de los puntos y otras delegaciones |
-| Contenido | Quién escribe "qué reciclar" y quién entrega los kilos recolectados | Otras delegaciones |
-| Medición | Herramienta e indicadores | Diseño y evaluación |
-| URL final | Nombre del sitio. Tiene que quedar fijo antes de imprimir cualquier QR | Operaciones |
-| QR | Dónde va cada QR (un origen por lugar físico, ver [DATOS.md](DATOS.md)) | Grupo |
-| Roles | Titular y suplente de cada rol | Operaciones |
-| Encuestas | Instrumento para usuarios | Otras delegaciones |
-| Usuarios de GitHub | Si pueden aparecer en `ROLES.md` y `CODEOWNERS` | Operaciones |
-| Licencia | Licencia del repo | Grupo |
-| Delegaciones | Nombres oficiales de las cinco delegaciones (para los datos) | Grupo |
-| Residuos | Validar la lista controlada de [DATOS.md](DATOS.md) | Quien escriba "qué reciclar" |
+Cada fila tiene su issue en el tablero. Cuando se resuelve, se anota la respuesta en este archivo, se borra la fila y se cierra la issue.
+
+| Tema | Qué falta | Con quién | Issue |
+|---|---|---|---|
+| Fechas | Confirmar las fechas de cada semana y la fecha límite | Profesor | #31 |
+| Identidad visual | Confirmar la dirección visual A, que eligió el encargado del repo, o elegir otra | Grupo | #4 |
+| Contenedor | Ubicación, autorización, qué residuos acepta y quién los retira | Delegaciones a cargo del contenedor | #32 |
+| Autorización de la web | Saber si la universidad exige alguna antes de difundir | Profesor | #33 |
+| Puntos reales | Puntos y sus fuentes | Datos de los puntos y otras delegaciones | #34 |
+| Contenido | Quién escribe "qué reciclar" y quién entrega los kilos recolectados | Otras delegaciones | #35 |
+| Medición | Herramienta e indicadores | Diseño y evaluación | #36 |
+| URL final | Nombre del sitio. Tiene que quedar fijo antes de imprimir cualquier QR | Operaciones | #37 |
+| QR | Dónde va cada QR (un origen por lugar físico, ver [DATOS.md](DATOS.md)) | Grupo | #44 |
+| Roles | Titular y suplente de cada rol | Operaciones | #38 |
+| Encuestas | Instrumento para usuarios | Otras delegaciones | #39 |
+| Usuarios de GitHub | Si pueden aparecer en `ROLES.md` y `CODEOWNERS` | Operaciones | #40 |
+| Licencia | Licencia del repo | Grupo | #41 |
+| Delegaciones | Nombres oficiales de las cinco delegaciones (para los datos) | Grupo | #42 |
+| Residuos | Validar la lista controlada de [DATOS.md](DATOS.md) | Quien escriba "qué reciclar" | #43 |
 
 ## Riesgos conocidos
 
@@ -110,3 +112,4 @@ Nada de esta lista se decide por cuenta propia. Se marca `[PENDIENTE]` donde cor
 | 17-nov-2026 | Se agregan las páginas "Qué reciclar" (solo estructura, con `[PENDIENTE]`) y "Acerca del proyecto", y un menú en la cabecera. Los textos de las páginas viven en `src/content/paginas/` (PR #25 y #26) |
 | 17-nov-2026 | Se agregan las rutas de entrada por QR en `/q/<id>/`, con un origen de ejemplo. Dónde irán los QR está pendiente; se generan en la Fase 3 (PR #28) |
 | 18-nov-2026 | Se agrega la sección "El proyecto en cifras" en la portada. Las cifras van en `src/data/metricas.json`, con fuente, fecha y delegación, y no pueden ser de ejemplo. Mientras el archivo esté vacío, la sección no aparece. Qué cifras se publican está pendiente (PR #30) |
+| 19-nov-2026 | Se ordenan las etiquetas (todas en español, con colores por tipo, área y fase), se crea una issue por cada pendiente y se arma un tablero privado en GitHub Projects (PR #45) |
