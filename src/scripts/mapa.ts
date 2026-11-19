@@ -69,7 +69,10 @@ if (contenedor) {
       if (plantilla && plantilla.innerHTML) {
         return plantilla.innerHTML;
       }
-      return `<strong>${punto.nombre}</strong>`;
+      // Respaldo si falta la plantilla: el nombre va como texto, nunca como HTML.
+      const respaldo = document.createElement('strong');
+      respaldo.textContent = punto.nombre;
+      return respaldo;
     };
 
     // Pasamos el title con nombre y estado para lectores de pantalla y accesibilidad

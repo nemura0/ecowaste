@@ -2,7 +2,7 @@
 //
 // Busca lo que nunca se sube: archivos .env, correos personales, teléfonos y RUT.
 // Se corre con `npm run verificar` y en cada pull request.
-// La validación de los puntos del mapa llega en la Fase 1.
+// Los datos del sitio los valida la compilación, con los esquemas de src/content.config.ts.
 
 import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
