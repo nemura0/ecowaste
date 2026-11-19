@@ -29,15 +29,3 @@ body:
         - Pasa `npm run verificar`.
     validations:
       required: true
-  - type: dropdown
-    id: fase
-    attributes:
-      label: Fase
-      options:
-        - "0 · Base y documentación"
-        - "1 · Demo"
-        - "2 · Datos y contenido reales"
-        - "3 · Medición"
-        - "4 · Puesta en uso y evidencias"
-    validations:
-      required: false

@@ -6,7 +6,7 @@ Abre Claude Code en la carpeta del repo y escribe:
 
 > Lee `CLAUDE.md` y `docs/PLAN.md` y sigue con la fase que corresponde.
 
-Si trabajas sin Claude Code, revisa la sección "Estado actual" y el tablero del proyecto, en la pestaña **Projects** del repo. El tablero es privado: si no lo ves, pide acceso al encargado del repo. También están las [issues abiertas](https://github.com/nemura0/ecowaste/issues).
+Si trabajas sin Claude Code, revisa la sección "Estado actual" y el [tablero del proyecto](https://github.com/users/nemura0/projects/1), que es público. El avance de cada fase está en los [hitos](https://github.com/nemura0/ecowaste/milestones).
 
 ## Estado actual
 
@@ -37,7 +37,7 @@ Si trabajas sin Claude Code, revisa la sección "Estado actual" y el tablero del
 - [x] Vista previa con un PR de otro colaborador: Vercel la generó en el PR del mapa (#23).
 - [x] Coautoría de agentes: no se prueba en el proyecto real por riesgo de bloqueo permanente; se desactiva en `.claude/settings.json`.
 - [x] Skills de terceros decididas: `frontend-design` incluida; `web-design-guidelines` se instala aparte.
-- [x] Issues de la Fase 1 creadas (etiqueta `fase-1`).
+- [x] Issues de la Fase 1 creadas (hito "Fase 1 · Demo").
 
 ## Fases
 
@@ -67,7 +67,7 @@ La Fase 3 va antes que la 4 porque, si el sitio se difunde sin medición, no que
 
 Nada de esta lista se decide por cuenta propia. Se marca `[PENDIENTE]` donde corresponda y se pregunta.
 
-Cada fila tiene su issue en el tablero. Cuando se resuelve, se anota la respuesta en este archivo, se borra la fila y se cierra la issue.
+Cada fila tiene su issue en el tablero. Un pendiente se resuelve con un PR que hace tres cosas: anota la respuesta en el Registro (fecha, qué se decidió y qué delegación o cargo lo decidió, nunca un nombre), borra la fila y lleva `Closes #número` en la descripción, para que la issue se cierre sola al mergear.
 
 | Tema | Qué falta | Con quién | Issue |
 |---|---|---|---|
@@ -112,4 +112,4 @@ Cada fila tiene su issue en el tablero. Cuando se resuelve, se anota la respuest
 | 17-nov-2026 | Se agregan las páginas "Qué reciclar" (solo estructura, con `[PENDIENTE]`) y "Acerca del proyecto", y un menú en la cabecera. Los textos de las páginas viven en `src/content/paginas/` (PR #25 y #26) |
 | 17-nov-2026 | Se agregan las rutas de entrada por QR en `/q/<id>/`, con un origen de ejemplo. Dónde irán los QR está pendiente; se generan en la Fase 3 (PR #28) |
 | 18-nov-2026 | Se agrega la sección "El proyecto en cifras" en la portada. Las cifras van en `src/data/metricas.json`, con fuente, fecha y delegación, y no pueden ser de ejemplo. Mientras el archivo esté vacío, la sección no aparece. Qué cifras se publican está pendiente (PR #30) |
-| 19-nov-2026 | Se ordenan las etiquetas (todas en español, con colores por tipo, área y fase), se crea una issue por cada pendiente y se arma un tablero privado en GitHub Projects (PR #45) |
+| 19-nov-2026 | Se ordenan las etiquetas (todas en español, con colores por tipo y área), las fases pasan a hitos de GitHub, se crea una issue por cada pendiente y se arma un tablero público en GitHub Projects, donde las tarjetas se mueven solas al enlazar y mergear un PR (PR #45) |
