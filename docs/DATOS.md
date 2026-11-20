@@ -92,12 +92,15 @@ ejemplo: true
 
 ## Delegaciones
 
-`[PENDIENTE]` Falta la lista oficial de las cinco delegaciones. Por ahora:
+Las cinco delegaciones del grupo, con los nombres oficiales del curso. En `verificacion.delegacion` va el valor; en el sitio se muestra el nombre. Nunca va el nombre de una persona.
 
 | Valor | Delegación |
 |---|---|
-| `operaciones-y-recursos` | Operaciones y recursos |
+| `coordinacion-general` | Coordinación general |
 | `diseno-y-evaluacion` | Diseño y evaluación |
+| `economia-y-feria` | Economía y feria |
+| `vinculacion-y-autorizaciones` | Vinculación y autorizaciones |
+| `operaciones-y-recursos` | Operaciones y recursos |
 
 ## Datos de ejemplo y modo real
 

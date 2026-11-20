@@ -12,9 +12,15 @@ EcoWaste es un mapa de puntos de reciclaje de residuos electrónicos. Parte por 
 
 Es un proyecto estudiantil del ramo Ecología Integral, de la Universidad Católica del Norte, sede Coquimbo. No es un servicio oficial de la universidad.
 
-El grupo se organiza en cinco delegaciones. La delegación Operaciones y recursos arma y mantiene este sitio.
+El grupo se organiza en cinco delegaciones:
 
-> [PENDIENTE] Los nombres oficiales de las cinco delegaciones y qué hace cada una.
+- **Coordinación general:** integra el trabajo, registra los acuerdos y controla los plazos.
+- **Diseño y evaluación:** coordina el diagnóstico, la fundamentación, el producto y los indicadores.
+- **Economía y feria:** gestiona el presupuesto, la recaudación y la rendición de cuentas.
+- **Vinculación y autorizaciones:** coordina los contactos, los permisos y los apoyos.
+- **Operaciones y recursos:** prepara los materiales, la logística y la ejecución. También arma y mantiene este sitio.
+
+Cuando un punto del mapa dice "Verificado por", nombra a una de estas delegaciones.
 
 ## Cómo se verifican los datos
 
