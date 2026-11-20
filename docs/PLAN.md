@@ -67,7 +67,7 @@ La Fase 3 va antes que la 4 porque, si el sitio se difunde sin medición, no que
 
 Nada de esta lista se decide por cuenta propia. Se marca `[PENDIENTE]` donde corresponda y se pregunta.
 
-Cada fila tiene su issue en el tablero. Un pendiente se resuelve con un PR que hace tres cosas: anota la respuesta en el Registro (fecha, qué se decidió y qué delegación o cargo lo decidió, nunca un nombre), borra la fila y lleva `Closes #número` en la descripción, para que la issue se cierre sola al mergear.
+Cada fila tiene su issue en el tablero. Cuando llega la respuesta a un pendiente, se anota en su issue: fecha, qué se decidió y qué delegación o cargo lo decidió, nunca un nombre. El PR que aplica la respuesta lleva `Closes #número` en la descripción, para que la issue se cierre sola al mergear, y no toca este archivo. En la revisión del jueves se borra la fila y la respuesta pasa al Registro (ver [COMO_APORTAR.md](COMO_APORTAR.md)).
 
 | Tema | Qué falta | Con quién | Issue |
 |---|---|---|---|

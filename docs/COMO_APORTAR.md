@@ -90,7 +90,7 @@ Cada jueves, en unos 10 minutos:
 1. Se revisa lo que pasó a "Hecho".
 2. Se eligen hasta 3 tarjetas para "Esta semana" y se asignan.
 3. Se repasa la vista **Decisiones**: a quién hay que preguntarle qué.
-4. Se pone al día el plan ("Estado actual" y "Registro" de [PLAN.md](PLAN.md)) en un solo PR. Los PR del resto de la semana no tocan el Registro; así no chocan entre ellos.
+4. Se pone al día el plan en un solo PR: "Estado actual", "Pendientes" y "Registro" de [PLAN.md](PLAN.md). Los PR del resto de la semana no tocan ese archivo; así no chocan entre ellos.
 5. Se manda un resumen corto al grupo por WhatsApp.
 
 ### Las etiquetas y los hitos
