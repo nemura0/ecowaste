@@ -117,7 +117,7 @@ const paginas = defineCollection({
       /** Resumen de una frase para buscadores y para compartir el enlace. */
       descripcion: z.string().min(1),
     },
-    avisoCamposDeMas('los campos de una página en src/content.config.ts'),
+    avisoCamposDeMas('el encabezado de la página: solo puede llevar titulo, titular y descripcion'),
   ),
 });
 
