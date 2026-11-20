@@ -6,7 +6,7 @@ titular: Acerca de EcoWaste
 descripcion: Quién hace EcoWaste y cómo se verifican los datos del mapa.
 ---
 
-EcoWaste es un mapa de puntos de reciclaje de residuos electrónicos. Parte por el campus de la UCN en Coquimbo y por el contenedor del proyecto.
+EcoWaste es un mapa de puntos de reciclaje de residuos electrónicos. Parte por el Campus Guayacán, en Coquimbo, y por el contenedor del proyecto.
 
 ## Quién lo hace
 
@@ -26,7 +26,7 @@ Cada punto del mapa lleva tres datos obligatorios:
 
 Si a un punto le falta alguno de los tres, no entra al mapa.
 
-Nada se completa de memoria. Un dato que alguien recuerda, una ficha de Google Maps o una respuesta de inteligencia artificial no sirven como fuente por sí solos.
+Nada se completa de memoria. Por sí solos, no sirven como fuente un dato que alguien recuerda, una ficha de Google Maps ni una respuesta de inteligencia artificial.
 
 ## Datos de ejemplo
 
