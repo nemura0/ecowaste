@@ -36,6 +36,8 @@ Cada punto es un archivo en `src/data/puntos/`, con el formato YAML (texto con `
 | `verificacion.delegacion` | Sí | Qué delegación lo comprobó | Ver [delegaciones](#delegaciones) |
 | `ejemplo` | Sí | Si es un dato de ejemplo para la demo | `true` o `false` |
 
+Si un archivo trae un campo que no está en esta tabla, por ejemplo `horarios` en vez de `horario`, la compilación se detiene y dice cuál sobra.
+
 ### Ejemplo de archivo
 
 Los valores son ilustrativos y no describen un punto real.
@@ -101,7 +103,7 @@ ejemplo: true
 
 - En la demo, los puntos con `ejemplo: true` se muestran con una marca visible de **EJEMPLO**, y todo el sitio lleva un aviso de demostración.
 - El modo del sitio (`demo` o `real`) está en `src/data/sitio.json`. En modo `real`, `npm run verificar` falla si queda algún punto con `ejemplo: true`. Si el modo dice otra cosa (por ejemplo `Demo`), la compilación se detiene.
-- La verificación compila sin caché (`astro build --force`). Si compilas a mano con `npm run build` después de cambiar el modo, puede que no veas el error: usa `npm run verificar`.
+- La compilación (`npm run build`) parte siempre sin caché, así que el error aparece aunque solo cambies el modo. Antes de abrir un PR, usa igual `npm run verificar`, que además revisa el repo y corre las pruebas.
 
 ## El campus en el mapa
 
@@ -121,6 +123,7 @@ Los orígenes están en `src/data/origenes-qr.json`. Cada uno se publica en `/q/
 | `ejemplo` | `true` si es un origen de ejemplo para la demo |
 
 - Si un destino no es una página del sitio, la compilación falla. Un QR impreso no se puede corregir.
+- Si un origen trae un campo que no está en esta tabla, la compilación se detiene.
 - En modo real, la verificación falla si queda algún origen con `ejemplo: true`.
 - `[PENDIENTE]` Dónde irán los QR. Los QR se generan en la Fase 3, cuando la URL final esté fija.
 

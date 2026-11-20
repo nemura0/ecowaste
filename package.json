@@ -9,10 +9,10 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build --force",
     "preview": "astro preview",
     "test": "node --test scripts/*.test.mjs",
-    "verificar": "node scripts/verificar.mjs && npm test && astro build --force"
+    "verificar": "node scripts/verificar.mjs && npm test && npm run build"
   },
   "dependencies": {
     "astro": "^7.4.11",
