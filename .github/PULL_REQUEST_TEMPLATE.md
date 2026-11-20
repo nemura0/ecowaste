@@ -4,7 +4,11 @@
 
 ## Por qué
 
-<!-- Enlaza la issue si existe: "Cierra #12". -->
+<!-- En una o dos frases. -->
+
+Closes #
+
+<!-- Escribe el número de la issue después del #. Va en inglés: GitHub no reconoce "Cierra". Si no hay issue, borra la línea. -->
 
 ## Cómo probarlo
 
@@ -17,6 +21,7 @@
 
 ## Antes de pedir revisión
 
+- [ ] El título sigue el formato `tipo: descripción`. Es el nombre con que el cambio queda en `main`.
 - [ ] `npm run verificar` pasa.
 - [ ] Lo revisé en ancho de teléfono.
 - [ ] No hay claves, nombres, correos, teléfonos ni otros datos personales.

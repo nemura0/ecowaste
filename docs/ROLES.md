@@ -8,7 +8,7 @@ Cinco roles, cada uno con titular y suplente, para que nada dependa de una sola 
 
 - Revisa y mergea pull requests, y cuida que `main` siempre compile.
 - Administra los ajustes de GitHub (rulesets, colaboradores, seguridad) y el proyecto en Vercel.
-- Mantiene ordenadas las issues y las etiquetas.
+- Mantiene ordenadas las issues, las etiquetas y el tablero.
 
 Titular: `[PENDIENTE]` · Suplente: `[PENDIENTE]`
 

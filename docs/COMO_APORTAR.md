@@ -19,7 +19,7 @@ Esta guía es para la delegación Operaciones y recursos, que edita el repo. Si 
 
 ## 2. El ciclo de trabajo
 
-1. **Toma una tarea.** En [Issues](https://github.com/nemura0/ecowaste/issues), elige una sin asignar, comenta "la tomo" y asígnatela. Si tienes poca experiencia, parte por las que tienen la etiqueta `buena-primera-tarea`.
+1. **Toma una tarea.** Las tareas se reparten en la revisión del jueves (más abajo). Si terminas la tuya, abre el [tablero](https://github.com/users/nemura0/projects/1), elige una de "Por hacer" sin asignar, comenta "la tomo" y asígnatela. Si tienes poca experiencia, parte por las que tienen la etiqueta `buena-primera-tarea`.
 2. **Actualiza tu copia y crea una rama:**
 
    ```sh
@@ -53,12 +53,56 @@ Esta guía es para la delegación Operaciones y recursos, que edita el repo. Si 
    git push -u origin docs/corrige-glosario
    ```
 
-   GitHub te muestra un botón para abrir el pull request. Completa la plantilla: qué cambia, por qué y cómo probarlo.
+   GitHub te muestra un botón para abrir el pull request. Completa la plantilla: qué cambia, por qué, qué issue cierra y cómo probarlo.
 6. **Espera la verificación y la vista previa.** La verificación tiene que quedar en verde. Abre la vista previa en tu teléfono.
 7. **Pide revisión** a otra persona de Operaciones cuando se pueda.
 8. **Merge.** Cuando la verificación esté en verde, usa **Squash and merge**, con un título que siga el formato `tipo: descripción`. Después borra la rama.
 
 También puedes editar un archivo directamente en la web de GitHub (con el ícono del lápiz). GitHub crea la rama y el pull request por ti. La sección "Práctica" de [EMPEZAR_AQUI.md](EMPEZAR_AQUI.md) muestra cómo.
+
+### El tablero
+
+El [tablero](https://github.com/users/nemura0/projects/1) es público y también está en la pestaña **Projects** del repo. Tiene tres vistas:
+
+- **Tablero:** las tarjetas en columnas, según en qué van.
+- **Decisiones:** lo que espera una respuesta del grupo, del profesor o de otra delegación.
+- **Por fase:** las tareas agrupadas por hito, uno por cada fase del [plan](PLAN.md).
+
+| Columna | Qué significa |
+|---|---|
+| Por hacer | Hay que hacerlo, pero todavía no se acordó para esta semana |
+| Esta semana | Lo acordado el jueves. Máximo 3 tarjetas |
+| En progreso | Alguien lo está haciendo. Máximo 2 por persona |
+| En espera | Espera a otra delegación, al profesor o al grupo |
+| En revisión | Hay un PR abierto que la resuelve y espera revisión |
+| Hecho | Mergeado o cerrado |
+
+Cada tarjeta puede tener una **fecha límite**: hasta cuándo hay que tenerla, según el plan.
+
+Las issues nuevas entran solas a "Por hacer". Cuando tomas una tarea, mueve su tarjeta a "En progreso". Si te quedas esperando a alguien, muévela a "En espera" y anota en la issue qué delegación o cargo esperas, sin nombres de personas. La tarjeta pasa sola a "En revisión" cuando abres un PR enlazado a la issue, y a "Hecho" cuando ese PR se mergea o la issue se cierra.
+
+Para enlazar el PR, escribe en su descripción `Closes #número`, con el número de la issue. Tiene que ir en inglés: GitHub no reconoce "Cierra".
+
+### La revisión del jueves
+
+Cada jueves, en unos 10 minutos:
+
+1. Se revisa lo que pasó a "Hecho".
+2. Se eligen hasta 3 tarjetas para "Esta semana" y se asignan.
+3. Se repasa la vista **Decisiones**: a quién hay que preguntarle qué.
+4. Se pone al día el plan en un solo PR: "Estado actual", "Pendientes" y "Registro" de [PLAN.md](PLAN.md). Los PR del resto de la semana no tocan ese archivo; así no chocan entre ellos.
+5. Se manda un resumen corto al grupo por WhatsApp.
+
+### Las etiquetas y los hitos
+
+| Etiqueta | Para qué |
+|---|---|
+| `problema` | Algo no funciona o un dato está mal |
+| `decisión-del-grupo` | Lo decide el grupo o el profesor, no Operaciones |
+| `web`, `datos`, `contenido`, `docs`, `pruebas`, `accesibilidad` | Qué parte del proyecto toca |
+| `buena-primera-tarea` | Sirve para empezar con poca experiencia |
+
+La fase no va como etiqueta: va como [hito](https://github.com/nemura0/ecowaste/milestones) (*milestone*), uno por cada fase del [plan](PLAN.md). Cada hito muestra cuánto falta para cerrar su fase. Las tareas que no son de una fase, como la licencia o los roles, van sin hito.
 
 ## 3. Reglas que no se negocian
 
