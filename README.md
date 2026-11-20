@@ -50,4 +50,18 @@ Después abre `http://localhost:4321` en el navegador.
 
 ## Licencia
 
-`[PENDIENTE]`. El grupo todavía no la define.
+Puedes reutilizar este proyecto, siempre que cites de dónde viene. Hay dos licencias, una para el código y otra para los textos y los datos:
+
+| Qué | Licencia | Archivo |
+|---|---|---|
+| Código: todo lo que no está en la fila de abajo | MIT | [`LICENSE`](LICENSE) |
+| Textos y datos: `docs/`, `src/content/` y `src/data/` | CC BY 4.0 | [`LICENSE-CONTENIDO`](LICENSE-CONTENIDO) |
+
+Hay dos excepciones, que mantienen su propia licencia:
+
+- La skill `.claude/skills/frontend-design/` es de terceros y usa Apache 2.0 (ver su `LICENSE.txt`).
+- Las coordenadas sacadas de OpenStreetMap siguen bajo la licencia de OpenStreetMap. Cada punto cita esa fuente.
+
+Para citar los textos o los datos, escribe: "EcoWaste, proyecto estudiantil del ramo Ecología Integral (UCN, sede Coquimbo)", con el enlace a este repo.
+
+El grupo eligió estas licencias el 20-nov-2026. El detalle está en la [decisión 0006](docs/decisiones/0006-licencia.md).
