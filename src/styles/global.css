@@ -68,8 +68,10 @@ a:hover {
   font-size: var(--texto-destacado);
 }
 
-/* En los textos, "> [PENDIENTE] ..." marca lo que falta. Se ve como recuadro punteado. */
-.prosa blockquote {
+/* En los textos, "> [PENDIENTE] ..." marca lo que falta. Se ve como recuadro punteado.
+   Fuera de los textos, lo pendiente usa la clase "pendiente", con el mismo recuadro. */
+.prosa blockquote,
+.pendiente {
   margin: 0;
   padding: var(--espacio-3) var(--espacio-4);
   border: var(--borde-pendiente);

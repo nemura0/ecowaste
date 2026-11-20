@@ -79,12 +79,9 @@ const puntos = await getCollection('puntos');
     line-height: var(--interlineado);
   }
 
-  /* Lo pendiente va en recuadro punteado, igual que en las páginas de texto. */
+  /* El recuadro punteado sale de global.css. Aquí va blanco, porque la caja ya es verde claro. */
   .contenedor-texto .pendiente {
     margin-top: var(--espacio-2);
-    padding: var(--espacio-2) var(--espacio-3);
-    border: var(--borde-pendiente);
-    border-radius: var(--radio);
     background: var(--color-fondo);
   }
 </style>

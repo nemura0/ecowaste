@@ -26,7 +26,7 @@ Cada punto del mapa lleva tres datos obligatorios:
 
 Si a un punto le falta alguno de los tres, no entra al mapa.
 
-Nada se completa de memoria. Por sí solos, no sirven como fuente un dato que alguien recuerda, una ficha de Google Maps ni una respuesta de inteligencia artificial.
+Nada se completa de memoria. No sirven como fuente por sí solos: un dato que alguien recuerda, una ficha de Google Maps o una respuesta de inteligencia artificial.
 
 ## Datos de ejemplo
 
