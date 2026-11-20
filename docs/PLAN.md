@@ -82,6 +82,7 @@ Nada de esta lista se decide por cuenta propia. Se marca `[PENDIENTE]` donde cor
 | Encuestas | Instrumento para usuarios | Otras delegaciones |
 | Usuarios de GitHub | Si pueden aparecer en `ROLES.md` y `CODEOWNERS` | Operaciones |
 | Licencia | Licencia del repo | Grupo |
+| Delegaciones | Nombres oficiales de las cinco delegaciones (para los datos) | Grupo |
 | Residuos | Validar la lista controlada de [DATOS.md](DATOS.md) | Quien escriba "qué reciclar" |
 
 ## Riesgos conocidos
@@ -109,4 +110,3 @@ Nada de esta lista se decide por cuenta propia. Se marca `[PENDIENTE]` donde cor
 | 17-nov-2026 | Se agregan las páginas "Qué reciclar" (solo estructura, con `[PENDIENTE]`) y "Acerca del proyecto", y un menú en la cabecera. Los textos de las páginas viven en `src/content/paginas/` (PR #25 y #26) |
 | 17-nov-2026 | Se agregan las rutas de entrada por QR en `/q/<id>/`, con un origen de ejemplo. Dónde irán los QR está pendiente; se generan en la Fase 3 (PR #28) |
 | 18-nov-2026 | Se agrega la sección "El proyecto en cifras" en la portada. Las cifras van en `src/data/metricas.json`, con fuente, fecha y delegación, y no pueden ser de ejemplo. Mientras el archivo esté vacío, la sección no aparece. Qué cifras se publican está pendiente (PR #30) |
-| 19-nov-2026 | Se fijan los nombres de las cinco delegaciones con los nombres oficiales del curso: Coordinación general, Diseño y evaluación, Economía y feria, Vinculación y autorizaciones y Operaciones y recursos. Quedan en `src/lib/datos.mjs`, `docs/DATOS.md` y la página "Acerca" (issue #42) |
