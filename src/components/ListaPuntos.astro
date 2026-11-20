@@ -55,7 +55,10 @@ const { puntos } = Astro.props;
 
               <div class="punto-cuerpo">
                 <p class="punto-ubicacion">
-                  <strong>Ubicación:</strong> {punto.data.ubicacion.descripcion} ({punto.data.ubicacion.comuna})
+                  <strong>Dónde:</strong> {punto.data.ubicacion.descripcion}
+                </p>
+                <p class="punto-ubicacion">
+                  <strong>Comuna:</strong> {punto.data.ubicacion.comuna}
                 </p>
 
                 {punto.data.horario && (
