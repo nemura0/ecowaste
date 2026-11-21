@@ -12,12 +12,10 @@ const puntos = await getCollection('puntos');
 <Base titulo="Mapa de reciclaje" titular="Dónde dejar tus residuos electrónicos">
   <div class="introduccion">
     <p>
-      Encuentra puntos de reciclaje de residuos electrónicos en Coquimbo, partiendo por el Campus Guayacán de la
+      Encuentra puntos de reciclaje de residuos electrónicos en Coquimbo. Partimos por el Campus Guayacán de la
       Universidad Católica del Norte.
     </p>
-    <p>
-      Puedes explorar las ubicaciones directamente en el mapa o consultar la lista de puntos con sus residuos aceptados.
-    </p>
+    <p>Busca los puntos en el mapa o en la lista de abajo. La lista dice qué recibe cada uno.</p>
   </div>
 
   <Mapa campus={campus} puntos={puntos} />
@@ -26,9 +24,9 @@ const puntos = await getCollection('puntos');
     <div class="contenedor-caja">
       <div class="contenedor-texto">
         <h2 id="titulo-contenedor">Contenedor del proyecto</h2>
-        <p>
-          El contenedor del proyecto todavía no existe. <code>[PENDIENTE]</code> Dónde va a estar, qué residuos va a
-          recibir y su autorización.
+        <p>El contenedor del proyecto todavía no existe.</p>
+        <p class="pendiente">
+          [PENDIENTE] Falta definir dónde va a estar, qué residuos va a recibir y su autorización.
         </p>
       </div>
       <span class="etiqueta estado-propuesto">Propuesto</span>
@@ -79,5 +77,11 @@ const puntos = await getCollection('puntos');
     font-size: var(--texto-chico);
     color: var(--color-tinta-suave);
     line-height: var(--interlineado);
+  }
+
+  /* El recuadro punteado sale de global.css. Aquí va blanco, porque la caja ya es verde claro. */
+  .contenedor-texto .pendiente {
+    margin-top: var(--espacio-2);
+    background: var(--color-fondo);
   }
 </style>
