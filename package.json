@@ -2,6 +2,7 @@
   "name": "ecowaste",
   "version": "0.0.0",
   "private": true,
+  "license": "(MIT AND CC-BY-4.0)",
   "description": "Mapa de puntos de reciclaje de residuos electrónicos. Proyecto estudiantil del ramo Ecología Integral (UCN).",
   "type": "module",
   "engines": {

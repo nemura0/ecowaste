@@ -18,8 +18,9 @@ El repo es público, pero sin licencia nadie puede reutilizarlo legalmente. Tien
 El grupo eligió **MIT para el código y CC BY 4.0 para textos y datos** (issue #41).
 
 - CC BY 4.0 cubre `docs/`, `src/content/` y `src/data/`. Su texto está en `LICENSE-CONTENIDO`.
-- MIT cubre todo lo demás. Su texto está en `LICENSE`.
-- Hay dos excepciones con su propia licencia: `.claude/skills/frontend-design/` (Apache 2.0, de terceros) y las coordenadas sacadas de OpenStreetMap.
+- MIT cubre todo lo demás, incluidos `CLAUDE.md` y las skills propias de `.claude/skills/`. Su texto está en `LICENSE`.
+- Hay dos excepciones con su propia licencia: `.claude/skills/frontend-design/` (Apache 2.0, de terceros) y las coordenadas sacadas de OpenStreetMap ([ODbL](https://opendatacommons.org/licenses/odbl/)), que van con su fuente.
+- `package.json` lo declara como `(MIT AND CC-BY-4.0)`.
 - El titular es "Colaboradores de EcoWaste". No se nombra a personas, igual que en el resto del repo.
 
 ## Consecuencias

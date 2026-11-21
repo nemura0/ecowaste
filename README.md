@@ -54,13 +54,13 @@ Puedes reutilizar este proyecto, siempre que cites de dónde viene. Hay dos lice
 
 | Qué | Licencia | Archivo |
 |---|---|---|
-| Código: todo lo que no está en la fila de abajo | MIT | [`LICENSE`](LICENSE) |
+| Código: todo lo que no está en la fila de abajo. También `CLAUDE.md` y las skills propias de `.claude/skills/` | MIT | [`LICENSE`](LICENSE) |
 | Textos y datos: `docs/`, `src/content/` y `src/data/` | CC BY 4.0 | [`LICENSE-CONTENIDO`](LICENSE-CONTENIDO) |
 
 Hay dos excepciones, que mantienen su propia licencia:
 
 - La skill `.claude/skills/frontend-design/` es de terceros y usa Apache 2.0 (ver su `LICENSE.txt`).
-- Las coordenadas sacadas de OpenStreetMap siguen bajo la licencia de OpenStreetMap. Cada punto cita esa fuente.
+- Las coordenadas sacadas de OpenStreetMap siguen bajo su licencia, la [ODbL](https://opendatacommons.org/licenses/odbl/). Cada dato sacado de ahí cita esa fuente.
 
 Para citar los textos o los datos, escribe: "EcoWaste, proyecto estudiantil del ramo Ecología Integral (UCN, sede Coquimbo)", con el enlace a este repo.
 

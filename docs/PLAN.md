@@ -83,7 +83,6 @@ Cada fila tiene su issue en el tablero. Cuando llega la respuesta a un pendiente
 | Roles | Titular y suplente de cada rol | Operaciones | #38 |
 | Encuestas | Instrumento para usuarios | Otras delegaciones | #39 |
 | Usuarios de GitHub | Si pueden aparecer en `ROLES.md` y `CODEOWNERS` | Operaciones | #40 |
-| Licencia | Licencia del repo | Grupo | #41 |
 | Delegaciones | Nombres oficiales de las cinco delegaciones (para los datos) | Grupo | #42 |
 | Residuos | Validar la lista controlada de [DATOS.md](DATOS.md) | Quien escriba "qué reciclar" | #43 |
 
@@ -113,3 +112,4 @@ Cada fila tiene su issue en el tablero. Cuando llega la respuesta a un pendiente
 | 17-nov-2026 | Se agregan las rutas de entrada por QR en `/q/<id>/`, con un origen de ejemplo. Dónde irán los QR está pendiente; se generan en la Fase 3 (PR #28) |
 | 18-nov-2026 | Se agrega la sección "El proyecto en cifras" en la portada. Las cifras van en `src/data/metricas.json`, con fuente, fecha y delegación, y no pueden ser de ejemplo. Mientras el archivo esté vacío, la sección no aparece. Qué cifras se publican está pendiente (PR #30) |
 | 19-nov-2026 | Se ordenan las etiquetas (todas en español, con colores por tipo y área), las fases pasan a hitos de GitHub, se crea una issue por cada pendiente y se arma un tablero público en GitHub Projects, donde las tarjetas se mueven solas al enlazar y mergear un PR (PR #45) |
+| 20-nov-2026 | El grupo elige la licencia: MIT para el código y CC BY 4.0 para textos y datos (`docs/`, `src/content/` y `src/data/`). Se agregan `LICENSE`, `LICENSE-CONTENIDO` y la [decisión 0006](decisiones/0006-licencia.md). Sale de pendientes (issue #41) |
