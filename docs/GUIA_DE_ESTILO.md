@@ -56,7 +56,7 @@ La referencia es un diseño tipo Canva: **plano, amable y claro**.
 
 ## Variables de diseño
 
-El grupo no tiene logo ni colores propios, así que el 16-nov-2026 el encargado del repo eligió la **dirección A, "Etiqueta de contenedor"**. Se inspira en los adhesivos de los contenedores de reciclaje: verde profundo, amarillo de señalética, tinta oscura y bordes marcados. `[PENDIENTE]` Falta que el grupo la confirme. Si elige otra dirección, o define después un logo o colores, se cambian aquí.
+El grupo no tiene logo ni colores propios, así que se confirmó la **dirección A, "Etiqueta de contenedor"** (propuesta el 16-nov-2026, revisada por Diseño y evaluación el 20-nov-2026 y confirmada por Operaciones y recursos el 24-nov-2026). Se inspira en los adhesivos de los contenedores de reciclaje: verde profundo, amarillo de señalética, tinta oscura y bordes marcados. Si el grupo define un logo o colores después, se cambian aquí.
 
 Todo vive en un solo archivo, `src/styles/variables.css`. El resto del sitio solo usa esas variables: no se escriben colores ni tamaños sueltos.
 
