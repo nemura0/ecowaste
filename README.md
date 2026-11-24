@@ -6,11 +6,11 @@ Es el producto digital de un proyecto estudiantil del ramo Ecología Integral (U
 
 ## Estado
 
-**Fase 1 · demo.** El sitio ya está publicado en una URL provisoria y se está armando la demo, con datos de ejemplo. El avance y los pendientes están en [`docs/PLAN.md`](docs/PLAN.md).
+**Fase 1 · demo.** El sitio ya está publicado y se está armando la demo, con datos de ejemplo. El avance y los pendientes están en [`docs/PLAN.md`](docs/PLAN.md).
 
 ## Dónde verlo
 
-- Sitio (provisorio): https://ecowaste-seven.vercel.app/. La URL final se define antes de imprimir cualquier QR.
+- Sitio: https://ecowaste-seven.vercel.app/
 - Vista previa de cada cambio: en cada pull request aparece un comentario con el enlace.
 
 ## Cómo se verifican los datos
