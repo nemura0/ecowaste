@@ -20,6 +20,8 @@ import {
   letraDePunto,
   respuestaPorResiduo,
   puntosQueReciben,
+  ESTADOS,
+  EXPLICACION_DE_ESTADO,
 } from '../src/lib/datos.mjs';
 
 const hoy = new Date('2026-11-16T12:00:00Z');
@@ -177,20 +179,42 @@ test('si ningún punto lo recibe, la respuesta lo dice', () => {
 
 // Qué reciclar: cuántos puntos reciben cada residuo
 
-test('cuenta los puntos que reciben un residuo y avisa si son de ejemplo', () => {
+test('cuenta los puntos abiertos que reciben un residuo y avisa si son de ejemplo', () => {
   const puntos = [
-    { residuos: ['pilas'], ejemplo: true },
-    { residuos: ['pilas', 'baterias'], ejemplo: true },
+    { estado: 'activo', residuos: ['pilas'], ejemplo: true },
+    { estado: 'activo', residuos: ['pilas', 'baterias'], ejemplo: true },
   ];
-  assert.equal(puntosQueReciben('pilas', puntos), 'Lo reciben 2 puntos (de ejemplo).');
-  assert.equal(puntosQueReciben('baterias', puntos), 'Lo recibe 1 punto (de ejemplo).');
+  assert.equal(puntosQueReciben('pilas', puntos), 'Lo reciben 2 puntos abiertos (de ejemplo).');
+  assert.equal(puntosQueReciben('baterias', puntos), 'Lo recibe 1 punto abierto (de ejemplo).');
   assert.equal(puntosQueReciben('celulares-y-tablets', puntos), 'Todavía ningún punto lo recibe.');
 });
 
-test('si hay algún punto real, el conteo no dice que son de ejemplo', () => {
+test('si hay algún punto abierto real, el conteo no dice que son de ejemplo', () => {
   const puntos = [
-    { residuos: ['pilas'], ejemplo: true },
-    { residuos: ['pilas'], ejemplo: false },
+    { estado: 'activo', residuos: ['pilas'], ejemplo: true },
+    { estado: 'activo', residuos: ['pilas'], ejemplo: false },
   ];
-  assert.equal(puntosQueReciben('pilas', puntos), 'Lo reciben 2 puntos.');
+  assert.equal(puntosQueReciben('pilas', puntos), 'Lo reciben 2 puntos abiertos.');
+});
+
+test('los puntos propuestos no se cuentan como abiertos', () => {
+  const puntos = [
+    { estado: 'propuesto', residuos: ['pilas'], ejemplo: true },
+    { estado: 'activo', residuos: ['baterias'], ejemplo: false },
+    { estado: 'propuesto', residuos: ['baterias'], ejemplo: true },
+  ];
+  assert.equal(
+    puntosQueReciben('pilas', puntos),
+    'Todavía ningún punto abierto lo recibe. Hay 1 punto propuesto (de ejemplo).',
+  );
+  assert.equal(puntosQueReciben('baterias', puntos), 'Lo recibe 1 punto abierto.');
+});
+
+test('los puntos inactivos no se cuentan ni como abiertos ni como propuestos', () => {
+  const puntos = [{ estado: 'inactivo', residuos: ['pilas'], ejemplo: false }];
+  assert.equal(puntosQueReciben('pilas', puntos), 'Todavía ningún punto abierto lo recibe.');
+});
+
+test('cada estado tiene su explicación para la ficha', () => {
+  assert.deepEqual(Object.keys(EXPLICACION_DE_ESTADO).sort(), Object.keys(ESTADOS).sort());
 });

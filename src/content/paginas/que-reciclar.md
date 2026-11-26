@@ -24,10 +24,10 @@ Revisa en el [mapa](/) dónde dejar cada residuo.
 
 ## Por qué separar los residuos electrónicos
 
-- En Chile se generan cerca de 220 mil toneladas de residuos de aparatos eléctricos y electrónicos al año, y más de 2.600 toneladas de residuos de pilas. Solo se recicla el 4,1 % (Ministerio del Medio Ambiente, 2026).
+- En Chile se generan cerca de 220 mil toneladas de residuos de aparatos eléctricos y electrónicos al año, y más de 2.600 toneladas de residuos de pilas. Solo se recicla entre el 4 % y el 5 %: la nota del Ministerio del Medio Ambiente dice 4,1 % y el Decreto 22 de 2026 dice 4,9 % (considerando 4).
 - La mayoría de estos residuos no se aprovecha: termina en rellenos sanitarios (Decreto 22 de 2026, considerando 30).
 - Algunas pilas y aparatos contienen sustancias que convierten sus residuos en residuos peligrosos (Decreto 22 de 2026, considerando 41).
-- Desde mayo de 2028, las tiendas que vendan pilas o aparatos eléctricos y electrónicos y tengan más de 400 m² abiertos al público tendrán que recibir gratis esos residuos, de los mismos tipos que venden. No pueden exigirte que compres algo nuevo (Decreto 22 de 2026, artículos 29 y 49).
+- Desde mayo de 2028, las tiendas grandes tendrán que recibir gratis estos residuos. Aplica a las que vendan pilas o aparatos eléctricos y electrónicos y tengan más de 400 m² abiertos al público. Reciben los mismos tipos que venden, y no pueden exigirte que compres algo nuevo (Decreto 22 de 2026, artículos 29 y 49).
 
 ## Fuentes
 
