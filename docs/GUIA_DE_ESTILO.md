@@ -71,7 +71,7 @@ Todo vive en un solo archivo, `src/styles/variables.css`. El resto del sitio sol
 | Tinta | `#1F2421` | Texto, trazos de los dibujos y botón principal |
 | Tinta suave | `#5F6762` | Textos secundarios |
 | Verde | `#2F6B4F` | Enlaces y ondas del mapa |
-| Lápiz | `#9A5B45` | Anotaciones a mano y trazo que encierra lo elegido |
+| Lápiz | `#8F5440` | Anotaciones a mano y trazo que encierra lo elegido |
 | Agua | `#DFF0EE` | Cabecera punteada y recuadro de la fuente |
 | Puntos | `#C8D2CC` | Puntos del papel y líneas suaves |
 
@@ -86,4 +86,4 @@ El aviso de demostración usa el mismo color mantequilla.
 - **Tipografía:** dos fuentes, alojadas en el mismo sitio (no se cargan desde Google) y solo con los caracteres del español. **Geist** para todo el texto, en peso normal (400) y medio (500). **Caveat** solo para las anotaciones a lápiz.
 - **Bordes:** casi no hay. Los paneles se separan por color, con esquinas redondeadas (18 px). Lo pendiente lleva borde punteado.
 - **Foco:** contorno punteado de 2 px en tinta.
-- **Dibujos:** viven en `src/components/Dibujo.astro`. Para un residuo nuevo, se agrega su dibujo ahí.
+- **Dibujos:** viven en `src/components/Dibujos.astro` y se usan con `<Dibujo nombre="..." />`. Para un residuo nuevo, se agrega su dibujo ahí.
