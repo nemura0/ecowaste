@@ -1,5 +1,5 @@
 ---
-// Franja verde con el nombre del sitio, el menú y el título de la página.
+// Cabecera en papel punteado con el nombre del sitio y el menú. Debajo, el título de la página.
 interface Props {
   titular: string;
 }
@@ -8,7 +8,7 @@ const { titular } = Astro.props;
 
 // Para sumar una página al menú, agrégala aquí. La ruta termina en "/".
 const secciones = [
-  { texto: 'Inicio', ruta: '/' },
+  { texto: 'Mapa', ruta: '/' },
   { texto: 'Qué reciclar', ruta: '/que-reciclar/' },
   { texto: 'Acerca', ruta: '/acerca/' },
 ];
@@ -16,60 +16,74 @@ const secciones = [
 const actual = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
 ---
 
-<header class="cabecera">
-  <div class="contenedor">
-    <div class="fila">
-      <a class="marca" href="/">EcoWaste</a>
-      <nav aria-label="Secciones del sitio">
-        <ul>
-          {
-            secciones.map(({ texto, ruta }) => (
-              <li>
-                <a href={ruta} aria-current={ruta === actual ? 'page' : undefined}>
-                  {texto}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
-    </div>
-    <h1>{titular}</h1>
+<header class="cabecera punteado">
+  <div class="contenedor fila">
+    <a class="marca" href="/">
+      <span class="marca-nombre">EcoWaste</span>
+      <span class="marca-lugar a-mano" aria-hidden="true">Coquimbo</span>
+    </a>
+    <nav aria-label="Secciones del sitio">
+      <ul>
+        {
+          secciones.map(({ texto, ruta }) => (
+            <li>
+              <a href={ruta} aria-current={ruta === actual ? 'page' : undefined}>
+                {texto}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
   </div>
 </header>
+<div class="contenedor titular">
+  <h1>{titular}</h1>
+</div>
 
 <style>
   .cabecera {
-    background: var(--color-verde);
-    color: var(--color-fondo);
-    border-bottom: var(--borde);
-    padding-block: var(--espacio-4) var(--espacio-6);
+    padding-block: var(--espacio-4) var(--espacio-5);
   }
 
   .fila {
     display: flex;
     flex-wrap: wrap;
-    align-items: baseline;
+    align-items: flex-start;
     justify-content: space-between;
-    gap: var(--espacio-2) var(--espacio-4);
+    gap: var(--espacio-3) var(--espacio-4);
   }
 
   .marca {
-    color: var(--color-verde-claro);
-    font-size: var(--texto-chico);
-    font-weight: var(--peso-fuerte);
+    display: inline-flex;
+    flex-direction: column;
+    color: var(--color-tinta);
     text-decoration: none;
   }
 
-  .marca:hover {
-    color: var(--color-fondo);
+  .marca-nombre {
+    font-size: var(--texto-destacado);
+    font-weight: var(--peso-fuerte);
+    letter-spacing: var(--espaciado-titulo);
+    line-height: 1;
+  }
+
+  .marca-lugar {
+    margin-top: calc(var(--espacio-1) * -0.5);
+    margin-left: var(--espacio-4);
+    transform: rotate(-4deg);
+    transform-origin: left;
+  }
+
+  .marca:hover .marca-nombre {
     text-decoration: underline;
+    text-underline-offset: 0.15em;
   }
 
   nav ul {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--espacio-1) var(--espacio-4);
+    gap: 0 var(--espacio-4);
     margin: 0;
     padding: 0;
     list-style: none;
@@ -78,30 +92,26 @@ const actual = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.
   nav a {
     display: inline-block;
     padding-block: var(--espacio-2);
-    color: var(--color-fondo);
+    color: var(--color-tinta);
     font-size: var(--texto-chico);
-    font-weight: var(--peso-fuerte);
     text-decoration: none;
     border-bottom: var(--grosor-subrayado) solid transparent;
   }
 
   nav a:hover {
-    color: var(--color-fondo);
-    border-bottom-color: var(--color-verde-claro);
+    border-bottom-color: var(--color-tinta-suave);
   }
 
-  /* La página en la que estás: subrayado amarillo, además del aviso para lectores de pantalla */
+  /* La página en la que estás: subrayado a lápiz, además del aviso para lectores de pantalla */
   nav a[aria-current='page'] {
-    border-bottom-color: var(--color-amarillo);
+    border-bottom-color: var(--color-lapiz);
   }
 
-  .marca:focus-visible,
-  nav a:focus-visible {
-    outline-color: var(--color-foco-sobre-verde);
-  }
-
-  h1 {
-    margin: var(--espacio-2) 0 0;
+  .titular h1 {
+    margin: var(--espacio-6) 0 var(--espacio-4);
     font-size: var(--texto-titulo);
+    letter-spacing: var(--espaciado-titulo);
+    line-height: var(--interlineado-titulo);
+    max-width: 18ch;
   }
 </style>

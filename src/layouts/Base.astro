@@ -1,13 +1,18 @@
 ---
+// Fuentes alojadas en el sitio, solo con caracteres latinos. Ver docs/GUIA_DE_ESTILO.md.
+import '@fontsource/geist/latin-400.css';
+import '@fontsource/geist/latin-500.css';
+import '@fontsource/caveat/latin-500.css';
 import '../styles/global.css';
 import AvisoDemo from '../components/AvisoDemo.astro';
 import Cabecera from '../components/Cabecera.astro';
+import Dibujos from '../components/Dibujos.astro';
 import PiePagina from '../components/PiePagina.astro';
 
 interface Props {
   /** Título de la pestaña del navegador. */
   titulo: string;
-  /** Título grande de la página, en la franja verde. Si no se indica, se usa `titulo`. */
+  /** Título grande de la página, bajo la cabecera. Si no se indica, se usa `titulo`. */
   titular?: string;
   descripcion?: string;
 }
@@ -31,6 +36,7 @@ const {
     <slot name="head" />
   </head>
   <body>
+    <Dibujos />
     <a class="saltar" href="#contenido">Saltar al contenido</a>
     <AvisoDemo />
     <Cabecera titular={titular} />

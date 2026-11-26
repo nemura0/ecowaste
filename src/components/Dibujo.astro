@@ -1,0 +1,36 @@
+---
+// Un dibujo a tinta. Los dibujos están definidos en Dibujos.astro.
+// Si el dibujo acompaña a un texto que ya dice lo mismo, no lleva "descripcion" y queda oculto para lectores de pantalla.
+import { RESIDUOS } from '../lib/datos.mjs';
+
+const DIBUJOS = [...Object.keys(RESIDUOS), 'contenedor'];
+
+interface Props {
+  /** Id del residuo (como en src/lib/datos.mjs) o "contenedor". */
+  nombre: string;
+  /** Texto alternativo. Solo si el dibujo dice algo que no está escrito al lado. */
+  descripcion?: string;
+  /** Tamaño en píxeles. */
+  tamano?: number;
+  class?: string;
+}
+
+const { nombre, descripcion, tamano = 56, class: clase } = Astro.props;
+
+if (!DIBUJOS.includes(nombre)) {
+  throw new Error(`No hay dibujo para "${nombre}". Agrégalo en src/components/Dibujos.astro.`);
+}
+---
+
+<svg
+  class:list={['dibujo', clase]}
+  width={tamano}
+  height={tamano}
+  viewBox="0 0 64 64"
+  role={descripcion ? 'img' : undefined}
+  aria-label={descripcion}
+  aria-hidden={descripcion ? undefined : 'true'}
+  focusable="false"
+>
+  <use href={`#dibujo-${nombre}`}></use>
+</svg>
