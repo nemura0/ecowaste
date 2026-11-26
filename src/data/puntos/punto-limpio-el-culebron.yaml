@@ -1,0 +1,28 @@
+# Punto real. Las fuentes son notas de prensa que citan a la Municipalidad de Coquimbo.
+# El horario no se incluye porque ninguna fuente lo dice.
+# Pilas, cables y pequeños electrodomésticos no se incluyen porque las fuentes no los nombran.
+id: punto-limpio-el-culebron
+nombre: Punto Limpio El Culebrón
+tipo: punto-limpio
+estado: activo
+ubicacion:
+  lat: -29.97837
+  lng: -71.32613
+  descripcion: Avenida México 607, sector San Juan.
+  comuna: Coquimbo
+residuos:
+  - celulares-y-tablets
+  - computadores-y-notebooks
+administrador: Municipalidad de Coquimbo
+fuente:
+  tipo: web
+  detalle: >-
+    Nota de prensa del 31-oct-2026 en la que el director de Medio Ambiente de la Municipalidad de Coquimbo
+    dice que el punto seguirá recibiendo residuos electrónicos (celulares y computadores).
+    La dirección sale de un formulario del Fondo de Protección Ambiental del Ministerio del Medio Ambiente,
+    y las coordenadas se leyeron en OpenStreetMap (way 1152285060).
+  enlace: https://madero.cl/que-hacer-con-el-celular-o-computador-en-desuso-coquimbo-reunio-cerca-de-400-para-recuperarlos-y-entregarlos-a-escuelas/
+verificacion:
+  fecha: 2026-11-26
+  delegacion: operaciones-y-recursos
+ejemplo: false
