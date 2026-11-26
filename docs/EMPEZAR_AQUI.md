@@ -12,7 +12,7 @@ Solo la delegación Operaciones y recursos edita el repo. El resto del grupo apo
 
 ## Cómo ver el sitio
 
-- **Sitio publicado (provisorio):** https://ecowaste-seven.vercel.app/. La URL final todavía no está fija.
+- **Sitio publicado:** https://ecowaste-seven.vercel.app/
 - **Vista previa de un cambio:** Operaciones comparte el enlace por WhatsApp. También puedes abrir la pestaña [Pull requests](https://github.com/nemura0/ecowaste/pulls), entrar al cambio y buscar el comentario automático que trae el enlace.
 
 ## Cómo proponer algo sin programar
