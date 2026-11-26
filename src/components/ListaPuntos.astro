@@ -1,5 +1,9 @@
 ---
+// Lista de puntos: lo mismo que el mapa, para quien no puede o no quiere usarlo.
+// Cada punto es una nota pastel; el color depende del estado, que además va escrito.
+// La letra (A, B, C…) es la misma del marcador en el mapa.
 import type { CollectionEntry } from 'astro:content';
+import Dibujo from './Dibujo.astro';
 import {
   TIPOS,
   ESTADOS,
@@ -7,9 +11,11 @@ import {
   TIPOS_DE_FUENTE,
   DELEGACIONES,
   formatearFechaLegible,
+  letraDePunto,
 } from '../lib/datos.mjs';
 
 interface Props {
+  /** Puntos en el mismo orden que el mapa, para que coincidan las letras. */
   puntos: CollectionEntry<'puntos'>[];
 }
 
@@ -17,82 +23,84 @@ const { puntos } = Astro.props;
 ---
 
 <section class="seccion-puntos" aria-labelledby="titulo-puntos">
-  <div class="puntos-cabecera">
-    <h2 id="titulo-puntos">Puntos de reciclaje</h2>
-    <p class="puntos-subtitulo">Los mismos puntos del mapa, en una lista.</p>
-  </div>
+  <h2 id="titulo-puntos">Puntos de reciclaje</h2>
+  <p class="puntos-subtitulo" data-filtro-texto>Los mismos puntos del mapa, en una lista.</p>
+  <button type="button" class="ver-todos" data-ver-todos hidden>Ver todos los puntos</button>
 
   {
     puntos.length === 0 ? (
       <p class="puntos-vacio">Aún no hay puntos registrados en el mapa.</p>
     ) : (
       <ul class="puntos-lista" role="list">
-        {puntos.map((punto) => {
-          const fechaFormateada = formatearFechaLegible(punto.data.verificacion.fecha);
-          const delegacionNombre =
-            DELEGACIONES[punto.data.verificacion.delegacion] || punto.data.verificacion.delegacion;
-          const fuenteTipoNombre =
-            TIPOS_DE_FUENTE[punto.data.fuente.tipo] || punto.data.fuente.tipo;
+        {puntos.map((punto, indice) => {
+          const { data } = punto;
+          const delegacion = DELEGACIONES[data.verificacion.delegacion] ?? data.verificacion.delegacion;
+          const tipoDeFuente = TIPOS_DE_FUENTE[data.fuente.tipo] ?? data.fuente.tipo;
 
           return (
-            <li id={`punto-${punto.data.id}`} class="punto-tarjeta">
-              <header class="punto-encabezado">
-                <div class="punto-titulo-bloque">
-                  <span class="punto-tipo">{TIPOS[punto.data.tipo] || punto.data.tipo}</span>
-                  <h3 class="punto-nombre">
-                    <a href={`/puntos/${punto.data.id}/`}>{punto.data.nombre}</a>
+            <li
+              id={`punto-${data.id}`}
+              class={`nota-punto estado-${data.estado}`}
+              data-residuos={data.residuos.join(' ')}
+              data-punto={data.id}
+            >
+              <div class="nota-encabezado">
+                <span class="letra" aria-hidden="true">
+                  {letraDePunto(indice)}
+                </span>
+                <div>
+                  <p class="nota-tipo">{TIPOS[data.tipo] ?? data.tipo}</p>
+                  <h3 class="nota-nombre">
+                    <a href={`/puntos/${data.id}/`}>{data.nombre}</a>
                   </h3>
-                </div>
-                <div class="punto-etiquetas">
-                  <span class={`etiqueta estado-${punto.data.estado}`}>
-                    {ESTADOS[punto.data.estado] || punto.data.estado}
-                  </span>
-                  {punto.data.ejemplo && (
-                    <span class="etiqueta etiqueta-ejemplo">EJEMPLO</span>
-                  )}
-                </div>
-              </header>
-
-              <div class="punto-cuerpo">
-                <p class="punto-ubicacion">
-                  <strong>Dónde:</strong> {punto.data.ubicacion.descripcion}
-                </p>
-                <p class="punto-ubicacion">
-                  <strong>Comuna:</strong> {punto.data.ubicacion.comuna}
-                </p>
-
-                {punto.data.horario && (
-                  <p class="punto-horario">
-                    <strong>Horario:</strong> {punto.data.horario}
-                  </p>
-                )}
-
-                <div class="punto-residuos">
-                  <strong>Recibe:</strong>
-                  <ul class="residuos-lista">
-                    {punto.data.residuos.map((residuo) => (
-                      <li>{RESIDUOS[residuo] || residuo}</li>
-                    ))}
-                  </ul>
                 </div>
               </div>
 
-              <footer class="punto-auditoria">
-                <p class="auditoria-texto">
-                  <small>
-                    <strong>Verificado por:</strong> {delegacionNombre} ({fechaFormateada}).<br />
-                    <strong>Fuente:</strong> {fuenteTipoNombre} · {punto.data.fuente.detalle}
-                    {punto.data.fuente.enlace && (
-                      <>
-                        {' · '}
-                        <a href={punto.data.fuente.enlace} target="_blank" rel="noopener">
-                          Ver fuente
-                        </a>
-                      </>
-                    )}
-                  </small>
-                </p>
-              </footer>
+              <p class="nota-estado">
+                <span class="punto-estado" aria-hidden="true" />
+                {ESTADOS[data.estado] ?? data.estado}
+                {data.ejemplo && <span class="etiqueta-ejemplo">EJEMPLO</span>}
+              </p>
+
+              <dl class="nota-datos">
+                <div>
+                  <dt>Dónde</dt>
+                  <dd>{data.ubicacion.descripcion}</dd>
+                </div>
+                <div>
+                  <dt>Comuna</dt>
+                  <dd>{data.ubicacion.comuna}</dd>
+                </div>
+                {data.horario && (
+                  <div>
+                    <dt>Horario</dt>
+                    <dd>{data.horario}</dd>
+                  </div>
+                )}
+              </dl>
+
+              <p class="nota-recibe">Recibe:</p>
+              <ul class="nota-residuos" role="list">
+                {data.residuos.map((residuo) => (
+                  <li data-residuo={residuo}>
+                    <Dibujo nombre={residuo} tamano={30} />
+                    {RESIDUOS[residuo] ?? residuo}
+                  </li>
+                ))}
+              </ul>
+
+              <p class="nota-fuente">
+                Verificado por {delegacion} el {formatearFechaLegible(data.verificacion.fecha)}.{' '}
+                {`Fuente: ${tipoDeFuente}. ${data.fuente.detalle}`}
+                {data.fuente.enlace && (
+                  <>
+                    {' '}
+                    <a href={data.fuente.enlace} target="_blank" rel="noopener">
+                      Ver fuente
+                    </a>
+                  </>
+                )}
+              </p>
             </li>
           );
         })}
@@ -103,114 +111,181 @@ const { puntos } = Astro.props;
 
 <style>
   .seccion-puntos {
-    margin-block: var(--espacio-6);
+    margin-block: var(--espacio-7) var(--espacio-6);
   }
 
-  .puntos-cabecera {
-    margin-bottom: var(--espacio-4);
-  }
-
-  .puntos-cabecera h2 {
+  .seccion-puntos h2 {
     margin: 0 0 var(--espacio-1);
-    font-size: var(--texto-destacado);
-    line-height: var(--interlineado-titulo);
   }
 
   .puntos-subtitulo {
-    margin: 0;
+    margin: 0 0 var(--espacio-4);
     color: var(--color-tinta-suave);
+  }
+
+  .ver-todos {
+    margin: 0 0 var(--espacio-4);
+    padding: var(--espacio-2) var(--espacio-4);
+    border: var(--borde);
+    border-radius: var(--radio-pildora);
+    background: transparent;
+    color: var(--color-tinta);
+    font: inherit;
     font-size: var(--texto-chico);
-    line-height: var(--interlineado);
+    cursor: pointer;
+  }
+
+  .ver-todos:hover {
+    background: var(--color-tinta);
+    color: var(--color-fondo);
   }
 
   .puntos-lista {
-    list-style: none;
-    padding: 0;
-    margin: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--espacio-4);
+    gap: var(--espacio-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
-  .punto-tarjeta {
-    background: var(--color-superficie);
-    border: var(--borde);
-    border-radius: var(--radio);
-    padding: var(--espacio-4);
+  .nota-punto {
+    padding: var(--espacio-5) var(--espacio-4) var(--espacio-4);
+    border-radius: var(--radio-panel);
     scroll-margin-top: var(--espacio-5);
   }
 
-  .punto-encabezado {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: var(--espacio-2);
-    border-bottom: var(--borde-suave);
-    padding-bottom: var(--espacio-3);
-    margin-bottom: var(--espacio-3);
-    flex-wrap: wrap;
+  .nota-punto[hidden] {
+    display: none;
   }
 
-  .punto-tipo {
-    display: block;
-    font-size: var(--texto-chico);
-    color: var(--color-tinta-suave);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+  .nota-punto.estado-propuesto {
+    background: var(--color-propuesto-fondo);
+  }
+
+  .nota-punto.estado-activo {
+    background: var(--color-activo-fondo);
+  }
+
+  .nota-punto.estado-inactivo {
+    background: var(--color-inactivo-fondo);
+  }
+
+  .nota-encabezado {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--espacio-3);
+  }
+
+  .letra {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.125rem;
+    height: 2.125rem;
+    border: var(--borde);
+    border-radius: 50%;
     font-weight: var(--peso-fuerte);
   }
 
-  .punto-nombre {
-    margin: var(--espacio-1) 0 0;
+  .nota-tipo {
+    margin: 0;
+    color: var(--color-tinta-suave);
+    font-size: var(--texto-chico);
+  }
+
+  .nota-nombre {
+    margin: 0;
     font-size: var(--texto-destacado);
-    line-height: var(--interlineado-titulo);
+    letter-spacing: var(--espaciado-seccion);
+    line-height: 1.2;
   }
 
-  .punto-etiquetas {
+  .nota-nombre a {
+    color: var(--color-tinta);
+    text-decoration-thickness: 1px;
+  }
+
+  .nota-nombre a:hover {
+    color: var(--color-verde);
+  }
+
+  .nota-estado {
     display: flex;
-    gap: var(--espacio-2);
     align-items: center;
+    gap: var(--espacio-2);
+    margin: var(--espacio-3) 0 0;
+    font-size: var(--texto-chico);
+    font-weight: var(--peso-fuerte);
   }
 
-  .punto-cuerpo {
-    font-size: var(--texto-base);
-    line-height: var(--interlineado);
+  .punto-estado {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: currentColor;
   }
 
-  .punto-ubicacion,
-  .punto-horario {
-    margin: 0 0 var(--espacio-2);
+  .nota-estado .etiqueta-ejemplo {
+    margin-left: var(--espacio-2);
   }
 
-  .punto-residuos {
-    margin-top: var(--espacio-3);
+  .nota-datos {
+    margin: var(--espacio-4) 0 0;
   }
 
-  .residuos-lista {
-    margin: var(--espacio-1) 0 0;
-    padding-left: var(--espacio-4);
-  }
-
-  .residuos-lista li {
+  .nota-datos div {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: var(--espacio-2);
     margin-bottom: var(--espacio-1);
   }
 
-  .punto-auditoria {
-    margin-top: var(--espacio-4);
-    padding-top: var(--espacio-3);
-    border-top: var(--borde-suave);
+  .nota-datos dt {
     color: var(--color-tinta-suave);
   }
 
-  .auditoria-texto {
+  .nota-datos dd {
     margin: 0;
-    line-height: var(--interlineado);
+  }
+
+  .nota-recibe {
+    margin: var(--espacio-3) 0 var(--espacio-1);
+    color: var(--color-tinta-suave);
+  }
+
+  .nota-residuos {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-1);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .nota-residuos li {
+    display: flex;
+    align-items: center;
+    gap: var(--espacio-2);
+  }
+
+  /* El residuo elegido en la portada se marca a lápiz */
+  .nota-residuos li.elegido {
+    text-decoration: underline var(--color-lapiz) 2px;
+    text-underline-offset: 0.2em;
+  }
+
+  .nota-fuente {
+    margin: var(--espacio-4) 0 0;
+    padding-top: var(--espacio-3);
+    border-top: var(--borde-suave);
+    color: var(--color-tinta-suave);
+    font-size: var(--texto-chico);
   }
 
   .puntos-vacio {
     padding: var(--espacio-4);
-    background: var(--color-superficie);
-    border-radius: var(--radio);
-    border: var(--borde);
+    border-radius: var(--radio-panel);
+    background: var(--color-niebla);
   }
 </style>

@@ -17,6 +17,8 @@ import {
   destinosInexistentes,
   FORMATO_DESTINO,
   formatearCifra,
+  letraDePunto,
+  respuestaPorResiduo,
 } from '../src/lib/datos.mjs';
 
 const hoy = new Date('2026-11-16T12:00:00Z');
@@ -136,4 +138,38 @@ test('las cifras enteras no muestran decimales y las demás muestran a lo más u
   assert.equal(formatearCifra(12), '12');
   assert.equal(formatearCifra(0), '0');
   assert.equal(formatearCifra(3.14159), '3,1');
+});
+
+// Portada: letras de los puntos y respuesta al elegir un residuo
+
+test('los puntos se marcan con letras y, después de la Z, con números', () => {
+  assert.equal(letraDePunto(0), 'A');
+  assert.equal(letraDePunto(25), 'Z');
+  assert.equal(letraDePunto(26), '27');
+});
+
+const puntosDePrueba = [
+  { estado: 'activo', residuos: ['pilas', 'baterias'] },
+  { estado: 'activo', residuos: ['pilas'] },
+  { estado: 'propuesto', residuos: ['celulares-y-tablets'] },
+  { estado: 'inactivo', residuos: ['baterias'] },
+];
+
+test('si hay puntos activos, la respuesta dice en cuántos puedes dejarlo', () => {
+  assert.equal(respuestaPorResiduo('pilas', puntosDePrueba), 'Puedes dejar pilas en 2 puntos.');
+  assert.equal(respuestaPorResiduo('baterias', puntosDePrueba), 'Puedes dejar baterías recargables en 1 punto.');
+});
+
+test('si ningún punto que lo recibe está activo, la respuesta no invita a ir', () => {
+  assert.equal(
+    respuestaPorResiduo('celulares-y-tablets', puntosDePrueba),
+    'Todavía no hay un punto abierto que reciba celulares y tablets.',
+  );
+});
+
+test('si ningún punto lo recibe, la respuesta lo dice', () => {
+  assert.equal(
+    respuestaPorResiduo('pequenos-electrodomesticos', puntosDePrueba),
+    'Todavía no hay dónde dejar pequeños electrodomésticos.',
+  );
 });

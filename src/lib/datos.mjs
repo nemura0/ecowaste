@@ -130,3 +130,26 @@ export function formatearCifra(valor) {
 
 /** El id del ejemplo de métrica de docs/DATOS.md. Si llega al archivo de métricas, la compilación se detiene. */
 export const ID_METRICA_DE_MUESTRA = 'nombre-de-la-metrica';
+
+/** Letra con que se marca un punto en el mapa y en la lista: A, B, C… y, después de la Z, números. */
+export function letraDePunto(indice) {
+  const LETRAS = 26;
+  return indice < LETRAS ? String.fromCharCode(65 + indice) : String(indice + 1);
+}
+
+/**
+ * Frase que aparece en la portada al elegir un residuo. Solo invita a ir si hay puntos activos.
+ * `puntos` es una lista de objetos con `estado` y `residuos`.
+ */
+export function respuestaPorResiduo(residuo, puntos) {
+  const cosa = (RESIDUOS[residuo] ?? residuo).toLowerCase();
+  const loReciben = puntos.filter((punto) => punto.residuos.includes(residuo));
+  if (loReciben.length === 0) {
+    return `Todavía no hay dónde dejar ${cosa}.`;
+  }
+  const activos = loReciben.filter((punto) => punto.estado === 'activo').length;
+  if (activos === 0) {
+    return `Todavía no hay un punto abierto que reciba ${cosa}.`;
+  }
+  return `Puedes dejar ${cosa} en ${activos} ${activos === 1 ? 'punto' : 'puntos'}.`;
+}

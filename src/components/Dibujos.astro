@@ -13,6 +13,20 @@
       <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="7"></feTurbulence>
       <feDisplacementMap in="SourceGraphic" scale="2.2"></feDisplacementMap>
     </filter>
+    <!-- Tres filtros con distinta semilla. El mapa los alterna en las ondas para que la línea "hierva",
+         como en una animación dibujada a mano (src/scripts/mapa.ts). -->
+    <filter id="hervor-0" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="2" seed="2"></feTurbulence>
+      <feDisplacementMap in="SourceGraphic" scale="2.5"></feDisplacementMap>
+    </filter>
+    <filter id="hervor-1" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="2" seed="9"></feTurbulence>
+      <feDisplacementMap in="SourceGraphic" scale="2.5"></feDisplacementMap>
+    </filter>
+    <filter id="hervor-2" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="2" seed="15"></feTurbulence>
+      <feDisplacementMap in="SourceGraphic" scale="2.5"></feDisplacementMap>
+    </filter>
     <pattern id="achurado" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(40)">
       <path d="M0 0v5" class="dibujo-trazo-fino"></path>
     </pattern>

@@ -3,33 +3,33 @@ import Base from '../layouts/Base.astro';
 import Mapa from '../components/Mapa.astro';
 import ListaPuntos from '../components/ListaPuntos.astro';
 import Metricas from '../components/Metricas.astro';
+import SelectorResiduos from '../components/SelectorResiduos.astro';
+import Dibujo from '../components/Dibujo.astro';
 import { getCollection } from 'astro:content';
 import campus from '../data/campus.json';
 
-const puntos = await getCollection('puntos');
+// El mismo orden en el mapa y en la lista, para que coincidan las letras A, B, C…
+const puntos = (await getCollection('puntos')).sort((a, b) => a.data.nombre.localeCompare(b.data.nombre, 'es'));
 ---
 
-<Base titulo="Mapa de reciclaje" titular="Dónde dejar tus residuos electrónicos">
-  <div class="introduccion">
-    <p>
-      Encuentra puntos de reciclaje de residuos electrónicos en Coquimbo. Partimos por el Campus Guayacán de la
-      Universidad Católica del Norte.
-    </p>
-    <p>Busca los puntos en el mapa o en la lista de abajo. La lista dice qué recibe cada uno.</p>
-  </div>
+<Base titulo="Mapa de reciclaje" titular="¿Qué tienes para reciclar?">
+  <p class="bajada">Elige uno y te mostramos dónde dejarlo.</p>
+
+  <SelectorResiduos />
 
   <Mapa campus={campus} puntos={puntos} />
 
-  <section class="estado-contenedor" aria-labelledby="titulo-contenedor">
-    <div class="contenedor-caja">
-      <div class="contenedor-texto">
-        <h2 id="titulo-contenedor">Contenedor del proyecto</h2>
-        <p>El contenedor del proyecto todavía no existe.</p>
-        <p class="pendiente">
-          [PENDIENTE] Falta definir dónde va a estar, qué residuos va a recibir y su autorización.
-        </p>
-      </div>
-      <span class="etiqueta estado-propuesto">Propuesto</span>
+  <p class="introduccion">
+    Encuentra puntos de reciclaje de residuos electrónicos en Coquimbo. Partimos por el Campus Guayacán de la
+    Universidad Católica del Norte.
+  </p>
+
+  <section class="nota-contenedor" aria-labelledby="titulo-contenedor">
+    <Dibujo nombre="contenedor" tamano={64} />
+    <div>
+      <h2 id="titulo-contenedor">Contenedor del proyecto</h2>
+      <p><strong>Propuesto.</strong> Todavía no existe.</p>
+      <p class="pendiente">[PENDIENTE] Falta definir dónde va a estar, qué residuos va a recibir y su autorización.</p>
     </div>
   </section>
 
@@ -39,49 +39,42 @@ const puntos = await getCollection('puntos');
   <ListaPuntos puntos={puntos} />
 </Base>
 
+<script src="../scripts/portada.ts"></script>
+
 <style>
-  .introduccion {
-    margin-top: var(--espacio-5);
-    margin-bottom: var(--espacio-4);
-  }
-
-  .introduccion p {
-    margin: 0 0 var(--espacio-2);
-    line-height: var(--interlineado);
-  }
-
-  .estado-contenedor {
-    margin-block: var(--espacio-5);
-  }
-
-  .contenedor-caja {
-    background: var(--color-superficie);
-    border: var(--borde);
-    border-radius: var(--radio);
-    padding: var(--espacio-4);
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: var(--espacio-3);
-    flex-wrap: wrap;
-  }
-
-  .contenedor-texto h2 {
-    margin: 0 0 var(--espacio-1);
-    font-size: var(--texto-base);
-    line-height: var(--interlineado-titulo);
-  }
-
-  .contenedor-texto p {
+  .bajada {
     margin: 0;
-    font-size: var(--texto-chico);
     color: var(--color-tinta-suave);
-    line-height: var(--interlineado);
+    font-size: var(--texto-destacado);
+    letter-spacing: var(--espaciado-seccion);
   }
 
-  /* El recuadro punteado sale de global.css. Aquí va blanco, porque la caja ya es verde claro. */
-  .contenedor-texto .pendiente {
-    margin-top: var(--espacio-2);
-    background: var(--color-fondo);
+  .introduccion {
+    margin: var(--espacio-5) 0;
+    color: var(--color-tinta-suave);
+  }
+
+  .nota-contenedor {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--espacio-3);
+    align-items: start;
+    padding: var(--espacio-4);
+    border-radius: var(--radio-panel);
+    background: var(--color-propuesto-fondo);
+  }
+
+  .nota-contenedor h2 {
+    margin: var(--espacio-1) 0 var(--espacio-2);
+    font-size: var(--texto-destacado);
+  }
+
+  .nota-contenedor p {
+    margin: 0;
+  }
+
+  .nota-contenedor .pendiente {
+    margin-top: var(--espacio-3);
+    font-size: var(--texto-chico);
   }
 </style>
