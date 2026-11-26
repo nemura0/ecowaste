@@ -16,11 +16,12 @@ Desde el 26-nov-2026, Operaciones y recursos decide por su cuenta y no espera al
 
 ### Fase 2 · Producto final (hasta el 3-dic)
 
-- [ ] Dirección visual "Cuaderno de campo" en todo el sitio. Ya están en `main` la decisión y la base visual (PR #55 y #56). Faltan la portada, la lista, el mapa, la ficha y "Qué reciclar", propuestos en revisión (PR #57 y #58).
-- [ ] URL final fija: se propone que se quede la de Vercel (PR #54 en revisión, issue #37).
-- [ ] Puntos reales con fuente, buscados y verificados por Operaciones (#34).
+- [x] Dirección visual "Cuaderno de campo" en todo el sitio: portada, lista, mapa, ficha y "Qué reciclar" (PR #55, #56, #57 y #58).
+- [x] URL final fija: https://ecowaste-seven.vercel.app (PR #54, issue #37).
+- [ ] Puntos reales con fuente, buscados y verificados por Operaciones (#34). Ya está el primero: Punto Limpio El Culebrón (PR #60).
 - [ ] Contenedor del proyecto: ubicación, retiro y conseguir la autorización de quien corresponda (#32).
-- [ ] Textos de "Qué reciclar" con fuente, y lista de residuos revisada (#35 y #43).
+- [ ] Textos de "Qué reciclar" con fuente (#35). Ya están el porqué y la definición de cada residuo (PR #61). Falta qué entra y qué no en cada residuo.
+- [ ] Lista de residuos revisada (#43).
 - [ ] Paso a modo real, si ya no queda ningún dato de ejemplo.
 - [ ] Prueba en un teléfono con datos móviles (#18).
 
@@ -99,7 +100,7 @@ Cada fila tiene su issue en el tablero. Cuando se decide, se anota en la issue: 
 |---|---|---|
 | Puntos reales | Buscar puntos con fuente pública y verificarlos | #34 |
 | Contenedor | Ubicación, qué residuos acepta, quién los retira y conseguir la autorización de quien corresponda | #32 |
-| Contenido | Escribir "qué reciclar" con fuente y conseguir los kilos recolectados | #35 |
+| Contenido | Escribir qué entra y qué no en cada residuo de "Qué reciclar", con fuente, y conseguir los kilos recolectados | #35 |
 | Residuos | Revisar la lista controlada de [DATOS.md](DATOS.md) | #43 |
 | Difusión | Confirmar con el profesor si hace falta autorización. Sin respuesta registrada, no se difunde | #33 |
 | Medición | Herramienta e indicadores (si alcanza) | #36 |
@@ -129,6 +130,8 @@ Cada fila tiene su issue en el tablero. Cuando se decide, se anota en la issue: 
 | 18-nov-2026 | Se agrega la sección "El proyecto en cifras" en la portada. Las cifras van en `src/data/metricas.json`, con fuente, fecha y delegación, y no pueden ser de ejemplo. Mientras el archivo esté vacío, la sección no aparece. Qué cifras se publican está pendiente (PR #30) |
 | 19-nov-2026 | Se ordenan las etiquetas (todas en español, con colores por tipo y área), las fases pasan a hitos de GitHub, se crea una issue por cada pendiente y se arma un tablero público en GitHub Projects, donde las tarjetas se mueven solas al enlazar y mergear un PR (PR #45) |
 | 20-nov-2026 | El grupo elige la licencia: MIT para el código y CC BY 4.0 para textos y datos (`docs/`, `src/content/` y `src/data/`). Se agregan `LICENSE`, `LICENSE-CONTENIDO` y la [decisión 0006](decisiones/0006-licencia.md). Sale de pendientes (issue #41) |
-| 24-nov-2026 | Operaciones y recursos propone que la URL de Vercel quede como URL final (PR #54, en revisión) |
-| 26-nov-2026 | Operaciones y recursos elige la dirección visual "Cuaderno de campo". La decisión y la base visual ya están en `main` (PR #55 y #56). Su aplicación a la portada, la lista, el mapa, la ficha y "Qué reciclar" se propone en los PR #57 y #58, en revisión. Reemplaza a la dirección A (PR #53, cerrado) |
+| 24-nov-2026 | Operaciones y recursos decide que la URL de Vercel quede como URL final: https://ecowaste-seven.vercel.app (issue #37). Entra a `main` el 26-nov-2026 (PR #54) |
+| 26-nov-2026 | Operaciones y recursos elige la dirección visual "Cuaderno de campo". Reemplaza a la dirección A (PR #53, cerrado). Entran a `main` la decisión y la base visual (PR #55 y #56) y su aplicación a la portada, la lista, el mapa, la ficha y "Qué reciclar" (PR #57 y #58) |
 | 26-nov-2026 | El profesor informa el calendario final: 3-dic presentación del producto, 10-dic entrega con bitácora y presentación (issue #31). Operaciones y recursos pasa a decidir por su cuenta, sin esperar al resto del grupo ([decisión 0008](decisiones/0008-operaciones-decide.md)). Se cierra la Fase 1 y se rehacen las fases y los hitos. Roles y usuarios de GitHub quedan fuera del repo (issues #38 y #40) |
+| 26-nov-2026 | Entran a `main` los textos de "Qué reciclar" con fuente: el porqué de separar los residuos y la definición de cada uno, según el Decreto 22 de 2026 y una nota del Ministerio del Medio Ambiente (PR #61). El aviso de demostración ahora dice que solo los puntos marcados EJEMPLO son inventados, y el mapa encuadra todos los puntos (PR #62) |
+| 26-nov-2026 | Entra el primer punto real: Punto Limpio El Culebrón, en Coquimbo, verificado por Operaciones y recursos con notas de prensa, un formulario del Ministerio del Medio Ambiente y OpenStreetMap (PR #60) |
