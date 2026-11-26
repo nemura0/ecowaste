@@ -161,16 +161,31 @@ export const EXPLICACION_DE_ESTADO = {
   inactivo: 'Dejó de funcionar.',
 };
 
+/** " (de ejemplo)" si todos los puntos de la lista son de ejemplo. */
+function marcaDeEjemplo(puntos) {
+  return puntos.every((punto) => punto.ejemplo) ? ' (de ejemplo)' : '';
+}
+
 /**
  * Frase de "Qué reciclar" que dice cuántos puntos reciben un residuo.
- * Si todos esos puntos son de ejemplo, lo dice. `puntos` es una lista de objetos con `residuos` y `ejemplo`.
+ * Solo cuenta como abiertos los puntos activos; los propuestos se nombran aparte, para no invitar a ir.
+ * Si todos los que cuenta son de ejemplo, lo dice.
+ * `puntos` es una lista de objetos con `estado`, `residuos` y `ejemplo`.
  */
 export function puntosQueReciben(residuo, puntos) {
   const loReciben = puntos.filter((punto) => punto.residuos.includes(residuo));
   if (loReciben.length === 0) {
     return 'Todavía ningún punto lo recibe.';
   }
-  const deEjemplo = loReciben.every((punto) => punto.ejemplo) ? ' (de ejemplo)' : '';
-  const cantidad = loReciben.length === 1 ? 'Lo recibe 1 punto' : `Lo reciben ${loReciben.length} puntos`;
-  return `${cantidad}${deEjemplo}.`;
+  const activos = loReciben.filter((punto) => punto.estado === 'activo');
+  if (activos.length > 0) {
+    const cantidad = activos.length === 1 ? 'Lo recibe 1 punto abierto' : `Lo reciben ${activos.length} puntos abiertos`;
+    return `${cantidad}${marcaDeEjemplo(activos)}.`;
+  }
+  const propuestos = loReciben.filter((punto) => punto.estado === 'propuesto');
+  if (propuestos.length === 0) {
+    return 'Todavía ningún punto abierto lo recibe.';
+  }
+  const cuantos = propuestos.length === 1 ? 'Hay 1 punto propuesto' : `Hay ${propuestos.length} puntos propuestos`;
+  return `Todavía ningún punto abierto lo recibe. ${cuantos}${marcaDeEjemplo(propuestos)}.`;
 }

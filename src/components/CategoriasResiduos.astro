@@ -6,7 +6,11 @@ import { getCollection } from 'astro:content';
 import Dibujo from './Dibujo.astro';
 import { RESIDUOS, puntosQueReciben } from '../lib/datos.mjs';
 
-const puntos = (await getCollection('puntos')).map((p) => ({ residuos: p.data.residuos, ejemplo: p.data.ejemplo }));
+const puntos = (await getCollection('puntos')).map((p) => ({
+  estado: p.data.estado,
+  residuos: p.data.residuos,
+  ejemplo: p.data.ejemplo,
+}));
 const residuos = Object.entries(RESIDUOS);
 ---
 
