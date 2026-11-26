@@ -1,6 +1,6 @@
 # Roles en Operaciones y recursos
 
-Cinco roles, cada uno con titular y suplente, para que nada dependa de una sola persona. El suplente conoce el rol y lo cubre cuando el titular no está.
+Cinco roles, para que nada dependa de una sola persona. Cada rol lo puede cubrir otra persona de Operaciones cuando quien lo lleva no está.
 
 Operaciones y recursos decidió el 26-nov-2026 que las personas y sus usuarios de GitHub no aparecen en este archivo. Quién cubre cada rol se lleva fuera del repo.
 
@@ -10,7 +10,7 @@ Operaciones y recursos decidió el 26-nov-2026 que las personas y sus usuarios d
 - Administra los ajustes de GitHub (rulesets, colaboradores, seguridad) y el proyecto en Vercel.
 - Mantiene ordenadas las issues, las etiquetas y el tablero.
 
-> Los ajustes de GitHub y la cuenta de Vercel dependen de la cuenta dueña del repo. El suplente puede revisar y mergear, pero no cambiar ajustes. Ver [COMO_APORTAR.md](COMO_APORTAR.md#5-si-el-encargado-del-repo-no-está).
+> Los ajustes de GitHub y la cuenta de Vercel dependen de la cuenta dueña del repo. Otra persona de Operaciones con permiso de escritura puede revisar y mergear, pero no cambiar ajustes. Ver [COMO_APORTAR.md](COMO_APORTAR.md#5-si-el-encargado-del-repo-no-está).
 
 ## 2. Desarrollo de la web y del mapa
 

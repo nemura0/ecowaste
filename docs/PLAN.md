@@ -16,10 +16,10 @@ Desde el 26-nov-2026, Operaciones y recursos decide por su cuenta y no espera al
 
 ### Fase 2 · Producto final (hasta el 3-dic)
 
-- [ ] Dirección visual "Cuaderno de campo" en todo el sitio (PR #55, #56, #57 y #58, que se mergean en ese orden).
-- [ ] URL final fija: se queda la de Vercel (PR #54, issue #37).
+- [ ] Dirección visual "Cuaderno de campo" en todo el sitio. Ya están en `main` la decisión y la base visual (PR #55 y #56). Faltan la portada, la lista, el mapa, la ficha y "Qué reciclar", propuestos en revisión (PR #57 y #58).
+- [ ] URL final fija: se propone que se quede la de Vercel (PR #54 en revisión, issue #37).
 - [ ] Puntos reales con fuente, buscados y verificados por Operaciones (#34).
-- [ ] Contenedor del proyecto: ubicación, autorización y retiro (#32).
+- [ ] Contenedor del proyecto: ubicación, retiro y conseguir la autorización de quien corresponda (#32).
 - [ ] Textos de "Qué reciclar" con fuente, y lista de residuos revisada (#35 y #43).
 - [ ] Paso a modo real, si ya no queda ningún dato de ejemplo.
 - [ ] Prueba en un teléfono con datos móviles (#18).
@@ -27,7 +27,7 @@ Desde el 26-nov-2026, Operaciones y recursos decide por su cuenta y no espera al
 ### Fase 3 · Entrega (hasta el 10-dic)
 
 - [ ] Ajustes según lo que salga de la presentación del 3-dic.
-- [ ] Decidir si se difunde el sitio y si hace falta alguna autorización antes (#33).
+- [ ] Confirmar con el profesor si hace falta autorización antes de difundir el sitio. Sin respuesta registrada en la issue, no se difunde (#33).
 - [ ] Revisión completa con `revisar-antes-de-publicar`.
 - [ ] Registro de este plan al día, como insumo para la bitácora.
 
@@ -79,7 +79,7 @@ Cada fase tiene su [hito](https://github.com/nemura0/ecowaste/milestones) con fe
 
 ## Calendario
 
-Lo informó el profesor en la clase del 26-nov-2026 (issue #31).
+Lo informó el profesor en la clase del 26-nov-2026 (issue #31). La evidencia (diapositiva o mensaje) se guarda en la issue #31.
 
 | Fecha | Qué pasa |
 |---|---|
@@ -91,17 +91,17 @@ La bitácora no va en el repo: la lleva otro encargado del grupo. El Registro de
 
 ## Pendientes
 
-Los decide Operaciones y recursos. Mientras no estén decididos, se marcan `[PENDIENTE]` en el sitio.
+Los decide Operaciones y recursos, salvo lo que el profesor o la institución deben confirmar (autorizaciones y difusión). Mientras no estén resueltos, se marcan `[PENDIENTE]` en el sitio.
 
 Cada fila tiene su issue en el tablero. Cuando se decide, se anota en la issue: fecha y qué se decidió, siempre como "Operaciones y recursos", nunca con un nombre. El PR que aplica la decisión lleva `Closes #número` en la descripción. Al poner el plan al día, se borra la fila y la decisión pasa al Registro.
 
 | Tema | Qué falta | Issue |
 |---|---|---|
 | Puntos reales | Buscar puntos con fuente pública y verificarlos | #34 |
-| Contenedor | Ubicación, autorización, qué residuos acepta y quién los retira | #32 |
+| Contenedor | Ubicación, qué residuos acepta, quién los retira y conseguir la autorización de quien corresponda | #32 |
 | Contenido | Escribir "qué reciclar" con fuente y conseguir los kilos recolectados | #35 |
 | Residuos | Revisar la lista controlada de [DATOS.md](DATOS.md) | #43 |
-| Difusión | Si se difunde el sitio y si hace falta alguna autorización antes | #33 |
+| Difusión | Confirmar con el profesor si hace falta autorización. Sin respuesta registrada, no se difunde | #33 |
 | Medición | Herramienta e indicadores (si alcanza) | #36 |
 | Encuestas | Instrumento para usuarios (si alcanza) | #39 |
 | QR | Dónde va cada QR (si alcanza; un origen por lugar físico, ver [DATOS.md](DATOS.md)) | #44 |
@@ -129,6 +129,6 @@ Cada fila tiene su issue en el tablero. Cuando se decide, se anota en la issue: 
 | 18-nov-2026 | Se agrega la sección "El proyecto en cifras" en la portada. Las cifras van en `src/data/metricas.json`, con fuente, fecha y delegación, y no pueden ser de ejemplo. Mientras el archivo esté vacío, la sección no aparece. Qué cifras se publican está pendiente (PR #30) |
 | 19-nov-2026 | Se ordenan las etiquetas (todas en español, con colores por tipo y área), las fases pasan a hitos de GitHub, se crea una issue por cada pendiente y se arma un tablero público en GitHub Projects, donde las tarjetas se mueven solas al enlazar y mergear un PR (PR #45) |
 | 20-nov-2026 | El grupo elige la licencia: MIT para el código y CC BY 4.0 para textos y datos (`docs/`, `src/content/` y `src/data/`). Se agregan `LICENSE`, `LICENSE-CONTENIDO` y la [decisión 0006](decisiones/0006-licencia.md). Sale de pendientes (issue #41) |
-| 24-nov-2026 | Operaciones y recursos decide que la URL de Vercel queda como URL final (PR #54) |
-| 26-nov-2026 | Operaciones y recursos elige la dirección visual "Cuaderno de campo" y la aplica en la portada, la lista, el mapa, la ficha y "Qué reciclar" (PR #55 a #58). Reemplaza a la dirección A (PR #53, cerrado) |
+| 24-nov-2026 | Operaciones y recursos propone que la URL de Vercel quede como URL final (PR #54, en revisión) |
+| 26-nov-2026 | Operaciones y recursos elige la dirección visual "Cuaderno de campo". La decisión y la base visual ya están en `main` (PR #55 y #56). Su aplicación a la portada, la lista, el mapa, la ficha y "Qué reciclar" se propone en los PR #57 y #58, en revisión. Reemplaza a la dirección A (PR #53, cerrado) |
 | 26-nov-2026 | El profesor informa el calendario final: 3-dic presentación del producto, 10-dic entrega con bitácora y presentación (issue #31). Operaciones y recursos pasa a decidir por su cuenta, sin esperar al resto del grupo ([decisión 0008](decisiones/0008-operaciones-decide.md)). Se cierra la Fase 1 y se rehacen las fases y los hitos. Roles y usuarios de GitHub quedan fuera del repo (issues #38 y #40) |

@@ -150,7 +150,7 @@ Las cifras del proyecto, como los kilos recolectados, van en `src/data/metricas.
 - La cifra se muestra como se lee en Chile: `1234.5` aparece como `1.234,5`.
 - Se muestra a lo más un decimal. Si la fuente dice `1234.56`, en el sitio aparece redondeada: `1.234,6`.
 - Si un archivo trae un campo que no está en esta tabla, la compilación se detiene.
-- `[PENDIENTE]` Qué cifras se publican y quién las entrega. Lo definen las otras delegaciones con Diseño y evaluación.
+- `[PENDIENTE]` Qué cifras se publican. Las define Operaciones y recursos, y cada cifra se publica solo con su fuente citada (ver la [decisión 0008](decisiones/0008-operaciones-decide.md)). Sin fuente, queda `[PENDIENTE]`.
 
 ### Ejemplo de archivo con una métrica
 

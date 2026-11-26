@@ -24,14 +24,16 @@ Las fechas las informó el profesor en la clase del 26-nov-2026 (issue #31).
 **Operaciones y recursos decide por su cuenta** todo lo que toca al sitio y al repo. Algunas decisiones las toma solo el encargado del repo, pero en el repo quedan registradas como de "Operaciones y recursos", sin nombres.
 
 - Operaciones busca y verifica los puntos reales, siempre con una fuente pública o una consulta registrada por cargo o institución.
-- Operaciones escribe los textos de "Qué reciclar", citando su fuente.
+- Operaciones escribe los textos de "Qué reciclar" y cualquier afirmación sobre ambiente, normativa o salud, y cita la fuente en la misma página, junto a la afirmación. Claude solo redacta a partir de una fuente entregada en la conversación o ya citada en el repo, nunca desde su memoria.
 - El resto del grupo puede mandar datos, textos u opiniones por Drive o WhatsApp, pero ninguna tarea espera por ellos.
 - La bitácora del curso no va en el repo: la lleva otro encargado del grupo. El "Registro" de [PLAN.md](../PLAN.md) le sirve de insumo.
 
 ## Lo que no cambia
 
-- **No inventar.** Todo punto, horario, residuo aceptado, cifra o afirmación sobre ambiente, normativa o salud lleva una fuente citada. Lo que no tiene fuente queda `[PENDIENTE]`.
+- **No inventar.** Todo punto, horario, residuo aceptado, cifra o afirmación sobre ambiente, normativa o salud lleva una fuente citada. Lo que no tiene fuente queda `[PENDIENTE]`: una cifra o una norma sin fuente no se escribe.
 - Privacidad: sin nombres, correos ni teléfonos. "Verificado por" es siempre una delegación.
+- No se usa el logo ni la marca de la universidad.
+- No se difunde el sitio sin confirmar con el profesor si hace falta autorización. Operaciones hace la consulta; sin respuesta registrada en la issue #33, no se difunde.
 - El flujo de Git: ramas, pull requests chicos y merge hecho por una persona.
 
 ## Consecuencias

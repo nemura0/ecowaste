@@ -20,8 +20,9 @@ Si tus reglas globales (por ejemplo, de `~/.claude`) piden otra cosa, como TDD c
 
 ### No inventar
 
-- Ningún punto, horario, coordenada, residuo aceptado, cifra, autorización ni nombre de institución sale de tu conocimiento general. O viene de una fuente citada (entregada por Operaciones o una fuente pública que Operaciones revisó), o queda como `[PENDIENTE]`.
-- Las afirmaciones sobre impacto ambiental, normativa o salud las escribe Operaciones, con su fuente. Puedes proponer un borrador, pero solo a partir de una fuente que se cite en la página y que la persona de Operaciones haya visto.
+- Ningún punto, horario, coordenada, residuo aceptado, cifra, autorización ni nombre de institución sale de tu conocimiento general. O viene de una fuente citada (entregada por Operaciones o una fuente pública que Operaciones revisó), o queda como `[PENDIENTE]`. Una cifra o una norma sin fuente queda `[PENDIENTE]`.
+- Las afirmaciones sobre impacto ambiental, normativa o salud las escribe Operaciones, y la fuente se cita en la misma página, junto a la afirmación. Tú solo redactas a partir de una fuente entregada en la conversación o ya citada en el repo, nunca desde tu memoria.
+- No se difunde el sitio (enlaces, QR impresos) sin que Operaciones haya confirmado con el profesor si hace falta autorización. Sin respuesta registrada en la issue #33, no se difunde.
 - Mientras queden datos de ejemplo, cada uno se ve como ejemplo en pantalla, y todo el sitio muestra un aviso de demostración.
 - En modo real, la verificación falla si queda algún dato de ejemplo.
 - Lo que está en la lista de pendientes de `docs/PLAN.md` lo decide Operaciones. No lo decidas tú: márcalo `[PENDIENTE]` y pregúntale a la persona con la que trabajas.
