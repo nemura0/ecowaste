@@ -121,6 +121,26 @@ const paginas = defineCollection({
   ),
 });
 
+// Qué entra en cada residuo, para "Qué reciclar". Un archivo por residuo en src/content/residuos/,
+// con el mismo nombre que su valor en la lista controlada: pilas.md, baterias.md, etc.
+// El texto lleva su fuente; lo que falta va en una línea que empieza con "> [PENDIENTE]".
+const residuos = defineCollection({
+  loader: glob({
+    pattern: '*.md',
+    base: './src/content/residuos',
+    generateId: ({ entry }) => {
+      const id = entry.replace(/\.md$/, '');
+      if (!Object.hasOwn(RESIDUOS, id)) {
+        throw new Error(
+          `src/content/residuos/${entry} no corresponde a ningún residuo. Usa uno de estos nombres: ${Object.keys(RESIDUOS).join(', ')}.`,
+        );
+      }
+      return id;
+    },
+  }),
+  schema: z.strictObject({}, avisoCamposDeMas('los textos de residuos: no llevan encabezado')),
+});
+
 // Orígenes de QR: un QR por ubicación física. Cada uno se publica en /q/<id>/ y lleva a su destino.
 // El id va impreso en el QR, así que no se cambia después de imprimirlo.
 const origenes = defineCollection({
@@ -175,4 +195,4 @@ const metricas = defineCollection({
   ),
 });
 
-export const collections = { puntos, paginas, origenes, metricas };
+export const collections = { puntos, paginas, residuos, origenes, metricas };

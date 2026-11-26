@@ -1,8 +1,9 @@
 ---
 // Los residuos uno por uno, para "Qué reciclar". Cada uno tiene su ancla (/que-reciclar/#pilas),
 // que es a donde llevan los residuos de la portada cuando no hay JavaScript.
-// Qué entra en cada grupo lo escribe otra delegación, con su fuente; mientras tanto queda pendiente.
-import { getCollection } from 'astro:content';
+// Qué entra en cada residuo está en src/content/residuos/<residuo>.md, con su fuente.
+// Si falta el archivo de un residuo, se muestra como pendiente.
+import { getCollection, render } from 'astro:content';
 import Dibujo from './Dibujo.astro';
 import { RESIDUOS, puntosQueReciben } from '../lib/datos.mjs';
 
@@ -12,6 +13,11 @@ const puntos = (await getCollection('puntos')).map((p) => ({
   ejemplo: p.data.ejemplo,
 }));
 const residuos = Object.entries(RESIDUOS);
+const textos = new Map(
+  await Promise.all(
+    (await getCollection('residuos')).map(async (texto) => [texto.id, (await render(texto)).Content] as const),
+  ),
+);
 ---
 
 <nav class="indice" aria-label="Residuos">
@@ -33,7 +39,16 @@ const residuos = Object.entries(RESIDUOS);
         <Dibujo nombre={id} tamano={64} />
         <div>
           <h2 id={`titulo-${id}`}>{nombre}</h2>
-          <p class="pendiente">[PENDIENTE] Qué entra y qué no.</p>
+          {(() => {
+            const Texto = textos.get(id);
+            return Texto ? (
+              <div class="prosa texto">
+                <Texto />
+              </div>
+            ) : (
+              <p class="pendiente">[PENDIENTE] Qué entra y qué no.</p>
+            );
+          })()}
           <p class="conteo">
             {puntosQueReciben(id, puntos)}
             {puntos.some((punto) => punto.residuos.includes(id)) && (
@@ -94,8 +109,21 @@ const residuos = Object.entries(RESIDUOS);
     line-height: 1.25;
   }
 
-  .categoria .pendiente {
+  .categoria .pendiente,
+  .texto :global(blockquote) {
     font-size: var(--texto-chico);
+  }
+
+  .texto :global(p) {
+    margin: 0 0 var(--espacio-3);
+  }
+
+  .texto :global(blockquote) {
+    margin-bottom: var(--espacio-3);
+  }
+
+  .texto :global(blockquote p) {
+    margin: 0;
   }
 
   .conteo {
