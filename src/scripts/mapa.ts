@@ -39,7 +39,7 @@ if (contenedor) {
     throw new Error('Las coordenadas del campus son requeridas para centrar el mapa.');
   }
 
-  // Inicializamos el mapa centrado en el campus.
+  // El mapa parte centrado en el campus. Cuando ya están los marcadores, se encuadran todos los puntos.
   // Desactivamos el control de zoom predeterminado para moverlo abajo a la izquierda,
   // evitando que en teléfonos pequeños tape el contenido de los popups.
   const map = L.map(contenedor, {
@@ -109,6 +109,20 @@ if (contenedor) {
       });
   });
 
+  // Encuadra todos los puntos. Con un solo punto, el acercamiento máximo evita quedar pegado a la calle.
+  const ACERCAMIENTO_MAXIMO = 16;
+  const encuadrarTodos = (animar: boolean) => {
+    if (marcadores.length === 0) return;
+    const ubicaciones = marcadores.map(({ marcador }) => marcador.getLatLng());
+    map.fitBounds(L.latLngBounds(ubicaciones), {
+      maxZoom: ACERCAMIENTO_MAXIMO,
+      padding: [48, 48],
+      animate: animar && !sinMovimiento.matches,
+    });
+  };
+
+  encuadrarTodos(false);
+
   // La portada avisa qué residuo se eligió (src/scripts/portada.ts). Se apagan los puntos que no lo
   // reciben y los que sí aparecen con ondas. Con null se vuelve a mostrar todo.
   let hervor: number | undefined;
@@ -139,10 +153,15 @@ if (contenedor) {
     });
 
     if (elegidos.length > 0) {
-      map.fitBounds(L.latLngBounds(elegidos), { maxZoom: 16, padding: [48, 48], animate: !sinMovimiento.matches });
+      map.fitBounds(L.latLngBounds(elegidos), {
+        maxZoom: ACERCAMIENTO_MAXIMO,
+        padding: [48, 48],
+        animate: !sinMovimiento.matches,
+      });
       hervir();
     } else {
       window.clearInterval(hervor);
+      if (residuo === null) encuadrarTodos(true);
     }
   });
 }
