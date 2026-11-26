@@ -35,44 +35,55 @@ Esta guía es para quien escribe textos del sitio o toca su diseño.
 
 ## Reglas visuales
 
-La referencia es un diseño tipo Canva: **plano, amable y claro**.
+La dirección es **"Cuaderno de campo"**: papel punteado, letra liviana, paneles pastel, dibujos a tinta y anotaciones a lápiz. Debe verse hecho a mano y tranquilo, no como plantilla. Ver la [decisión 0007](decisiones/0007-direccion-cuaderno-de-campo.md).
 
 **Sí:**
 
 - Pensar primero en el teléfono: una columna, botones grandes y texto legible sin hacer zoom.
-- Pocos colores, usados con intención. Un color para cada estado de un punto (propuesto, activo, inactivo), siempre acompañado de texto.
-- Íconos simples en SVG, con texto al lado.
+- Pocos colores y apagados. Un panel pastel para cada estado de un punto (propuesto, activo, inactivo), siempre con la palabra escrita.
+- Dibujos a tinta en SVG para los residuos: trazo irregular y un color plano corrido detrás. Siempre con su nombre al lado o debajo.
+- Anotaciones a lápiz (fuente a mano) solo para detalles chicos: la marca **EJEMPLO**, nombres en el mapa, la fecha de revisión. Nunca para texto que haya que leer con cuidado.
+- Títulos grandes en peso normal, con poco espacio entre letras.
+- Movimiento solo donde explica algo: el trazo que encierra el residuo elegido y las ondas del mapa. Todo se detiene si el teléfono pide menos movimiento.
 - Contraste AA como mínimo, y foco visible al navegar con teclado.
-- Páginas livianas: sin imágenes pesadas ni fuentes descargadas que no hagan falta.
+- Páginas livianas: sin fotos ni imágenes pesadas.
 
 **No:**
 
-- Degradados morados o azules, efecto vidrio, brillos.
+- Degradados, efecto vidrio, brillos ni sombras.
+- Letra gruesa y pesada en los títulos, o colores saturados.
+- Cajas con borde grueso, pastillas de colores por todos lados o tarjetas idénticas con sombra.
+- Fondos con confeti o texturas de colores que distraigan.
 - Emojis como íconos.
 - La portada genérica con eslogan y dos botones.
-- Tarjetas idénticas con sombra suave por todos lados.
 - Todo centrado.
 - El logo o la marca de la universidad.
 
 ## Variables de diseño
 
-El grupo no tiene logo ni colores propios, así que el 16-nov-2026 el encargado del repo eligió la **dirección A, "Etiqueta de contenedor"**. Se inspira en los adhesivos de los contenedores de reciclaje: verde profundo, amarillo de señalética, tinta oscura y bordes marcados. `[PENDIENTE]` Falta que el grupo la confirme. Si elige otra dirección, o define después un logo o colores, se cambian aquí.
+Operaciones y recursos eligió la dirección "Cuaderno de campo" el 26-nov-2026. Reemplaza a la dirección A, "Etiqueta de contenedor". Si el grupo define después un logo o colores propios, se cambian aquí.
 
 Todo vive en un solo archivo, `src/styles/variables.css`. El resto del sitio solo usa esas variables: no se escriben colores ni tamaños sueltos.
 
 | Color | Valor | Para qué |
 |---|---|---|
-| Verde | `#0F5C4A` | Cabecera, enlaces y botones |
-| Amarillo | `#F5C518` | Aviso de demostración y marca **EJEMPLO** |
-| Tinta | `#18262B` | Texto y bordes |
-| Superficie | `#EAF2EE` | Fondos suaves, como el pie de página |
+| Papel | `#FAFAF6` | Fondo de todas las páginas |
+| Tinta | `#1F2421` | Texto, trazos de los dibujos y botón principal |
+| Tinta suave | `#5F6762` | Textos secundarios |
+| Verde | `#2F6B4F` | Enlaces y ondas del mapa |
+| Lápiz | `#9A5B45` | Anotaciones a mano y trazo que encierra lo elegido |
+| Agua | `#DFF0EE` | Cabecera punteada y recuadro de la fuente |
+| Puntos | `#C8D2CC` | Puntos del papel y líneas suaves |
 
-| Estado de un punto | Fondo | Texto |
+| Estado de un punto | Panel | Texto |
 |---|---|---|
-| Propuesto | `#FFF1D6` | `#6B4200` |
-| Activo | `#DDF0E4` | `#155A34` |
-| Inactivo | `#ECEEEE` | `#3D4747` |
+| Propuesto | Mantequilla `#F3EFC8` | Tinta |
+| Activo | Salvia `#DFE9DA` | Tinta |
+| Inactivo | Niebla `#ECEBE6` | Tinta |
 
-- **Tipografía:** la fuente del sistema del teléfono. No se descarga ninguna fuente.
-- **Bordes:** de 2 px en color tinta, con esquinas poco redondeadas (6 px). Nada de sombras. Lo pendiente lleva borde punteado.
-- **Foco:** contorno de 3 px en tinta; sobre el verde, en amarillo.
+El aviso de demostración usa el mismo color mantequilla.
+
+- **Tipografía:** dos fuentes, alojadas en el mismo sitio (no se cargan desde Google) y solo con los caracteres del español. **Geist** para todo el texto, en peso normal (400) y medio (500). **Caveat** solo para las anotaciones a lápiz.
+- **Bordes:** casi no hay. Los paneles se separan por color, con esquinas redondeadas (18 px). Lo pendiente lleva borde punteado.
+- **Foco:** contorno punteado de 2 px en tinta.
+- **Dibujos:** viven en `src/components/Dibujo.astro`. Para un residuo nuevo, se agrega su dibujo ahí.

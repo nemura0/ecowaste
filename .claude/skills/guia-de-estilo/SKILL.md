@@ -25,6 +25,8 @@ description: Aplica la guía de estilo de EcoWaste. Úsala antes de escribir cua
 - [ ] Se ve bien a 375 px de ancho, en una columna, sin desplazamiento horizontal.
 - [ ] Contraste AA como mínimo y foco visible con teclado.
 - [ ] El estado de un punto (propuesto, activo, inactivo) se entiende por el texto, no solo por el color.
-- [ ] Nada de degradados morados o azules, efecto vidrio, brillos, emojis como íconos, la portada genérica con eslogan y dos botones, tarjetas idénticas con sombra suave ni todo centrado.
+- [ ] Nada de degradados, efecto vidrio, brillos, sombras, emojis como íconos, la portada genérica con eslogan y dos botones, tarjetas idénticas con borde grueso o sombra ni todo centrado.
+- [ ] La fuente a mano (Caveat) solo aparece en anotaciones chicas, nunca en texto que haya que leer con cuidado.
+- [ ] Todo movimiento se detiene con `prefers-reduced-motion`.
 - [ ] No aparece el logo ni la marca de la universidad.
-- [ ] No se agregan imágenes ni fuentes pesadas.
+- [ ] No se agregan fotos, imágenes pesadas ni fuentes distintas de Geist y Caveat.
