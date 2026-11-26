@@ -153,3 +153,24 @@ export function respuestaPorResiduo(residuo, puntos) {
   }
   return `Puedes dejar ${cosa} en ${activos} ${activos === 1 ? 'punto' : 'puntos'}.`;
 }
+
+/** Qué significa cada estado, para la ficha de un punto. Ver la columna "estado" en docs/DATOS.md. */
+export const EXPLICACION_DE_ESTADO = {
+  propuesto: 'Todavía no funciona. Cuando funcione, aquí va a decir "Activo".',
+  activo: 'Funciona hoy.',
+  inactivo: 'Dejó de funcionar.',
+};
+
+/**
+ * Frase de "Qué reciclar" que dice cuántos puntos reciben un residuo.
+ * Si todos esos puntos son de ejemplo, lo dice. `puntos` es una lista de objetos con `residuos` y `ejemplo`.
+ */
+export function puntosQueReciben(residuo, puntos) {
+  const loReciben = puntos.filter((punto) => punto.residuos.includes(residuo));
+  if (loReciben.length === 0) {
+    return 'Todavía ningún punto lo recibe.';
+  }
+  const deEjemplo = loReciben.every((punto) => punto.ejemplo) ? ' (de ejemplo)' : '';
+  const cantidad = loReciben.length === 1 ? 'Lo recibe 1 punto' : `Lo reciben ${loReciben.length} puntos`;
+  return `${cantidad}${deEjemplo}.`;
+}

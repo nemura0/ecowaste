@@ -19,6 +19,7 @@ import {
   formatearCifra,
   letraDePunto,
   respuestaPorResiduo,
+  puntosQueReciben,
 } from '../src/lib/datos.mjs';
 
 const hoy = new Date('2026-11-16T12:00:00Z');
@@ -172,4 +173,24 @@ test('si ningún punto lo recibe, la respuesta lo dice', () => {
     respuestaPorResiduo('pequenos-electrodomesticos', puntosDePrueba),
     'Todavía no hay dónde dejar pequeños electrodomésticos.',
   );
+});
+
+// Qué reciclar: cuántos puntos reciben cada residuo
+
+test('cuenta los puntos que reciben un residuo y avisa si son de ejemplo', () => {
+  const puntos = [
+    { residuos: ['pilas'], ejemplo: true },
+    { residuos: ['pilas', 'baterias'], ejemplo: true },
+  ];
+  assert.equal(puntosQueReciben('pilas', puntos), 'Lo reciben 2 puntos (de ejemplo).');
+  assert.equal(puntosQueReciben('baterias', puntos), 'Lo recibe 1 punto (de ejemplo).');
+  assert.equal(puntosQueReciben('celulares-y-tablets', puntos), 'Todavía ningún punto lo recibe.');
+});
+
+test('si hay algún punto real, el conteo no dice que son de ejemplo', () => {
+  const puntos = [
+    { residuos: ['pilas'], ejemplo: true },
+    { residuos: ['pilas'], ejemplo: false },
+  ];
+  assert.equal(puntosQueReciben('pilas', puntos), 'Lo reciben 2 puntos.');
 });

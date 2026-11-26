@@ -1,0 +1,102 @@
+---
+// Los residuos uno por uno, para "Qué reciclar". Cada uno tiene su ancla (/que-reciclar/#pilas),
+// que es a donde llevan los residuos de la portada cuando no hay JavaScript.
+// Qué entra en cada grupo lo escribe otra delegación, con su fuente; mientras tanto queda pendiente.
+import { getCollection } from 'astro:content';
+import Dibujo from './Dibujo.astro';
+import { RESIDUOS, puntosQueReciben } from '../lib/datos.mjs';
+
+const puntos = (await getCollection('puntos')).map((p) => ({ residuos: p.data.residuos, ejemplo: p.data.ejemplo }));
+const residuos = Object.entries(RESIDUOS);
+---
+
+<nav class="indice" aria-label="Residuos">
+  <ul role="list">
+    {
+      residuos.map(([id, nombre]) => (
+        <li>
+          <a href={`#${id}`}>{nombre}</a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<div class="categorias">
+  {
+    residuos.map(([id, nombre]) => (
+      <section class="categoria" id={id} aria-labelledby={`titulo-${id}`}>
+        <Dibujo nombre={id} tamano={64} />
+        <div>
+          <h2 id={`titulo-${id}`}>{nombre}</h2>
+          <p class="pendiente">[PENDIENTE] Qué entra y qué no.</p>
+          <p class="conteo">
+            {puntosQueReciben(id, puntos)}
+            {puntos.some((punto) => punto.residuos.includes(id)) && (
+              <>
+                {' '}
+                <a href="/">Ver en el mapa</a>
+              </>
+            )}
+          </p>
+        </div>
+      </section>
+    ))
+  }
+</div>
+
+<style>
+  .indice ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espacio-2);
+    margin: 0 0 var(--espacio-6);
+    padding: 0;
+    list-style: none;
+  }
+
+  .indice a {
+    display: inline-block;
+    padding: var(--espacio-2) var(--espacio-3);
+    border-radius: var(--radio-pildora);
+    background: var(--color-salvia);
+    color: var(--color-tinta);
+    font-size: var(--texto-chico);
+    text-decoration: none;
+  }
+
+  .indice a:hover {
+    background: var(--color-tinta);
+    color: var(--color-fondo);
+  }
+
+  .categoria {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--espacio-4);
+    padding-block: var(--espacio-5);
+    border-top: var(--borde-suave);
+    scroll-margin-top: var(--espacio-4);
+  }
+
+  .categoria:target h2 {
+    text-decoration: underline var(--color-lapiz) 2px;
+    text-underline-offset: 0.2em;
+  }
+
+  .categoria h2 {
+    margin: 0 0 var(--espacio-3);
+    font-size: var(--texto-destacado);
+    line-height: 1.25;
+  }
+
+  .categoria .pendiente {
+    font-size: var(--texto-chico);
+  }
+
+  .conteo {
+    margin: var(--espacio-3) 0 0;
+    color: var(--color-tinta-suave);
+    font-size: var(--texto-chico);
+  }
+</style>
