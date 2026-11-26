@@ -1,4 +1,4 @@
-Son aparatos eléctricos y electrónicos. El Ministerio del Medio Ambiente los nombra como ejemplo.
+Son aparatos eléctricos y electrónicos. El Ministerio del Medio Ambiente nombra los computadores como ejemplo.
 
 > [PENDIENTE] Qué no entra.
 

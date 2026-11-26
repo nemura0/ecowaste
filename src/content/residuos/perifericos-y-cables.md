@@ -1,4 +1,4 @@
-Si un aparato necesita corriente eléctrica para funcionar, la Ley REP lo cuenta como aparato eléctrico y electrónico. También cuentan sus componentes.
+Si un aparato necesita corriente eléctrica para funcionar, la Ley REP lo cuenta como aparato eléctrico y electrónico. También cuentan sus componentes. El decreto no nombra teclados, mouse ni cables: esto sale de la definición general.
 
 > [PENDIENTE] Qué no entra.
 
