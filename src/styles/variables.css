@@ -78,6 +78,8 @@
 
   /* Formas */
   --ancho-contenido: 40rem;
+  /* Columna de los nombres de dato en la ficha de un punto ("Dónde", "Comuna"…) */
+  --ancho-etiqueta-dato: 7.5rem;
   --borde: 1px solid var(--color-tinta);
   /* Recuadro de lo que falta: punteado, para que no se lea como dato confirmado */
   --borde-pendiente: 1.5px dashed var(--color-tinta-suave);
