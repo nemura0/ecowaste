@@ -1,0 +1,140 @@
+---
+// Selector de residuos de la portada. Con JavaScript, al elegir uno se encierra con un trazo a mano,
+// la lista muestra solo los puntos que lo reciben y el mapa los marca con ondas (src/scripts/portada.ts).
+// Sin JavaScript, cada residuo es un enlace a su sección en "Qué reciclar".
+import { getCollection } from 'astro:content';
+import Dibujo from './Dibujo.astro';
+import { RESIDUOS } from '../lib/datos.mjs';
+
+const puntos = await getCollection('puntos');
+const puntosParaRespuesta = puntos.map((p) => ({ estado: p.data.estado, residuos: p.data.residuos }));
+const residuos = Object.entries(RESIDUOS);
+---
+
+<section class="selector" aria-labelledby="titulo-selector" data-puntos={JSON.stringify(puntosParaRespuesta)}>
+  <h2 id="titulo-selector" class="visualmente-oculto">Elige un residuo</h2>
+
+  <!-- Con JavaScript: botones. El script quita "hidden" y esconde los enlaces. -->
+  <ul class="residuos" role="list" data-botones hidden>
+    {
+      residuos.map(([id, nombre]) => (
+        <li>
+          <button type="button" class="residuo" aria-pressed="false" data-residuo={id}>
+            <svg class="lazo" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+              <path d="M22 18C38 4 82 6 90 34s-12 56-46 58S2 72 8 44 30 10 58 8" />
+            </svg>
+            <Dibujo nombre={id} tamano={56} />
+            <span class="residuo-nombre">{nombre}</span>
+          </button>
+        </li>
+      ))
+    }
+  </ul>
+
+  <!-- Sin JavaScript: enlaces a "Qué reciclar". -->
+  <ul class="residuos" role="list" data-enlaces>
+    {
+      residuos.map(([id, nombre]) => (
+        <li>
+          <a class="residuo" href={`/que-reciclar/#${id}`}>
+            <Dibujo nombre={id} tamano={56} />
+            <span class="residuo-nombre">{nombre}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <p class="respuesta" aria-live="polite" data-respuesta></p>
+</section>
+
+<style>
+  .selector {
+    margin-block: var(--espacio-4) var(--espacio-5);
+  }
+
+  .residuos {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--espacio-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .residuos[hidden] {
+    display: none;
+  }
+
+  .residuo {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espacio-1);
+    width: 100%;
+    min-height: 7.5rem;
+    padding: var(--espacio-3) var(--espacio-1);
+    border: 0;
+    border-radius: var(--radio-panel);
+    background: transparent;
+    color: var(--color-tinta);
+    font: inherit;
+    font-size: var(--texto-chico);
+    line-height: 1.25;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .residuo :global(.dibujo) {
+    transition: transform var(--duracion-trazo) ease;
+  }
+
+  .residuo:hover :global(.dibujo) {
+    transform: rotate(-4deg);
+  }
+
+  .residuo[aria-pressed='true'] .residuo-nombre {
+    font-weight: var(--peso-fuerte);
+  }
+
+  /* Trazo a lápiz que encierra el residuo elegido. Se dibuja con stroke-dashoffset.
+     El largo va en píxeles de pantalla (por vector-effect) y es mayor que el trazo más largo posible. */
+  .lazo {
+    --largo-lazo: 1200;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .lazo path {
+    fill: none;
+    stroke: var(--color-lapiz);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+    filter: url(#tinta);
+    stroke-dasharray: var(--largo-lazo);
+    stroke-dashoffset: var(--largo-lazo);
+    transition: stroke-dashoffset var(--duracion-trazo) ease;
+  }
+
+  .residuo[aria-pressed='true'] .lazo path {
+    stroke-dashoffset: 0;
+  }
+
+  .respuesta {
+    margin: var(--espacio-4) 0 0;
+    font-size: var(--texto-destacado);
+    letter-spacing: var(--espaciado-seccion);
+    line-height: 1.3;
+  }
+
+  .respuesta:empty {
+    display: none;
+  }
+</style>

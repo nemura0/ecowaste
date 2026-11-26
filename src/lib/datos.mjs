@@ -130,3 +130,62 @@ export function formatearCifra(valor) {
 
 /** El id del ejemplo de métrica de docs/DATOS.md. Si llega al archivo de métricas, la compilación se detiene. */
 export const ID_METRICA_DE_MUESTRA = 'nombre-de-la-metrica';
+
+/** Letra con que se marca un punto en el mapa y en la lista: A, B, C… y, después de la Z, números. */
+export function letraDePunto(indice) {
+  const LETRAS = 26;
+  return indice < LETRAS ? String.fromCharCode(65 + indice) : String(indice + 1);
+}
+
+/**
+ * Frase que aparece en la portada al elegir un residuo. Solo invita a ir si hay puntos activos.
+ * `puntos` es una lista de objetos con `estado` y `residuos`.
+ */
+export function respuestaPorResiduo(residuo, puntos) {
+  const cosa = (RESIDUOS[residuo] ?? residuo).toLowerCase();
+  const loReciben = puntos.filter((punto) => punto.residuos.includes(residuo));
+  if (loReciben.length === 0) {
+    return `Todavía no hay dónde dejar ${cosa}.`;
+  }
+  const activos = loReciben.filter((punto) => punto.estado === 'activo').length;
+  if (activos === 0) {
+    return `Todavía no hay un punto abierto que reciba ${cosa}.`;
+  }
+  return `Puedes dejar ${cosa} en ${activos} ${activos === 1 ? 'punto' : 'puntos'}.`;
+}
+
+/** Qué significa cada estado, para la ficha de un punto. Ver la columna "estado" en docs/DATOS.md. */
+export const EXPLICACION_DE_ESTADO = {
+  propuesto: 'Todavía no funciona. Cuando funcione, aquí va a decir "Activo".',
+  activo: 'Funciona hoy.',
+  inactivo: 'Dejó de funcionar.',
+};
+
+/** " (de ejemplo)" si todos los puntos de la lista son de ejemplo. */
+function marcaDeEjemplo(puntos) {
+  return puntos.every((punto) => punto.ejemplo) ? ' (de ejemplo)' : '';
+}
+
+/**
+ * Frase de "Qué reciclar" que dice cuántos puntos reciben un residuo.
+ * Solo cuenta como abiertos los puntos activos; los propuestos se nombran aparte, para no invitar a ir.
+ * Si todos los que cuenta son de ejemplo, lo dice.
+ * `puntos` es una lista de objetos con `estado`, `residuos` y `ejemplo`.
+ */
+export function puntosQueReciben(residuo, puntos) {
+  const loReciben = puntos.filter((punto) => punto.residuos.includes(residuo));
+  if (loReciben.length === 0) {
+    return 'Todavía ningún punto lo recibe.';
+  }
+  const activos = loReciben.filter((punto) => punto.estado === 'activo');
+  if (activos.length > 0) {
+    const cantidad = activos.length === 1 ? 'Lo recibe 1 punto abierto' : `Lo reciben ${activos.length} puntos abiertos`;
+    return `${cantidad}${marcaDeEjemplo(activos)}.`;
+  }
+  const propuestos = loReciben.filter((punto) => punto.estado === 'propuesto');
+  if (propuestos.length === 0) {
+    return 'Todavía ningún punto abierto lo recibe.';
+  }
+  const cuantos = propuestos.length === 1 ? 'Hay 1 punto propuesto' : `Hay ${propuestos.length} puntos propuestos`;
+  return `Todavía ningún punto abierto lo recibe. ${cuantos}${marcaDeEjemplo(propuestos)}.`;
+}

@@ -11,7 +11,9 @@ import {
   DELEGACIONES,
   fechaComoTexto,
   formatearFechaLegible,
+  EXPLICACION_DE_ESTADO,
 } from '../../lib/datos.mjs';
+import Dibujo from '../../components/Dibujo.astro';
 
 export async function getStaticPaths() {
   const puntos = await getCollection('puntos');
@@ -38,55 +40,66 @@ const enlaceOsm = `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lng}#map=18
 >
   <p class="volver"><a href="/">Volver al mapa</a></p>
 
-  <p class="etiquetas">
-    <span class="tipo">{tipoTexto}</span>
-    <span class={`etiqueta estado-${estado}`}>{ESTADOS[estado] || estado}</span>
-    {ejemplo && <span class="etiqueta etiqueta-ejemplo">EJEMPLO</span>}
-  </p>
+  <div class="presentacion">
+    <p class="tipo">
+      {tipoTexto}
+      {ejemplo && <span class="etiqueta-ejemplo">EJEMPLO</span>}
+    </p>
+    {tipo === 'contenedor' && <Dibujo nombre="contenedor" tamano={88} class="dibujo-tipo" />}
+  </div>
+
+  <div class={`panel-estado estado-${estado}`}>
+    <p>
+      <strong>{ESTADOS[estado] || estado}.</strong>{' '}
+      {EXPLICACION_DE_ESTADO[estado]}
+    </p>
+    <a class="boton-mapa" href={enlaceOsm}>Ver el lugar en OpenStreetMap</a>
+  </div>
+
+  <section aria-labelledby="titulo-residuos">
+    <h2 id="titulo-residuos">Qué recibe</h2>
+    <ul class="residuos" role="list">
+      {
+        residuos.map((residuo) => (
+          <li>
+            <a href={`/que-reciclar/#${residuo}`}>
+              <Dibujo nombre={residuo} tamano={40} />
+              {RESIDUOS[residuo] || residuo}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
 
   <section aria-labelledby="titulo-donde">
-    <h2 id="titulo-donde">Dónde está</h2>
-    <p>{ubicacion.descripcion}</p>
+    <h2 id="titulo-donde">Dónde y cuándo</h2>
     <dl class="datos">
+      <div>
+        <dt>Dónde</dt>
+        <dd>{ubicacion.descripcion}</dd>
+      </div>
       <div>
         <dt>Comuna</dt>
         <dd>{ubicacion.comuna}</dd>
       </div>
       <div>
-        <dt>Coordenadas</dt>
-        <dd>
-          {lat}, {lng} ·{' '}
-          <a href={enlaceOsm} target="_blank" rel="noopener">Ver en OpenStreetMap</a>
-        </dd>
+        <dt>Horario</dt>
+        <dd>{horario ?? <span class="pendiente">[PENDIENTE] Falta confirmar el horario.</span>}</dd>
       </div>
-      {
-        horario && (
-          <div>
-            <dt>Horario</dt>
-            <dd>{horario}</dd>
-          </div>
-        )
-      }
-      {
-        administrador && (
-          <div>
-            <dt>Lo administra</dt>
-            <dd>{administrador}</dd>
-          </div>
-        )
-      }
+      <div>
+        <dt>Lo administra</dt>
+        <dd>{administrador ?? <span class="pendiente">[PENDIENTE] Falta confirmar quién lo administra.</span>}</dd>
+      </div>
+      <div>
+        <dt>Coordenadas</dt>
+        <dd>{lat}, {lng}</dd>
+      </div>
     </dl>
   </section>
 
-  <section aria-labelledby="titulo-residuos">
-    <h2 id="titulo-residuos">Qué recibe</h2>
-    <ul>
-      {residuos.map((residuo) => <li>{RESIDUOS[residuo] || residuo}</li>)}
-    </ul>
-  </section>
-
   <section class="origen" aria-labelledby="titulo-origen">
-    <h2 id="titulo-origen">De dónde sale este dato</h2>
+    <h2 id="titulo-origen">¿Cómo sabemos esto?</h2>
     <dl class="datos">
       <div>
         <dt>Fuente</dt>
@@ -120,9 +133,8 @@ const enlaceOsm = `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lng}#map=18
 
 <style>
   .volver {
-    margin-block: var(--espacio-4) var(--espacio-2);
+    margin: 0 0 var(--espacio-2);
     font-size: var(--texto-chico);
-    font-weight: var(--peso-fuerte);
   }
 
   /* Relleno vertical para que el enlace se pueda tocar con el dedo */
@@ -131,41 +143,102 @@ const enlaceOsm = `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lng}#map=18
     padding-block: var(--espacio-2);
   }
 
-  .etiquetas {
+  .presentacion {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--espacio-2);
-    margin: 0 0 var(--espacio-5);
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--espacio-3);
   }
 
   .tipo {
-    font-size: var(--texto-chico);
-    font-weight: var(--peso-fuerte);
+    display: flex;
+    align-items: center;
+    gap: var(--espacio-3);
+    margin: 0;
     color: var(--color-tinta-suave);
   }
 
-  h2 {
-    margin: var(--espacio-6) 0 var(--espacio-2);
-    font-size: var(--texto-destacado);
+  .presentacion :global(.dibujo-tipo) {
+    flex: none;
+    margin-top: calc(var(--espacio-6) * -1);
   }
 
-  section:first-of-type h2 {
-    margin-top: 0;
+  .panel-estado {
+    margin-top: var(--espacio-4);
+    padding: var(--espacio-4);
+    border-radius: var(--radio-panel);
+  }
+
+  .panel-estado.estado-propuesto {
+    background: var(--color-propuesto-fondo);
+  }
+
+  .panel-estado.estado-activo {
+    background: var(--color-activo-fondo);
+  }
+
+  .panel-estado.estado-inactivo {
+    background: var(--color-inactivo-fondo);
+  }
+
+  .panel-estado p {
+    margin: 0 0 var(--espacio-4);
+  }
+
+  .boton-mapa {
+    display: inline-block;
+    padding: var(--espacio-3) var(--espacio-4);
+    border-radius: var(--radio-pildora);
+    background: var(--color-tinta);
+    color: var(--color-fondo);
+    font-size: var(--texto-chico);
+    font-weight: var(--peso-fuerte);
+    text-decoration: none;
+  }
+
+  .boton-mapa:hover {
+    background: var(--color-verde-oscuro);
+    color: var(--color-fondo);
+  }
+
+  h2 {
+    margin: var(--espacio-7) 0 var(--espacio-3);
+  }
+
+  .residuos {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .residuos a {
+    display: flex;
+    align-items: center;
+    gap: var(--espacio-3);
+    color: var(--color-tinta);
+    text-decoration-color: var(--color-punto);
+  }
+
+  .residuos a:hover {
+    text-decoration-color: var(--color-lapiz);
   }
 
   .datos {
-    margin: var(--espacio-3) 0 0;
+    margin: 0;
   }
 
   .datos div {
-    padding-block: var(--espacio-2);
+    display: grid;
+    grid-template-columns: var(--ancho-etiqueta-dato) 1fr;
+    gap: var(--espacio-3);
+    padding-block: var(--espacio-3);
     border-top: var(--borde-suave);
   }
 
   .datos dt {
-    font-size: var(--texto-chico);
-    font-weight: var(--peso-fuerte);
     color: var(--color-tinta-suave);
   }
 
@@ -174,15 +247,26 @@ const enlaceOsm = `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lng}#map=18
     overflow-wrap: anywhere;
   }
 
+  .datos .pendiente {
+    display: block;
+    font-size: var(--texto-chico);
+  }
+
   .origen {
-    margin-top: var(--espacio-6);
-    padding: var(--espacio-4);
-    background: var(--color-superficie);
-    border: var(--borde);
-    border-radius: var(--radio);
+    margin-top: var(--espacio-7);
+    padding: var(--espacio-5) var(--espacio-4) var(--espacio-3);
+    border-radius: var(--radio-panel);
+    background: var(--color-agua);
   }
 
   .origen h2 {
     margin-top: 0;
+  }
+
+  /* En el recuadro de la fuente, cada dato va bajo su nombre: los textos son largos */
+  .origen .datos div {
+    grid-template-columns: 1fr;
+    gap: var(--espacio-1);
+    border-top-color: var(--color-punto);
   }
 </style>

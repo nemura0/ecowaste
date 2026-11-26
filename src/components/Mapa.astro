@@ -1,7 +1,7 @@
 ---
 import 'leaflet/dist/leaflet.css';
 import type { CollectionEntry } from 'astro:content';
-import { ESTADOS, RESIDUOS } from '../lib/datos.mjs';
+import { ESTADOS, RESIDUOS, letraDePunto } from '../lib/datos.mjs';
 
 interface Props {
   campus: {
@@ -9,14 +9,17 @@ interface Props {
     lng: number;
     nombre: string;
   };
+  /** Puntos en el mismo orden que la lista, para que coincidan las letras. */
   puntos: CollectionEntry<'puntos'>[];
 }
 
 const { campus, puntos } = Astro.props;
 
 // Datos mínimos para que el cliente posicione los marcadores
-const puntosParaMapa = puntos.map((p) => ({
+const puntosParaMapa = puntos.map((p, indice) => ({
   id: p.data.id,
+  letra: letraDePunto(indice),
+  residuos: p.data.residuos,
   nombre: p.data.nombre,
   estado: p.data.estado,
   estadoTexto: ESTADOS[p.data.estado] || p.data.estado,
@@ -72,7 +75,7 @@ const puntosParaMapa = puntos.map((p) => ({
             {punto.data.residuos.map((r) => RESIDUOS[r] || r).join(', ')}
           </p>
           <a class="popup-enlace" href={`/puntos/${punto.data.id}/`}>
-            Ver ficha del punto
+            Ver el punto
           </a>
         </div>
       </template>
@@ -83,54 +86,107 @@ const puntosParaMapa = puntos.map((p) => ({
 <script src="../scripts/mapa.ts"></script>
 
 <style is:global>
-  /* Marcadores en HTML y CSS: planos y sin sombras */
+  /* Teselas de OpenStreetMap más apagadas, para que combinen con el papel */
+  .mapa-lienzo .leaflet-tile-pane {
+    filter: grayscale(0.55) sepia(0.12) contrast(0.92) brightness(1.04);
+  }
+
+  /* Marcadores: un círculo con la letra del punto, del color de su estado */
   .pin-mapa-icono {
     background: transparent;
     border: none;
   }
 
   .pin-mapa {
-    width: 28px;
-    height: 28px;
-    border-radius: 50% 50% 50% 0;
-    transform: rotate(-45deg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
     border: var(--borde);
+    border-radius: 50%;
+    color: var(--color-tinta);
+    font-family: var(--fuente);
+    font-size: var(--texto-chico);
+    font-weight: var(--peso-fuerte);
+    transition: opacity var(--duracion-trazo) ease;
   }
 
   .pin-mapa.pin-propuesto {
-    background: var(--color-mantequilla);
+    background: var(--color-propuesto-fondo);
   }
 
   .pin-mapa.pin-activo {
-    background: var(--color-verde);
+    background: var(--color-activo-fondo);
   }
 
   .pin-mapa.pin-inactivo {
     background: var(--color-inactivo-fondo);
   }
 
-  .pin-centro {
-    width: 8px;
-    height: 8px;
-    background: var(--color-tinta);
-    border-radius: 50%;
+  /* Puntos que no reciben el residuo elegido */
+  .pin-mapa-icono.apagado .pin-mapa {
+    opacity: 0.25;
   }
 
-  .pin-mapa.pin-activo .pin-centro {
-    background: var(--color-fondo);
+  /* Ondas dibujadas alrededor de los puntos que sí lo reciben */
+  .ondas {
+    position: absolute;
+    inset: -28px;
+    width: calc(100% + 56px);
+    height: calc(100% + 56px);
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .onda {
+    fill: none;
+    stroke: var(--color-verde);
+    stroke-width: 1.4;
+    transform-box: fill-box;
+    transform-origin: center;
+    opacity: 0;
+  }
+
+  .marcado .onda {
+    animation: onda var(--duracion-onda) ease-out infinite;
+  }
+
+  .marcado .onda:nth-child(2) {
+    animation-delay: calc(var(--duracion-onda) / 3);
+  }
+
+  .marcado .onda:nth-child(3) {
+    animation-delay: calc(var(--duracion-onda) * 2 / 3);
+  }
+
+  @keyframes onda {
+    from {
+      transform: scale(0.55);
+      opacity: 0.9;
+    }
+    to {
+      transform: scale(1.5);
+      opacity: 0;
+    }
+  }
+
+  /* Sin movimiento: queda una sola onda quieta */
+  @media (prefers-reduced-motion: reduce) {
+    .marcado .onda:first-child {
+      opacity: 0.9;
+      transform: scale(0.8);
+    }
   }
 
   /* Popups de Leaflet alineados con variables.css y sin sombras */
   .leaflet-popup-content-wrapper {
     background: var(--color-fondo);
     color: var(--color-tinta);
-    border: var(--borde);
-    border-radius: var(--radio);
+    border-radius: var(--radio-panel);
     padding: var(--espacio-1);
     box-shadow: none !important;
+    outline: var(--borde);
   }
 
   .leaflet-popup-tip {
@@ -216,9 +272,10 @@ const puntosParaMapa = puntos.map((p) => ({
     width: 100%;
     height: 22rem;
     max-height: 60vh;
-    border: var(--borde);
-    border-radius: var(--radio);
-    background: var(--color-superficie);
+    border-radius: var(--radio-panel);
+    background-color: var(--color-agua);
+    background-image: var(--papel-punteado);
+    background-size: var(--papel-paso) var(--papel-paso);
     z-index: 1;
   }
 
