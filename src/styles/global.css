@@ -14,6 +14,7 @@
   color-scheme: light;
   font-family: var(--fuente);
   font-size: 100%;
+  -webkit-font-smoothing: antialiased;
   line-height: var(--interlineado);
 }
 
@@ -36,6 +37,19 @@ h2,
 h3 {
   line-height: var(--interlineado-titulo);
   font-weight: var(--peso-titulo);
+}
+
+h2 {
+  font-size: var(--texto-seccion);
+  letter-spacing: var(--espaciado-seccion);
+}
+
+h3 {
+  font-weight: var(--peso-fuerte);
+}
+
+strong {
+  font-weight: var(--peso-fuerte);
 }
 
 a {
@@ -76,7 +90,8 @@ a:hover {
   padding: var(--espacio-3) var(--espacio-4);
   border: var(--borde-pendiente);
   border-radius: var(--radio);
-  background: var(--color-superficie);
+  background: transparent;
+  color: var(--color-tinta-suave);
 }
 
 .prosa blockquote p {
@@ -112,11 +127,10 @@ a:hover {
    El estado siempre va escrito: el color solo acompaña. */
 .etiqueta {
   display: inline-block;
-  padding: var(--espacio-1) var(--espacio-2);
+  padding: var(--espacio-1) var(--espacio-3);
   border-radius: var(--radio-pildora);
   font-size: var(--texto-chico);
   font-weight: var(--peso-fuerte);
-  border: 2px solid currentColor;
 }
 
 .estado-propuesto {
@@ -134,8 +148,31 @@ a:hover {
   color: var(--color-inactivo-texto);
 }
 
+/* EJEMPLO va escrito a lápiz, un poco torcido, como una nota al margen */
 .etiqueta-ejemplo {
-  background: var(--color-amarillo);
-  color: var(--color-tinta);
-  border: var(--borde);
+  display: inline-block;
+  padding: 0;
+  background: none;
+  color: var(--color-lapiz);
+  font-family: var(--fuente-mano);
+  font-size: var(--texto-mano);
+  font-weight: var(--peso-fuerte);
+  line-height: 1;
+  transform: rotate(-4deg);
+}
+
+/* Papel punteado, para la cabecera y el mapa */
+.punteado {
+  background-color: var(--color-agua);
+  background-image: var(--papel-punteado);
+  background-size: var(--papel-paso) var(--papel-paso);
+}
+
+/* Anotación a mano: solo para detalles chicos, nunca para texto que haya que leer con cuidado */
+.a-mano {
+  font-family: var(--fuente-mano);
+  font-size: var(--texto-mano);
+  font-weight: var(--peso-fuerte);
+  color: var(--color-lapiz);
+  line-height: 1.1;
 }
