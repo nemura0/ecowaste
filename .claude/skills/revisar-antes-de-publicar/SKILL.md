@@ -21,7 +21,7 @@ Revisa todo lo que cambió (`git diff main...HEAD` para un pull request; el siti
 - [ ] Ningún punto sin fuente, fecha de verificación o delegación que verificó.
 - [ ] Todo dato de ejemplo se ve como **EJEMPLO** en pantalla, y el aviso de demostración está en todas las páginas mientras el sitio esté en modo demo.
 - [ ] Nada que esté pendiente se presenta como hecho. Busca `[PENDIENTE]` y comprueba que se vea como pendiente.
-- [ ] Las afirmaciones ambientales, de normativa o de salud tienen fuente y las entregó la delegación correspondiente.
+- [ ] Las afirmaciones ambientales, de normativa o de salud tienen su fuente citada en la página y Operaciones la revisó.
 - [ ] Antes de una difusión: el sitio está en modo real y no queda ningún dato de ejemplo.
 
 ## 3. Sitio

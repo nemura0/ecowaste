@@ -1,6 +1,6 @@
 # Cómo aportar
 
-Esta guía es para la delegación Operaciones y recursos, que edita el repo. Si no programas, empieza por [EMPEZAR_AQUI.md](EMPEZAR_AQUI.md).
+Esta guía es para la delegación Operaciones y recursos, que edita el repo y decide por su cuenta lo que toca al sitio ([decisión 0008](decisiones/0008-operaciones-decide.md)). Si no programas, empieza por [EMPEZAR_AQUI.md](EMPEZAR_AQUI.md).
 
 ## 1. Antes de empezar (una sola vez)
 
@@ -65,7 +65,7 @@ También puedes editar un archivo directamente en la web de GitHub (con el ícon
 El [tablero](https://github.com/users/nemura0/projects/1) es público y también está en la pestaña **Projects** del repo. Tiene tres vistas:
 
 - **Tablero:** las tarjetas en columnas, según en qué van.
-- **Decisiones:** lo que espera una respuesta del grupo, del profesor o de otra delegación.
+- **Decisiones:** lo que Operaciones tiene que decidir.
 - **Por fase:** las tareas agrupadas por hito, uno por cada fase del [plan](PLAN.md).
 
 | Columna | Qué significa |
@@ -73,13 +73,13 @@ El [tablero](https://github.com/users/nemura0/projects/1) es público y también
 | Por hacer | Hay que hacerlo, pero todavía no se acordó para esta semana |
 | Esta semana | Lo acordado el jueves. Máximo 3 tarjetas |
 | En progreso | Alguien lo está haciendo. Máximo 2 por persona |
-| En espera | Espera a otra delegación, al profesor o al grupo |
+| En espera | Espera una respuesta de afuera, por ejemplo de una institución o del profesor |
 | En revisión | Hay un PR abierto que la resuelve y espera revisión |
 | Hecho | Mergeado o cerrado |
 
 Cada tarjeta puede tener una **fecha límite**: hasta cuándo hay que tenerla, según el plan.
 
-Las issues nuevas entran solas a "Por hacer". Cuando tomas una tarea, mueve su tarjeta a "En progreso". Si te quedas esperando a alguien, muévela a "En espera" y anota en la issue qué delegación o cargo esperas, sin nombres de personas. La tarjeta pasa sola a "En revisión" cuando abres un PR enlazado a la issue, y a "Hecho" cuando ese PR se mergea o la issue se cierra.
+Las issues nuevas entran solas a "Por hacer". Cuando tomas una tarea, mueve su tarjeta a "En progreso". Si te quedas esperando una respuesta de afuera, muévela a "En espera" y anota en la issue qué institución o cargo esperas, sin nombres de personas. La tarjeta pasa sola a "En revisión" cuando abres un PR enlazado a la issue, y a "Hecho" cuando ese PR se mergea o la issue se cierra.
 
 Para enlazar el PR, escribe en su descripción `Closes #número`, con el número de la issue. Tiene que ir en inglés: GitHub no reconoce "Cierra".
 
@@ -89,20 +89,20 @@ Cada jueves, en unos 10 minutos:
 
 1. Se revisa lo que pasó a "Hecho".
 2. Se eligen hasta 3 tarjetas para "Esta semana" y se asignan.
-3. Se repasa la vista **Decisiones**: a quién hay que preguntarle qué.
+3. Se repasa la vista **Decisiones** y se decide lo que se pueda.
 4. Se pone al día el plan en un solo PR: "Estado actual", "Pendientes" y "Registro" de [PLAN.md](PLAN.md). Los PR del resto de la semana no tocan ese archivo; así no chocan entre ellos.
-5. Se manda un resumen corto al grupo por WhatsApp.
+5. Se manda un resumen corto al grupo por WhatsApp, para que quede informado.
 
 ### Las etiquetas y los hitos
 
 | Etiqueta | Para qué |
 |---|---|
 | `problema` | Algo no funciona o un dato está mal |
-| `decisión-del-grupo` | Lo decide el grupo o el profesor, no Operaciones |
+| `decisión` | Lo decide Operaciones y recursos |
 | `web`, `datos`, `contenido`, `docs`, `pruebas`, `accesibilidad` | Qué parte del proyecto toca |
 | `buena-primera-tarea` | Sirve para empezar con poca experiencia |
 
-La fase no va como etiqueta: va como [hito](https://github.com/nemura0/ecowaste/milestones) (*milestone*), uno por cada fase del [plan](PLAN.md). Cada hito muestra cuánto falta para cerrar su fase. Las tareas que no son de una fase, como la licencia o los roles, van sin hito.
+La fase no va como etiqueta: va como [hito](https://github.com/nemura0/ecowaste/milestones) (*milestone*), uno por cada fase del [plan](PLAN.md). Cada hito muestra cuánto falta para cerrar su fase. Lo que no bloquea la entrega va en el hito "Si alcanza".
 
 ## 3. Reglas que no se negocian
 
@@ -128,7 +128,7 @@ Las reglas completas están en [CLAUDE.md](../CLAUDE.md). Valen para personas y 
 
 ## 5. Si el encargado del repo no está
 
-- Revisa en [ROLES.md](ROLES.md) quién es suplente de cada rol.
+- Quién cubre cada rol se lleva fuera del repo (ver [ROLES.md](ROLES.md)).
 - Cualquier persona de Operaciones con permiso de escritura puede revisar y mergear pull requests. La protección de `main` solo exige que los cambios entren por pull request.
 - Vercel publica solo cada vez que algo entra a `main`. `[PENDIENTE]`: falta confirmar con la prueba de la Fase 0 que también funcione cuando el cambio lo hizo o lo mergeó otra persona (ver [decisión 0003](decisiones/0003-hosting-vercel.md)).
 - Lo único que no puede hacer otra persona: cambiar los ajustes de GitHub (rulesets, colaboradores, seguridad) ni los de Vercel. Si es urgente, anota en una issue qué hace falta.

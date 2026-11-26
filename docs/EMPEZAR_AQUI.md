@@ -8,7 +8,7 @@ Esta página de GitHub es el **repositorio** (o "repo") de EcoWaste: la carpeta 
 Guarda cada versión de cada archivo, así que nada se pierde y siempre se puede volver atrás.
 Nadie edita la versión publicada directamente: cada cambio se propone aparte y se revisa antes de entrar.
 Cada cambio propuesto genera una **vista previa**, una copia del sitio con el cambio aplicado que puedes abrir en tu teléfono.
-Solo la delegación Operaciones y recursos edita el repo. El resto del grupo aporta datos y textos por Drive y WhatsApp.
+Solo la delegación Operaciones y recursos edita el repo, y decide por su cuenta lo que toca al sitio. Si quieres aportar un dato, un texto o una opinión, mándalo por Drive o WhatsApp: se agradece, pero ninguna tarea queda esperándolo.
 
 ## Cómo ver el sitio
 
@@ -20,9 +20,9 @@ Solo la delegación Operaciones y recursos edita el repo. El resto del grupo apo
 | Quieres… | Haz esto |
 |---|---|
 | Agregar o corregir un punto del mapa | Llena una fila en la planilla de puntos de Drive. Pídele el enlace a Operaciones. Sin fuente, el punto no se puede cargar: revisa en [DATOS.md](DATOS.md) qué cuenta como fuente |
-| Entregar un texto (qué reciclar, acerca del proyecto) | Súbelo a la carpeta de Drive del grupo con su fuente y avísale a Operaciones |
+| Proponer un texto (qué reciclar, acerca del proyecto) | Súbelo a la carpeta de Drive del grupo con su fuente y avísale a Operaciones |
 | Avisar de un error o proponer una idea | Escríbele a Operaciones por WhatsApp. Si tienes cuenta de GitHub, puedes abrir una [issue](https://github.com/nemura0/ecowaste/issues/new/choose) |
-| Opinar sobre un cambio | Abre la vista previa y responde en el WhatsApp del grupo |
+| Opinar sobre un cambio | Abre la vista previa y escríbele a Operaciones por WhatsApp |
 
 ## Glosario
 

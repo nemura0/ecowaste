@@ -10,7 +10,32 @@ Si trabajas sin Claude Code, revisa la sección "Estado actual" y el [tablero de
 
 ## Estado actual
 
-**Fase 0 · Base y documentación, cerrada. Fase 1 · Demo, en curso** (actualizado el 19-nov-2026).
+**Fase 1 · Demo, cerrada. Fase 2 · Producto final, en curso** (actualizado el 26-nov-2026).
+
+Desde el 26-nov-2026, Operaciones y recursos decide por su cuenta y no espera al resto del grupo ([decisión 0008](decisiones/0008-operaciones-decide.md)).
+
+### Fase 2 · Producto final (hasta el 3-dic)
+
+- [ ] Dirección visual "Cuaderno de campo" en todo el sitio (PR #55, #56, #57 y #58, que se mergean en ese orden).
+- [ ] URL final fija: se queda la de Vercel (PR #54, issue #37).
+- [ ] Puntos reales con fuente, buscados y verificados por Operaciones (#34).
+- [ ] Contenedor del proyecto: ubicación, autorización y retiro (#32).
+- [ ] Textos de "Qué reciclar" con fuente, y lista de residuos revisada (#35 y #43).
+- [ ] Paso a modo real, si ya no queda ningún dato de ejemplo.
+- [ ] Prueba en un teléfono con datos móviles (#18).
+
+### Fase 3 · Entrega (hasta el 10-dic)
+
+- [ ] Ajustes según lo que salga de la presentación del 3-dic.
+- [ ] Decidir si se difunde el sitio y si hace falta alguna autorización antes (#33).
+- [ ] Revisión completa con `revisar-antes-de-publicar`.
+- [ ] Registro de este plan al día, como insumo para la bitácora.
+
+### Si alcanza
+
+- [ ] Medición: herramienta e indicadores (#36).
+- [ ] Encuestas para usuarios (#39).
+- [ ] QR: dónde va cada uno (#44). Solo con la URL final fija.
 
 ### Fase 1 · Demo
 
@@ -23,16 +48,15 @@ Si trabajas sin Claude Code, revisa la sección "Estado actual" y el [tablero de
 - [x] Páginas "Qué reciclar" (solo estructura) y "Acerca del proyecto" (#13 y #14).
 - [x] Rutas de entrada por QR, solo estructura (#15).
 - [x] Sección de métricas oculta mientras no haya cifras con fuente (#16).
-- [ ] Revisar los textos de la demo con la guía de estilo (#19).
-- [ ] Probar la demo en un teléfono con datos móviles (#18).
-- [ ] Preguntas para el grupo sobre la demo (#17).
-- [ ] Confirmar la dirección visual con el grupo (#4).
+- [x] Revisar los textos de la demo con la guía de estilo (#19).
+- [x] Dirección visual: Operaciones eligió "Cuaderno de campo" (#4, PR #55).
+- La prueba en teléfono (#18) pasa a la Fase 2. Las preguntas al grupo (#17) se cierran: ya no se espera su opinión.
 
 ### Fase 0 · Base y documentación
 
 - [x] PR de documentación: `CLAUDE.md`, `README.md`, `docs/`, plantillas de `.github/` y skills del proyecto.
 - [x] PR de base técnica: Astro mínimo, scripts `dev`, `build` y `verificar`, `.nvmrc` y verificación automática en cada pull request.
-- [x] Repo conectado a Vercel (https://ecowaste-seven.vercel.app/, URL provisoria).
+- [x] Repo conectado a Vercel (https://ecowaste-seven.vercel.app/).
 - [x] Vista previa con un PR del encargado.
 - [x] Vista previa con un PR de otro colaborador: Vercel la generó en el PR del mapa (#23).
 - [x] Coautoría de agentes: no se prueba en el proyecto real por riesgo de bloqueo permanente; se desactiva en `.claude/settings.json`.
@@ -41,50 +65,46 @@ Si trabajas sin Claude Code, revisa la sección "Estado actual" y el [tablero de
 
 ## Fases
 
-Antes de cada fase se presenta un plan corto con los pull requests que se van a abrir, y se espera el visto bueno. Al terminar una fase, se detiene el trabajo.
+Antes de cada fase se presenta un plan corto con los pull requests que se van a abrir, y se espera el visto bueno de Operaciones. Al terminar una fase, se detiene el trabajo.
 
 | Fase | Qué sale | Está hecha cuando |
 |---|---|---|
-| 0 · Base y documentación | Documentos, skills, Astro mínimo y vista previa en Vercel | Los dos PR están mergeados, la vista previa funciona y cualquiera del grupo entiende el repo leyendo [EMPEZAR_AQUI.md](EMPEZAR_AQUI.md) |
-| 1 · Demo | Sitio de demostración con datos de ejemplo rotulados, centrado en el campus | Se abre en un teléfono con datos móviles, pasa la verificación y hay un enlace para compartir. **Aquí se detiene el trabajo hasta registrar abajo lo que opinó el grupo** |
-| 2 · Datos y contenido reales | Puntos con fuente, textos de otras delegaciones y paso a modo real | No queda ningún dato de ejemplo |
-| 3 · Medición | La herramienta que acuerde el grupo, rutas de QR y QR generados | El grupo decidió la herramienta y la URL final está fija |
-| 4 · Puesta en uso y evidencias | Sitio difundido, pruebas en teléfonos y evidencias de uso | Hay autorización o visto bueno confirmado, y las evidencias quedan guardadas |
+| 0 · Base y documentación | Documentos, skills, Astro mínimo y vista previa en Vercel | Cerrada el 17-nov-2026 |
+| 1 · Demo | Sitio de demostración con datos de ejemplo rotulados, centrado en el campus | Cerrada el 26-nov-2026 |
+| 2 · Producto final | Dirección visual aplicada, puntos reales con fuente, textos de "Qué reciclar" y modo real | Se presenta el 3-dic-2026 y pasa la verificación |
+| 3 · Entrega | Ajustes de la presentación, decisión de difusión y revisión final | Se entrega el 10-dic-2026 |
+| Si alcanza | Medición, encuestas y QR | No bloquea la entrega |
 
-La Fase 3 va antes que la 4 porque, si el sitio se difunde sin medición, no queda evidencia de uso.
+Cada fase tiene su [hito](https://github.com/nemura0/ecowaste/milestones) con fecha límite.
 
 ## Calendario
 
-`[SUPUESTO]` Las diapositivas del curso hablan de semanas sin fecha. Se suponen clases los jueves:
+Lo informó el profesor en la clase del 26-nov-2026 (issue #31).
 
-| Hito | Fecha supuesta |
+| Fecha | Qué pasa |
 |---|---|
-| Presentación del plan de ejecución (conviene llevar la demo) | 19-nov |
-| Ejecución | Semana del 26-nov o del 3-dic |
-| Presentación final | 3 o 10-dic |
+| 26-nov-2026 | Reformulación del proyecto |
+| 3-dic-2026 | Finalización y presentación del producto |
+| 10-dic-2026 | Entrega del producto, con bitácora y presentación |
+
+La bitácora no va en el repo: la lleva otro encargado del grupo. El Registro de abajo le sirve de insumo.
 
 ## Pendientes
 
-Nada de esta lista se decide por cuenta propia. Se marca `[PENDIENTE]` donde corresponda y se pregunta.
+Los decide Operaciones y recursos. Mientras no estén decididos, se marcan `[PENDIENTE]` en el sitio.
 
-Cada fila tiene su issue en el tablero. Cuando llega la respuesta a un pendiente, se anota en su issue: fecha, qué se decidió y qué delegación o cargo lo decidió, nunca un nombre. El PR que aplica la respuesta lleva `Closes #número` en la descripción, para que la issue se cierre sola al mergear, y no toca este archivo. En la revisión del jueves se borra la fila y la respuesta pasa al Registro (ver [COMO_APORTAR.md](COMO_APORTAR.md)).
+Cada fila tiene su issue en el tablero. Cuando se decide, se anota en la issue: fecha y qué se decidió, siempre como "Operaciones y recursos", nunca con un nombre. El PR que aplica la decisión lleva `Closes #número` en la descripción. Al poner el plan al día, se borra la fila y la decisión pasa al Registro.
 
-| Tema | Qué falta | Con quién | Issue |
-|---|---|---|---|
-| Fechas | Confirmar las fechas de cada semana y la fecha límite | Profesor | #31 |
-| Identidad visual | Confirmar la dirección visual A, que eligió el encargado del repo, o elegir otra | Grupo | #4 |
-| Contenedor | Ubicación, autorización, qué residuos acepta y quién los retira | Delegaciones a cargo del contenedor | #32 |
-| Autorización de la web | Saber si la universidad exige alguna antes de difundir | Profesor | #33 |
-| Puntos reales | Puntos y sus fuentes | Datos de los puntos y otras delegaciones | #34 |
-| Contenido | Quién escribe "qué reciclar" y quién entrega los kilos recolectados | Otras delegaciones | #35 |
-| Medición | Herramienta e indicadores | Diseño y evaluación | #36 |
-| URL final | Nombre del sitio. Tiene que quedar fijo antes de imprimir cualquier QR | Operaciones | #37 |
-| QR | Dónde va cada QR (un origen por lugar físico, ver [DATOS.md](DATOS.md)) | Grupo | #44 |
-| Roles | Titular y suplente de cada rol | Operaciones | #38 |
-| Encuestas | Instrumento para usuarios | Otras delegaciones | #39 |
-| Usuarios de GitHub | Si pueden aparecer en `ROLES.md` y `CODEOWNERS` | Operaciones | #40 |
-| Delegaciones | Nombres oficiales de las cinco delegaciones (para los datos) | Grupo | #42 |
-| Residuos | Validar la lista controlada de [DATOS.md](DATOS.md) | Quien escriba "qué reciclar" | #43 |
+| Tema | Qué falta | Issue |
+|---|---|---|
+| Puntos reales | Buscar puntos con fuente pública y verificarlos | #34 |
+| Contenedor | Ubicación, autorización, qué residuos acepta y quién los retira | #32 |
+| Contenido | Escribir "qué reciclar" con fuente y conseguir los kilos recolectados | #35 |
+| Residuos | Revisar la lista controlada de [DATOS.md](DATOS.md) | #43 |
+| Difusión | Si se difunde el sitio y si hace falta alguna autorización antes | #33 |
+| Medición | Herramienta e indicadores (si alcanza) | #36 |
+| Encuestas | Instrumento para usuarios (si alcanza) | #39 |
+| QR | Dónde va cada QR (si alcanza; un origen por lugar físico, ver [DATOS.md](DATOS.md)) | #44 |
 
 ## Riesgos conocidos
 
@@ -93,10 +113,6 @@ Cada fila tiene su issue en el tablero. Cuando llega la respuesta a un pendiente
 - **Teselas de OpenStreetMap.** Es un servicio público sin garantía de disponibilidad. Por eso el mapa lleva siempre una lista equivalente.
 - **QR impresos.** No se pueden corregir. Se generan solo cuando la URL final esté fija.
 - **Analítica.** Si se usa la de Vercel en el plan gratuito, guarda un mes de historial, así que las cifras hay que exportarlas antes.
-
-## Acuerdos de la demo
-
-`[PENDIENTE]` Esta sección la completa el encargado del repo después de mostrar la demo al grupo. Hasta que esté escrita, no se empieza la Fase 2.
 
 ## Registro
 
@@ -113,3 +129,6 @@ Cada fila tiene su issue en el tablero. Cuando llega la respuesta a un pendiente
 | 18-nov-2026 | Se agrega la sección "El proyecto en cifras" en la portada. Las cifras van en `src/data/metricas.json`, con fuente, fecha y delegación, y no pueden ser de ejemplo. Mientras el archivo esté vacío, la sección no aparece. Qué cifras se publican está pendiente (PR #30) |
 | 19-nov-2026 | Se ordenan las etiquetas (todas en español, con colores por tipo y área), las fases pasan a hitos de GitHub, se crea una issue por cada pendiente y se arma un tablero público en GitHub Projects, donde las tarjetas se mueven solas al enlazar y mergear un PR (PR #45) |
 | 20-nov-2026 | El grupo elige la licencia: MIT para el código y CC BY 4.0 para textos y datos (`docs/`, `src/content/` y `src/data/`). Se agregan `LICENSE`, `LICENSE-CONTENIDO` y la [decisión 0006](decisiones/0006-licencia.md). Sale de pendientes (issue #41) |
+| 24-nov-2026 | Operaciones y recursos decide que la URL de Vercel queda como URL final (PR #54) |
+| 26-nov-2026 | Operaciones y recursos elige la dirección visual "Cuaderno de campo" y la aplica en la portada, la lista, el mapa, la ficha y "Qué reciclar" (PR #55 a #58). Reemplaza a la dirección A (PR #53, cerrado) |
+| 26-nov-2026 | El profesor informa el calendario final: 3-dic presentación del producto, 10-dic entrega con bitácora y presentación (issue #31). Operaciones y recursos pasa a decidir por su cuenta, sin esperar al resto del grupo ([decisión 0008](decisiones/0008-operaciones-decide.md)). Se cierra la Fase 1 y se rehacen las fases y los hitos. Roles y usuarios de GitHub quedan fuera del repo (issues #38 y #40) |
