@@ -27,3 +27,5 @@ El curso pide poner el producto en uso y evaluarlo: construirlo no basta. Hay qu
 ## Decisión
 
 `[PENDIENTE]` La toma el grupo. Operaciones implementa lo acordado.
+
+**Actualización 26-nov-2026:** desde la [decisión 0008](0008-operaciones-decide.md), la toma Operaciones y recursos (issue #36).

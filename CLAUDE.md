@@ -4,7 +4,7 @@
 
 - EcoWaste es un sitio web estático con un mapa de puntos de reciclaje de residuos electrónicos.
 - Es el producto digital de un proyecto grupal del ramo Ecología Integral (UCN, sede Coquimbo). No es un servicio oficial de la universidad.
-- Solo la delegación **Operaciones y recursos** edita este repo. Las demás delegaciones aportan por Drive y WhatsApp.
+- Solo la delegación **Operaciones y recursos** edita este repo, y decide por su cuenta lo que toca al sitio ([decisión 0008](docs/decisiones/0008-operaciones-decide.md)). El resto del grupo puede aportar por Drive y WhatsApp, pero nada espera por ellos.
 - Stack: Astro con salida estática, Leaflet con OpenStreetMap, CSS propio, npm y Vercel en el plan gratuito.
 - Cada dato del mapa lleva fuente, fecha de verificación y delegación que verificó. Nada se inventa.
 
@@ -20,11 +20,12 @@ Si tus reglas globales (por ejemplo, de `~/.claude`) piden otra cosa, como TDD c
 
 ### No inventar
 
-- Ningún punto, horario, coordenada, residuo aceptado, cifra, autorización ni nombre de institución sale de tu conocimiento general. O viene de una fuente entregada por el grupo, o queda como `[PENDIENTE]`.
-- Las afirmaciones sobre impacto ambiental, normativa o salud las escriben otras delegaciones, con su fuente. Tú armas la estructura de la página, no el contenido de fondo.
-- Para la demo se usan datos de ejemplo. Cada uno se ve como ejemplo en pantalla, y todo el sitio muestra un aviso de demostración.
+- Ningún punto, horario, coordenada, residuo aceptado, cifra, autorización ni nombre de institución sale de tu conocimiento general. O viene de una fuente citada (entregada por Operaciones o una fuente pública que Operaciones revisó), o queda como `[PENDIENTE]`. Una cifra o una norma sin fuente queda `[PENDIENTE]`.
+- Las afirmaciones sobre impacto ambiental, normativa o salud las escribe Operaciones, y la fuente se cita en la misma página, junto a la afirmación. Tú solo redactas a partir de una fuente entregada en la conversación o ya citada en el repo, nunca desde tu memoria.
+- No se difunde el sitio (enlaces, QR impresos) sin que Operaciones haya confirmado con el profesor si hace falta autorización. Sin respuesta registrada en la issue #33, no se difunde.
+- Mientras queden datos de ejemplo, cada uno se ve como ejemplo en pantalla, y todo el sitio muestra un aviso de demostración.
 - En modo real, la verificación falla si queda algún dato de ejemplo.
-- Lo que está en la lista de pendientes de `docs/PLAN.md` no se decide por cuenta propia: se marca `[PENDIENTE]` y se pregunta.
+- Lo que está en la lista de pendientes de `docs/PLAN.md` lo decide Operaciones. No lo decidas tú: márcalo `[PENDIENTE]` y pregúntale a la persona con la que trabajas.
 
 ### Seguridad y privacidad
 
@@ -103,7 +104,7 @@ Si tus reglas globales (por ejemplo, de `~/.claude`) piden otra cosa, como TDD c
 
 ## Cómo trabajar
 
-- Decide tú los detalles de implementación y cuéntalos. Pregunta cuando la decisión sea del grupo o esté en los pendientes.
+- Decide tú los detalles de implementación y cuéntalos. Pregunta cuando la decisión sea de Operaciones (contenido, datos, alcance) o esté en los pendientes.
 - Si algo de estas instrucciones contradice lo que encuentras en el repo, dilo antes de seguir.
 - Antes de decir que algo está listo, comprueba que compila, que pasa `npm run verificar` y que se ve bien a 375 px de ancho.
 - Al cerrar cada pull request, usa `explicar-cambio`.

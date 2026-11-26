@@ -11,7 +11,7 @@ Entrega entre tres y seis líneas que cualquiera del grupo entienda sin saber pr
 
 1. **Qué cambió**, en una frase, desde el punto de vista de quien usa el sitio.
 2. **Cómo verlo:** el enlace a la vista previa o al sitio, y qué mirar.
-3. **Qué se necesita del grupo:** una opinión, un dato, una decisión. O "Nada por ahora".
+3. **Qué falta:** lo que Operaciones todavía tiene que decidir o conseguir. O "Nada por ahora". Al resto del grupo solo se le informa.
 
 ## Reglas
 
@@ -36,5 +36,5 @@ Entrega entre tres y seis líneas que cualquiera del grupo entienda sin saber pr
 *EcoWaste: nueva página "Qué reciclar"*
 Ya está la estructura de la página; los textos todavía son de relleno.
 Míralo en tu teléfono: https://enlace-de-la-version-de-prueba
-Necesitamos de la delegación que escribe los textos: qué residuos recibe el contenedor y de qué fuente sale.
+Falta: Operaciones tiene que conseguir qué residuos recibe el contenedor y de qué fuente sale.
 ```
