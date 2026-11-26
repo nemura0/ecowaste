@@ -1,0 +1,137 @@
+---
+// Dibujos a tinta de cada residuo y del contenedor. Se cargan una sola vez por página (en Base.astro)
+// y se usan con <Dibujo nombre="..." />. Para un residuo nuevo, agrega aquí un <symbol id="dibujo-<id>">
+// con el mismo id que tiene en src/lib/datos.mjs, y súmalo a DIBUJOS en Dibujo.astro.
+//
+// Cada dibujo tiene dos capas: una mancha de color plano corrida y el trazo a tinta encima.
+// El filtro "tinta" deforma un poco el trazo para que se vea hecho a mano.
+---
+
+<svg class="dibujos" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="tinta" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="7"></feTurbulence>
+      <feDisplacementMap in="SourceGraphic" scale="2.2"></feDisplacementMap>
+    </filter>
+    <pattern id="achurado" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(40)">
+      <path d="M0 0v5" class="dibujo-trazo-fino"></path>
+    </pattern>
+
+    <symbol id="dibujo-pilas" viewBox="0 0 64 64">
+      <rect x="18" y="16" width="14" height="34" rx="3" class="dibujo-mancha-mostaza" transform="translate(3 2) rotate(-8 25 33)"
+      ></rect>
+      <rect x="35" y="20" width="13" height="30" rx="3" class="dibujo-mancha-salmon" transform="translate(2 2) rotate(10 41 35)"
+      ></rect>
+      <g class="dibujo-trazo">
+        <g transform="rotate(-8 25 33)">
+          <rect x="18" y="16" width="14" height="34" rx="3"></rect><path d="M22 13.5h6"></path><path d="M25 25v6M22 28h6"
+          ></path><path d="M20 43h10M20 46h10" stroke-width="1.2"></path>
+        </g>
+        <g transform="rotate(10 41 35)">
+          <rect x="35" y="20" width="13" height="30" rx="3"></rect><path d="M38.5 17.5h6"></path><path d="M38 31h7"></path>
+        </g>
+        <path d="M10 56c8-1.5 18 1 27-.5s14 .5 18 0"></path>
+      </g>
+    </symbol>
+
+    <symbol id="dibujo-baterias" viewBox="0 0 64 64">
+      <rect x="10" y="22" width="40" height="22" rx="4" class="dibujo-mancha-oliva" transform="translate(3 3)"></rect>
+      <g class="dibujo-trazo">
+        <rect x="10" y="22" width="40" height="22" rx="4"></rect><path d="M53 29v8"></path><path d="M32 26l-6 8h8l-5 7"
+        ></path><path d="M14 40h8" stroke-width="1.2"></path>
+        <path d="M8 54c9 1 19-1 28 0s14-.5 20 0"></path>
+      </g>
+    </symbol>
+
+    <symbol id="dibujo-celulares-y-tablets" viewBox="0 0 64 64">
+      <rect x="20" y="8" width="24" height="42" rx="5" class="dibujo-mancha-agua" transform="translate(-3 3) rotate(-6 32 29)"
+      ></rect>
+      <g class="dibujo-trazo" transform="rotate(-6 32 29)">
+        <rect x="20" y="8" width="24" height="42" rx="5"></rect><path d="M28 12.5h8"></path><path d="M30 45h4"></path>
+        <rect x="24" y="17" width="16" height="23" fill="url(#achurado)" stroke-width="1"></rect>
+      </g>
+      <path class="dibujo-trazo" d="M12 57c9-1.5 20 1 28-.5s12 .5 14 0"></path>
+    </symbol>
+
+    <symbol id="dibujo-computadores-y-notebooks" viewBox="0 0 64 64">
+      <rect x="13" y="13" width="38" height="25" rx="2" class="dibujo-mancha-salmon" transform="translate(3 -2)"></rect>
+      <g class="dibujo-trazo">
+        <rect x="13" y="13" width="38" height="25" rx="2"></rect><path d="M6 46h52l-5-8H11z"></path><path
+          d="M27 42h10"
+          stroke-width="1.3"></path>
+        <path d="M17 34l6-6M17 29l3-3" stroke-width="1.1"></path><path d="M8 54c10-1 20 1 30 0s12 0 18 0"></path>
+      </g>
+    </symbol>
+
+    <symbol id="dibujo-perifericos-y-cables" viewBox="0 0 64 64">
+      <path d="M17 14h20v9a10 10 0 0 1-20 0z" class="dibujo-mancha-mostaza" transform="translate(3 3)"></path>
+      <g class="dibujo-trazo">
+        <path d="M22 6v8M32 6v8"></path><path d="M17 14h20v9a10 10 0 0 1-20 0z"></path>
+        <path d="M27 33v5c0 6 4 7 8 5s7-6 12-3 3 9-2 10-6-4-2-6 10 0 13 4"></path><path
+          d="M8 57c9-1 19 1 27 0s14 0 20 0"></path>
+      </g>
+    </symbol>
+
+    <symbol id="dibujo-pequenos-electrodomesticos" viewBox="0 0 64 64">
+      <path d="M16 48h28l-3-26H19z" class="dibujo-mancha-agua" transform="translate(3 2)"></path>
+      <g class="dibujo-trazo">
+        <path d="M16 48h28l-3-26H19z"></path><path d="M22 22v-5a4 4 0 0 1 4-4h8"></path><path
+          d="M42 27h5a5 5 0 0 1 0 10h-4"></path>
+        <path d="M20 41h20" stroke-width="1.2"></path><path d="M25 7c-2 2 2 3 0 5M31 6c-2 2 2 3 0 5" stroke-width="1.4"
+        ></path><path d="M8 55c9-1 20 1 28-.5s14 .5 20 0"></path>
+      </g>
+    </symbol>
+
+    <symbol id="dibujo-contenedor" viewBox="0 0 64 64">
+      <path d="M14 22h36l-4 32H18z" class="dibujo-mancha-oliva" transform="translate(3 2)"></path>
+      <g class="dibujo-trazo">
+        <path d="M14 22h36l-4 32H18z"></path><path d="M11 22h42v-5H11z"></path><path d="M26 17v-3h12v3"></path>
+        <path d="M24 32h16M24 37h16" stroke-width="1.3"></path><path d="M27 44l2.5 3 5.5-6" stroke-width="1.8"></path><path
+          d="M6 58c11-1 22 1 32 0s14 0 20 0"></path>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<style is:global>
+  /* Los selectores van sin ancestro (".dibujos .x" no funciona): el navegador copia cada dibujo
+     dentro de su <use>, y ahí ya no está dentro de ".dibujos". */
+
+  /* No se usa display: none porque algunos navegadores dejan de aplicar los filtros. */
+  .dibujos {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .dibujo-trazo {
+    fill: none;
+    stroke: var(--color-tinta);
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: url(#tinta);
+  }
+
+  .dibujo-trazo-fino {
+    stroke: var(--color-tinta);
+    stroke-width: 1;
+  }
+
+  .dibujo-mancha-salmon {
+    fill: var(--color-mancha-salmon);
+  }
+
+  .dibujo-mancha-mostaza {
+    fill: var(--color-mancha-mostaza);
+  }
+
+  .dibujo-mancha-oliva {
+    fill: var(--color-mancha-oliva);
+  }
+
+  .dibujo-mancha-agua {
+    fill: var(--color-mancha-agua);
+  }
+</style>

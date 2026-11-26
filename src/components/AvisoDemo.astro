@@ -11,8 +11,7 @@ const esDemo = validarModo(sitio.modo) === 'demo';
   esDemo && (
     <aside class="aviso-demo" aria-label="Aviso de demostración">
       <p class="contenedor">
-        <strong>Sitio de demostración.</strong> Los puntos que aparecen son de ejemplo y no sirven para ir a dejar
-        residuos.
+        <strong>Esto es una demo.</strong> Los puntos son inventados, así que todavía no vayas a dejar nada.
       </p>
     </aside>
   )
@@ -20,9 +19,8 @@ const esDemo = validarModo(sitio.modo) === 'demo';
 
 <style>
   .aviso-demo {
-    background: var(--color-amarillo);
-    color: var(--color-tinta);
-    border-bottom: var(--borde);
+    background: var(--color-mantequilla);
+    color: var(--color-aviso-texto);
     font-size: var(--texto-chico);
   }
 

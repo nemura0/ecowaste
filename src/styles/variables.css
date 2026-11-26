@@ -1,7 +1,7 @@
 /*
-  Variables de diseño de EcoWaste. Dirección visual A: "Etiqueta de contenedor".
-  Inspirada en los adhesivos de los contenedores de reciclaje: verde profundo,
-  amarillo de señalética, tinta oscura y bordes marcados.
+  Variables de diseño de EcoWaste. Dirección visual "Cuaderno de campo":
+  papel punteado, letra liviana, paneles pastel, dibujos a tinta y anotaciones a lápiz.
+  Ver docs/decisiones/0007-direccion-cuaderno-de-campo.md.
 
   Regla: el resto del sitio usa solo estas variables. No se escriben colores
   ni tamaños sueltos en otros archivos. Ver docs/GUIA_DE_ESTILO.md.
@@ -9,41 +9,59 @@
 
 :root {
   /* Colores base */
-  --color-verde: #0f5c4a;
-  --color-verde-oscuro: #0a4436;
-  --color-verde-claro: #cfe3da;
-  --color-amarillo: #f5c518;
-  --color-tinta: #18262b;
-  --color-tinta-suave: #3d5250;
-  --color-fondo: #ffffff;
-  --color-superficie: #eaf2ee;
-  --color-linea: #d2e2da;
+  --color-fondo: #fafaf6; /* papel */
+  --color-tinta: #1f2421;
+  --color-tinta-suave: #5f6762;
+  --color-verde: #2f6b4f;
+  --color-verde-oscuro: #1f4a36;
+  --color-lapiz: #8f5440; /* anotaciones a mano; pasa AA sobre todos los paneles */
+  --color-agua: #dff0ee;
+  --color-punto: #c8d2cc; /* puntos del papel */
+  --color-linea: #d9ded9;
+  --color-superficie: var(--color-agua);
+
+  /* Paneles pastel. El aviso de demostración usa el mismo de "propuesto". */
+  --color-mantequilla: #f3efc8;
+  --color-salvia: #dfe9da;
+  --color-niebla: #ecebe6;
+  --color-aviso-texto: #4f4a26;
+
+  /* Colores planos que van detrás de los dibujos */
+  --color-mancha-salmon: #eab4a3;
+  --color-mancha-mostaza: #ecd08a;
+  --color-mancha-oliva: #bcc591;
+  --color-mancha-agua: #b9d6d0;
 
   /* Estados de un punto. Siempre van con su palabra al lado, nunca solo el color. */
-  --color-propuesto-fondo: #fff1d6;
-  --color-propuesto-texto: #6b4200;
-  --color-activo-fondo: #ddf0e4;
-  --color-activo-texto: #155a34;
-  --color-inactivo-fondo: #eceeee;
-  --color-inactivo-texto: #3d4747;
+  --color-propuesto-fondo: var(--color-mantequilla);
+  --color-propuesto-texto: var(--color-tinta);
+  --color-activo-fondo: var(--color-salvia);
+  --color-activo-texto: var(--color-tinta);
+  --color-inactivo-fondo: var(--color-niebla);
+  --color-inactivo-texto: var(--color-tinta);
 
   /* Foco visible al navegar con teclado */
   --color-foco: var(--color-tinta);
-  --color-foco-sobre-verde: var(--color-amarillo);
-  --foco: 3px solid var(--color-foco);
-  --foco-separacion: 2px;
+  --foco: 2px dashed var(--color-foco);
+  --foco-separacion: 3px;
 
-  /* Tipografía: la fuente del teléfono, para no descargar nada extra */
-  --fuente: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  /* Tipografía: Geist para el texto y Caveat solo para anotaciones chicas.
+     Las dos se alojan en el sitio (src/styles/fuentes.css), solo con caracteres latinos. */
+  --fuente: 'Geist', 'Helvetica Neue', Arial, sans-serif;
+  --fuente-mano: 'Caveat', 'Bradley Hand', cursive;
   --texto-chico: 0.875rem;
   --texto-base: 1.0625rem;
   --texto-destacado: 1.25rem;
-  --texto-titulo: clamp(1.75rem, 1.35rem + 1.8vw, 2.5rem);
+  --texto-seccion: 1.75rem;
+  --texto-titulo: clamp(2.25rem, 1.6rem + 2.6vw, 2.75rem);
+  --texto-mano: 1.375rem;
   --peso-normal: 400;
-  --peso-fuerte: 700;
-  --peso-titulo: 800;
+  --peso-fuerte: 500;
+  --peso-titulo: 400;
   --interlineado: 1.55;
-  --interlineado-titulo: 1.15;
+  --interlineado-titulo: 1;
+  --espaciado-titulo: -0.05em;
+  --espaciado-seccion: -0.04em;
 
   /* Espacios */
   --espacio-1: 0.25rem;
@@ -54,15 +72,24 @@
   --espacio-6: 2rem;
   --espacio-7: 3rem;
 
+  /* Papel punteado */
+  --papel-punteado: radial-gradient(var(--color-punto) 1px, transparent 1.3px);
+  --papel-paso: 11px;
+
   /* Formas */
   --ancho-contenido: 40rem;
-  --borde: 2px solid var(--color-tinta);
+  --borde: 1px solid var(--color-tinta);
   /* Recuadro de lo que falta: punteado, para que no se lea como dato confirmado */
-  --borde-pendiente: 2px dashed var(--color-tinta);
+  --borde-pendiente: 1.5px dashed var(--color-tinta-suave);
   /* Subrayado de la sección del menú en la que estás */
-  --grosor-subrayado: 3px;
-  --radio: 6px;
+  --grosor-subrayado: 2px;
+  --radio: 10px;
+  --radio-panel: 18px;
   --radio-pildora: 999px;
   /* Línea suave para separar datos dentro de un bloque */
-  --borde-suave: 2px solid var(--color-linea);
+  --borde-suave: 1px solid var(--color-linea);
+
+  /* Movimiento */
+  --duracion-trazo: 600ms;
+  --duracion-onda: 2.4s;
 }
